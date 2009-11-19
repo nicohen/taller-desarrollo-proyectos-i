@@ -5,9 +5,8 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
-    <h2>Encuestas</h2>
-            
-    <p><strong>TODO</strong></p>
-            
+    <div class="mainblock">
+        <h2>Encuestas</h2>
+        <p><strong>TODO</strong></p>
+    </div>
 </asp:Content>

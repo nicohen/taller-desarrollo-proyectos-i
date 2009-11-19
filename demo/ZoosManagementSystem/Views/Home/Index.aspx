@@ -5,8 +5,10 @@
 </asp:Content>
 
 <asp:Content ID="indexContent" ContentPlaceHolderID="MainContent" runat="server">
+
+    <div class="mainblock">
+        <h2><%= Html.Encode(ViewData["Message"]) %></h2>
+        <p><strong>TODO</strong></p>
+    </div>
     
-    <h2><%= Html.Encode(ViewData["Message"]) %></h2>
-    
-    <p><strong>TODO</strong></p>
 </asp:Content>

@@ -5,15 +5,14 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    
-    <h2>Estad&iacute;sticas</h2>
-    
-    <p><strong>TODO</strong></p>
-    
-    <ul>
-        <li><%= Html.ActionLink("Encuestas", "Surveys", "Statistics")%></li>
-        <li><%= Html.ActionLink("Ambientes", "Environments", "Statistics")%></li>
-        <li><%= Html.ActionLink("Animales", "Animals", "Statistics")%></li>
-    </ul>
-    
+    <div class="mainblock">
+        <h2>Estad&iacute;sticas</h2>
+        <p><strong>TODO</strong></p>
+        
+        <ul>
+            <li><%= Html.ActionLink("Encuestas", "Surveys", "Statistics")%></li>
+            <li><%= Html.ActionLink("Ambientes", "Environments", "Statistics")%></li>
+            <li><%= Html.ActionLink("Animales", "Animals", "Statistics")%></li>
+        </ul>
+    </div>
 </asp:Content>
