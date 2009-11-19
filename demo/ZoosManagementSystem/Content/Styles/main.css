@@ -149,7 +149,7 @@ h1 a:link, h1 a:visited, h1 a:hover, h1 a:active
 	padding-left: 75px;
 	line-height: 46px;
 	font-family: "Trebuchet MS" , Arial, Tahoma, Sans-Serif;
-	font-size: 20px;
+	font-size: 19px;
 	text-transform: uppercase;
 	font-weight: bold;
 	text-shadow: 1px 1px 2px #2c66a1;
@@ -840,3 +840,22 @@ fieldset
 }
 
 
+/* surveys */
+#surveyselection
+{
+	float: left;
+}
+
+#newsurvey
+{
+	float: right;
+	background: url(../Images/newsurvey.png) no-repeat center left;
+	padding-left: 19px;
+	font-size: 120%;
+	height: 16px;
+}
+
+#surveybody
+{
+	clear: both;
+}
