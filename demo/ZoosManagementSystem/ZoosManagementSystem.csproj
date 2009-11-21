@@ -76,7 +76,6 @@
     <Content Include="Content\Images\logo.png" />
     <Content Include="Content\Images\navbar_bg.png" />
     <Content Include="Content\Scripts\common.js" />
-    <Content Include="Content\Styles\main.backup.css" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Views\Administration\Animals.aspx" />

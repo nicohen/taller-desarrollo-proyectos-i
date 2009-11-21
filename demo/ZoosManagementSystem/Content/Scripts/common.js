@@ -13,3 +13,21 @@ $(document).ready(function() {
         activeMenu = ul;
     });
 });
+
+var lastSurveySelected = null;
+function changeSurvey() {
+    var index = $("#availablesurveys")[0].selectedIndex;
+    var currentSurveySelected = $("#availablesurveys").children()[index].value;
+
+    if (lastSurveySelected != currentSurveySelected) {
+        if (lastSurveySelected != null) {
+            $("#" + lastSurveySelected).hide();
+        }
+
+        if (currentSurveySelected != null && currentSurveySelected != "") {
+            $("#" + currentSurveySelected).show();
+
+            lastSurveySelected = currentSurveySelected;
+        }
+    }
+}       

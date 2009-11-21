@@ -855,7 +855,26 @@ fieldset
 	height: 16px;
 }
 
+.clear
+{
+    clear: both;
+}
+
 #surveybody
 {
-	clear: both;
+	margin-top: 10px;
+}
+
+#surveybody div
+{
+	display: none;
+	padding: 5px;
+	border: dotted 1px #AABBCC;
+}
+
+#surveybody h3
+{
+    font-size: 125%;
+    margin-bottom: 8px;
+    color: #223366;
 }
