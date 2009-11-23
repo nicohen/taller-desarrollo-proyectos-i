@@ -1,0 +1,5 @@
+D:\Desarrollo\Proyectos\ZooApplicationService\ZooApplicationService\obj\Debug\ResolveAssemblyReference.cache
+D:\Desarrollo\Proyectos\ZooApplicationService\ZooApplicationService\bin\Debug\ZooApplicationService.exe
+D:\Desarrollo\Proyectos\ZooApplicationService\ZooApplicationService\bin\Debug\ZooApplicationService.pdb
+D:\Desarrollo\Proyectos\ZooApplicationService\ZooApplicationService\obj\Debug\ZooApplicationService.exe
+D:\Desarrollo\Proyectos\ZooApplicationService\ZooApplicationService\obj\Debug\ZooApplicationService.pdb
