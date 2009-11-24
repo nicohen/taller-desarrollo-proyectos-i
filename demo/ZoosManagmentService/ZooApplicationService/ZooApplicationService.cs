@@ -12,14 +12,18 @@ namespace ZooApplicationService
     {
         private List<SensorManager> sensorManagers;
 
+        /// <summary>
+        /// Loads and configures sensor managers from storage provider
+        /// </summary>
         private void InitializeManagers()
         {
-
+            
         }
 
         public ZooApplicationService()
         {
             InitializeComponent();
+            this.sensorManagers = new List<SensorManager>();
         }
 
         protected override void OnStart(string[] args)

@@ -44,11 +44,17 @@ namespace ZooApplicationService
             this.actionExecutionEntries = new List<ActionEntry>();
         }
 
+        /// <summary>
+        /// Starts monitoring and data retrieval
+        /// </summary>
         public virtual void Start()
         {
 
         }
 
+        /// <summary>
+        /// Processes retrieved data which may result in executing an <see cref="IAction"/>.
+        /// </summary>
         protected virtual void ProcessData()
         {
 
