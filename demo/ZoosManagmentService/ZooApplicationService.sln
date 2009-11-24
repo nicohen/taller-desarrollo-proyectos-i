@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 9.00
-# Visual Studio 2005
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual C# Express 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZooApplicationService", "ZooApplicationService\ZooApplicationService.csproj", "{CC27B90E-BC1E-4CB0-B77B-20AE3E660F1D}"
 EndProject
 Global
