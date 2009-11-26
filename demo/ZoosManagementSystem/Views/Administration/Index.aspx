@@ -10,7 +10,6 @@
         <p><strong>TODO</strong></p>
         
         <ul>
-            <li><%= Html.ActionLink("Encuestas", "Surveys", "Administration")%></li>
             <li><%= Html.ActionLink("Ambientes", "Environments", "Administration")%></li>
             <li><%= Html.ActionLink("Animales", "Animals", "Administration")%></li>
         </ul>

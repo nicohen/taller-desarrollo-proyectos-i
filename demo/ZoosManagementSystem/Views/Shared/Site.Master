@@ -20,9 +20,11 @@
                 Administraci&oacute;n Inteligente de Zool&oacute;gicos
             </h2>
         </div>
-        <%--<div id="logindisplay">
-                <% Html.RenderPartial("LogOnUserControl"); %>
-    </div> --%>
+        <%--
+        <div id="logindisplay">
+            <% Html.RenderPartial("LogOnUserControl"); %>
+        </div>
+        --%>
         <div id="nav">
             <ul>
                 <li>
@@ -30,8 +32,6 @@
                 <li>
                     <%= Html.ActionLink("Estadisticas", "Index", "Statistics")%>
                     <ul>
-                        <li>
-                            <%= Html.ActionLink("Encuestas", "Surveys", "Statistics")%></li>
                         <li>
                             <%= Html.ActionLink("Ambientes", "Environments", "Statistics")%></li>
                         <li>
@@ -41,8 +41,6 @@
                 <li>
                     <%= Html.ActionLink("Administracion", "Index", "Administration")%>
                     <ul>
-                        <li>
-                            <%= Html.ActionLink("Encuestas", "Surveys", "Administration")%></li>
                         <li>
                             <%= Html.ActionLink("Ambientes", "Environments", "Administration")%></li>
                         <li>
