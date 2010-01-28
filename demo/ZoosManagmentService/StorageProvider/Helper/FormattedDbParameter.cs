@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Data.Common;
 
-namespace DbHelper
+namespace ZooApplicationService.Storage.Helper
 {
     public class FormattedDbParameter : ICloneable
     {

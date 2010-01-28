@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ZooApplicationService
+namespace ZooApplicationService.Foundation.Api
 {
     public interface IAction
     {

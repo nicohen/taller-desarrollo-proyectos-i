@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.ServiceProcess;
 
-namespace ZooApplicationService
+using ZooApplicationService.StorageProvider;
+
+namespace ZooApplicationService.Foundation.Api
 {
     public abstract class SensorManager
     {
@@ -42,6 +44,11 @@ namespace ZooApplicationService
             this.name = name;
             this.actionExecutionDelay = actionExecutionDelay;
             this.actionExecutionEntries = new List<ActionEntry>();
+        }
+
+        public virtual void Initialize(object settings)
+        {
+
         }
 
         /// <summary>

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DbHelper
+namespace ZooApplicationService.Storage.Helper
 {
     public enum DbHelperErrorCode
     {

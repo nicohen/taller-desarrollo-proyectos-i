@@ -4,7 +4,7 @@ using System.Data;
 using System.Data.Common;
 using System.Collections;
 
-namespace DbHelper
+namespace ZooApplicationService.Storage.Helper
 {
     public abstract class DbHelper
     {

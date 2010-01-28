@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ZooApplicationService
+using ZooApplicationService.Foundation.Api;
+
+namespace ZooApplicationService.Storage.Provider
 {
     public class ActionEntry
     {

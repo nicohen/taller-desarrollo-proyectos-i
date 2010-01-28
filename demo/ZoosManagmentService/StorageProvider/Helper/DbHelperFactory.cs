@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Configuration;
 
-namespace DbHelper
+namespace ZooApplicationService.Storage.Helper
 {
     public static class DbHelperFactory
     {

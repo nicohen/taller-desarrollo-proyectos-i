@@ -1,0 +1,5 @@
+C:\Users\rob\Desktop\Build\Debug\Acriter.Data.Helper\DbHelper.dll
+C:\Users\rob\Desktop\Build\Debug\Acriter.Data.Helper\DbHelper.pdb
+C:\Users\rob\Desktop\Facultad\taller-desarrollo-proyectos-i\demo\ZoosManagmentService\StorageProvider\Helper\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\rob\Desktop\Facultad\taller-desarrollo-proyectos-i\demo\ZoosManagmentService\StorageProvider\Helper\obj\Debug\DbHelper.dll
+C:\Users\rob\Desktop\Facultad\taller-desarrollo-proyectos-i\demo\ZoosManagmentService\StorageProvider\Helper\obj\Debug\DbHelper.pdb
