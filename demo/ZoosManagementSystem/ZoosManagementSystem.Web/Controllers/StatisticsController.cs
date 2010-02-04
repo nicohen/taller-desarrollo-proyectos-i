@@ -1,4 +1,4 @@
-namespace ZoosManagementSystem.Controllers
+namespace ZoosManagementSystem.Web.Controllers
 {
     using System.Web.Mvc;
 
@@ -6,22 +6,22 @@ namespace ZoosManagementSystem.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return this.View();
         }
 
         public ActionResult Surveys()
         {
-            return View();
+            return this.View();
         }
 
         public ActionResult Environments()
         {
-            return View();
+            return this.View();
         }
 
         public ActionResult Animals()
         {
-            return View();
+            return this.View();
         }
     }
 }

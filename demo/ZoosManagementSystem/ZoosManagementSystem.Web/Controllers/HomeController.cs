@@ -1,4 +1,4 @@
-﻿namespace ZoosManagementSystem.Controllers
+﻿namespace ZoosManagementSystem.Web.Controllers
 {
     using System.Web.Mvc;
 
@@ -7,14 +7,14 @@
     {
         public ActionResult Index()
         {
-            ViewData["Message"] = "Bienvenido al Sistema de Administración de Zoológicos Inteligente!";
+            this.ViewData["Message"] = "Bienvenido al Sistema de Administración de Zoológicos Inteligente!";
 
-            return View();
+            return this.View();
         }
 
         public ActionResult About()
         {
-            return View();
+            return this.View();
         }
     }
 }

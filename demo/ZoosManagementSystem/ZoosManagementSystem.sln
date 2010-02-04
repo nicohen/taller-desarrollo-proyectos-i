@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZoosManagementSystem", "ZoosManagementSystem.csproj", "{3110518D-8EA7-43BA-A251-BE9E31585170}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZoosManagementSystem.Web", "ZoosManagementSystem.Web\ZoosManagementSystem.Web.csproj", "{3110518D-8EA7-43BA-A251-BE9E31585170}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

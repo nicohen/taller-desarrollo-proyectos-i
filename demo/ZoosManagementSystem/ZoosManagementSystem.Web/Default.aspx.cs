@@ -2,7 +2,7 @@
 using System.Web.Mvc;
 using System.Web.UI;
 
-namespace ZoosManagementSystem
+namespace ZoosManagementSystem.Web
 {
     public partial class _Default : Page
     {
@@ -12,8 +12,8 @@ namespace ZoosManagementSystem
             // the request, then restore the original path so that the OutputCache module
             // can correctly process the response (if caching is enabled).
 
-            string originalPath = Request.Path;
-            HttpContext.Current.RewritePath(Request.ApplicationPath, false);
+            string originalPath = this.Request.Path;
+            HttpContext.Current.RewritePath(this.Request.ApplicationPath, false);
             IHttpHandler httpHandler = new MvcHttpHandler();
             httpHandler.ProcessRequest(HttpContext.Current);
             HttpContext.Current.RewritePath(originalPath, false);
