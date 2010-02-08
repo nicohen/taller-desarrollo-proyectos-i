@@ -18,7 +18,7 @@ INSERT INTO [dbo].[Animal] ([EnvironmentId], [ResponsibleId], [Name], [Species],
 SET @animalID = (SELECT TOP 1 [Id] FROM [dbo].[Animal])
 
 DECLARE @sensorID UNIQUEIDENTIFIER
-INSERT INTO [dbo].[Sensor] ([EnvironmentId], [Name], [Type], [Manufacturer], [SerialNumber], [AssemblyFullName]) VALUES (@environmentID, 'SensorLuz-Ph1127-1', 'Luz', 'Phidgets Inc.', 'AB285-DE855-EDDR5-ADRR1-15DDR', 'ZoosManagementSystem.Sensors.LightSensor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null')
+INSERT INTO [dbo].[Sensor] ([EnvironmentId], [Name], [Type], [Manufacturer], [SerialNumber]) VALUES (@environmentID, 'SensorLuz-Ph1127-1', 'Luz', 'Phidgets Inc.', 'AB285-DE855-EDDR5-ADRR1-15DDR')
 SET @sensorID = (SELECT TOP 1 [Id] FROM [dbo].[Sensor])
 
 INSERT INTO [dbo].[FeedingTime] ([FeedingId], [AnimalId], [Amount], [Time]) VALUES (@feedingID, @animalID, 3500, '12:00:00.0')
