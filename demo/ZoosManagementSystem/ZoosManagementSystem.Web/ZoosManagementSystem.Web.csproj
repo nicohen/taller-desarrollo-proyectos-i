@@ -76,6 +76,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\IZooCatalogRepository.cs" />
+    <Compile Include="Models\SqlZooCatalogRepository.cs" />
     <Compile Include="Models\ZooManagementSystemModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

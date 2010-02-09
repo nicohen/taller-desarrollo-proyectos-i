@@ -860,21 +860,24 @@ fieldset
     clear: both;
 }
 
-#surveybody
+#maincontent
 {
 	margin-top: 10px;
 }
 
-#surveybody div
+#maincontent div
 {
-	display: none;
+	background-color: #E4E9B9;
+	border: 1px dotted #AABBCC;
+	float: left;
+	margin: 2px;
 	padding: 5px;
-	border: dotted 1px #AABBCC;
+	width: 331px;
 }
 
-#surveybody h3
+#maincontent h3
 {
-    font-size: 125%;
+    font-size: 120%;
     margin-bottom: 8px;
-    color: #223366;
+    color: #443366;
 }

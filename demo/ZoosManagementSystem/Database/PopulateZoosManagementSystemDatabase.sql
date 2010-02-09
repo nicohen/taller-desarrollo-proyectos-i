@@ -2,7 +2,9 @@ USE [ZoosManagementSystem]
 GO
 
 DECLARE @environmentID UNIQUEIDENTIFIER
-INSERT INTO [dbo].[Environment] ([Name], [Description], [Surface], [Type]) VALUES ('Jaula de Leones', 'Jaula para tres leones', 1200, 'Mamiferos')
+INSERT INTO [dbo].[Environment] ([Name], [Description], [Surface], [Type]) VALUES ('Jaula de Leones', 'Jaula para tres leones', 1800, 'Mamiferos')
+INSERT INTO [dbo].[Environment] ([Name], [Description], [Surface], [Type]) VALUES ('Jaula de Osos', 'Jaula para dos osos', 2000, 'Mamiferos')
+INSERT INTO [dbo].[Environment] ([Name], [Description], [Surface], [Type]) VALUES ('Jaula de Cebras', 'Jaula para cuatro cebras', 3500, 'Mamiferos')
 SET @environmentID = (SELECT TOP 1 [Id] FROM [dbo].[Environment])
 
 DECLARE @feedingID UNIQUEIDENTIFIER
@@ -14,7 +16,7 @@ INSERT INTO [dbo].[Responsible] ([Name], [LastName], [Email], [Phone]) VALUES ('
 SET @responsibleID = (SELECT TOP 1 [Id] FROM [dbo].[Responsible])
 
 DECLARE @animalID UNIQUEIDENTIFIER
-INSERT INTO [dbo].[Animal] ([EnvironmentId], [ResponsibleId], [Name], [Species], [BirthDate], [BornInCaptivity], [Cost], [NextHealthMeasure]) VALUES (@environmentID, @responsibleID, 'Simba', 'Phantera Leo', '2007-05-08', 1, NULL, '2010-02-15')
+INSERT INTO [dbo].[Animal] ([EnvironmentId], [ResponsibleId], [Name], [Sex], [Species], [BirthDate], [BornInCaptivity], [Cost], [NextHealthMeasure]) VALUES (@environmentID, @responsibleID, 'Simba', 'M','Phantera Leo', '2007-05-08', 1, NULL, '2010-02-15')
 SET @animalID = (SELECT TOP 1 [Id] FROM [dbo].[Animal])
 
 DECLARE @sensorID UNIQUEIDENTIFIER

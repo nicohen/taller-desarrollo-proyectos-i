@@ -29,7 +29,7 @@
         
         <div class="clear"></div>
         
-        <div id="surveybody">
+        <div id="maincontent">
             <div id="Survey1">
                 <h3>Encuesta de Animales</h3>
                 

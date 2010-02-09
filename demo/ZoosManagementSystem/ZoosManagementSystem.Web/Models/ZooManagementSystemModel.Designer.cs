@@ -19,7 +19,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("ZoosManagementSystemModel", "FK_FeedingTime_Feeding", "Feeding", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ZoosManagementSystem.Web.Models.Feeding), "FeedingTime", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ZoosManagementSystem.Web.Models.FeedingTime))]
 
 // Original file name:
-// Generation date: 2/4/2010 6:11:52 PM
+// Generation date: 2/8/2010 9:43:43 PM
 namespace ZoosManagementSystem.Web.Models
 {
     
@@ -268,15 +268,17 @@ namespace ZoosManagementSystem.Web.Models
         /// </summary>
         /// <param name="id">Initial value of Id.</param>
         /// <param name="name">Initial value of Name.</param>
+        /// <param name="sex">Initial value of Sex.</param>
         /// <param name="species">Initial value of Species.</param>
         /// <param name="birthDate">Initial value of BirthDate.</param>
         /// <param name="bornInCaptivity">Initial value of BornInCaptivity.</param>
         /// <param name="nextHealthMeasure">Initial value of NextHealthMeasure.</param>
-        public static Animal CreateAnimal(global::System.Guid id, string name, string species, global::System.DateTime birthDate, bool bornInCaptivity, global::System.DateTime nextHealthMeasure)
+        public static Animal CreateAnimal(global::System.Guid id, string name, string sex, string species, global::System.DateTime birthDate, bool bornInCaptivity, global::System.DateTime nextHealthMeasure)
         {
             Animal animal = new Animal();
             animal.Id = id;
             animal.Name = name;
+            animal.Sex = sex;
             animal.Species = species;
             animal.BirthDate = birthDate;
             animal.BornInCaptivity = bornInCaptivity;
@@ -329,6 +331,29 @@ namespace ZoosManagementSystem.Web.Models
         private string _Name;
         partial void OnNameChanging(string value);
         partial void OnNameChanged();
+        /// <summary>
+        /// There are no comments for Property Sex in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string Sex
+        {
+            get
+            {
+                return this._Sex;
+            }
+            set
+            {
+                this.OnSexChanging(value);
+                this.ReportPropertyChanging("Sex");
+                this._Sex = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this.ReportPropertyChanged("Sex");
+                this.OnSexChanged();
+            }
+        }
+        private string _Sex;
+        partial void OnSexChanging(string value);
+        partial void OnSexChanged();
         /// <summary>
         /// There are no comments for Property Species in the schema.
         /// </summary>
@@ -809,7 +834,7 @@ namespace ZoosManagementSystem.Web.Models
         /// <param name="temperature">Initial value of Temperature.</param>
         /// <param name="humidity">Initial value of Humidity.</param>
         /// <param name="luminosity">Initial value of Luminosity.</param>
-        public static EnvironmentMeasure CreateEnvironmentMeasure(global::System.Guid id, global::System.DateTime measurementDate, int temperature, int humidity, int luminosity)
+        public static EnvironmentMeasure CreateEnvironmentMeasure(global::System.Guid id, global::System.DateTime measurementDate, double temperature, double humidity, double luminosity)
         {
             EnvironmentMeasure environmentMeasure = new EnvironmentMeasure();
             environmentMeasure.Id = id;
@@ -870,7 +895,7 @@ namespace ZoosManagementSystem.Web.Models
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public int Temperature
+        public double Temperature
         {
             get
             {
@@ -885,15 +910,15 @@ namespace ZoosManagementSystem.Web.Models
                 this.OnTemperatureChanged();
             }
         }
-        private int _Temperature;
-        partial void OnTemperatureChanging(int value);
+        private double _Temperature;
+        partial void OnTemperatureChanging(double value);
         partial void OnTemperatureChanged();
         /// <summary>
         /// There are no comments for Property Humidity in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public int Humidity
+        public double Humidity
         {
             get
             {
@@ -908,15 +933,15 @@ namespace ZoosManagementSystem.Web.Models
                 this.OnHumidityChanged();
             }
         }
-        private int _Humidity;
-        partial void OnHumidityChanging(int value);
+        private double _Humidity;
+        partial void OnHumidityChanging(double value);
         partial void OnHumidityChanged();
         /// <summary>
         /// There are no comments for Property Luminosity in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public int Luminosity
+        public double Luminosity
         {
             get
             {
@@ -931,8 +956,8 @@ namespace ZoosManagementSystem.Web.Models
                 this.OnLuminosityChanged();
             }
         }
-        private int _Luminosity;
-        partial void OnLuminosityChanging(int value);
+        private double _Luminosity;
+        partial void OnLuminosityChanging(double value);
         partial void OnLuminosityChanged();
         /// <summary>
         /// There are no comments for Environment in the schema.
@@ -1925,8 +1950,7 @@ namespace ZoosManagementSystem.Web.Models
         /// <param name="type">Initial value of Type.</param>
         /// <param name="manufacturer">Initial value of Manufacturer.</param>
         /// <param name="serialNumber">Initial value of SerialNumber.</param>
-        /// <param name="assemblyFullName">Initial value of AssemblyFullName.</param>
-        public static Sensor CreateSensor(global::System.Guid id, string name, string type, string manufacturer, string serialNumber, string assemblyFullName)
+        public static Sensor CreateSensor(global::System.Guid id, string name, string type, string manufacturer, string serialNumber)
         {
             Sensor sensor = new Sensor();
             sensor.Id = id;
@@ -1934,7 +1958,6 @@ namespace ZoosManagementSystem.Web.Models
             sensor.Type = type;
             sensor.Manufacturer = manufacturer;
             sensor.SerialNumber = serialNumber;
-            sensor.AssemblyFullName = assemblyFullName;
             return sensor;
         }
         /// <summary>
@@ -2052,29 +2075,6 @@ namespace ZoosManagementSystem.Web.Models
         private string _SerialNumber;
         partial void OnSerialNumberChanging(string value);
         partial void OnSerialNumberChanged();
-        /// <summary>
-        /// There are no comments for Property AssemblyFullName in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string AssemblyFullName
-        {
-            get
-            {
-                return this._AssemblyFullName;
-            }
-            set
-            {
-                this.OnAssemblyFullNameChanging(value);
-                this.ReportPropertyChanging("AssemblyFullName");
-                this._AssemblyFullName = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
-                this.ReportPropertyChanged("AssemblyFullName");
-                this.OnAssemblyFullNameChanged();
-            }
-        }
-        private string _AssemblyFullName;
-        partial void OnAssemblyFullNameChanging(string value);
-        partial void OnAssemblyFullNameChanged();
         /// <summary>
         /// There are no comments for Environment in the schema.
         /// </summary>
