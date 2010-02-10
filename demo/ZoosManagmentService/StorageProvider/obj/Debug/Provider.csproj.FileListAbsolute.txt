@@ -1,7 +1,0 @@
-C:\Users\rob\Desktop\Facultad\taller-desarrollo-proyectos-i\demo\ZoosManagmentService\StorageProvider\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\rob\Desktop\Facultad\taller-desarrollo-proyectos-i\demo\ZoosManagmentService\StorageProvider\bin\Debug\ZooApplicationService.Storage.Provider.dll
-C:\Users\rob\Desktop\Facultad\taller-desarrollo-proyectos-i\demo\ZoosManagmentService\StorageProvider\bin\Debug\ZooApplicationService.Storage.Provider.pdb
-C:\Users\rob\Desktop\Facultad\taller-desarrollo-proyectos-i\demo\ZoosManagmentService\StorageProvider\bin\Debug\Api.dll
-C:\Users\rob\Desktop\Facultad\taller-desarrollo-proyectos-i\demo\ZoosManagmentService\StorageProvider\bin\Debug\Api.pdb
-C:\Users\rob\Desktop\Facultad\taller-desarrollo-proyectos-i\demo\ZoosManagmentService\StorageProvider\obj\Debug\ZooApplicationService.Storage.Provider.dll
-C:\Users\rob\Desktop\Facultad\taller-desarrollo-proyectos-i\demo\ZoosManagmentService\StorageProvider\obj\Debug\ZooApplicationService.Storage.Provider.pdb
