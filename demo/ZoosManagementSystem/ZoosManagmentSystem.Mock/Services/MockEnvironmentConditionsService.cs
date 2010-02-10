@@ -6,7 +6,7 @@ using System.Text;
 using ZoosManagementSystem.Interfaces;
 using ZoosManagementSystem.Interfaces.DataContracts;
 
-namespace ZoosManagmentSystem.Mock
+namespace ZoosManagmentSystem.Mock.Services
 {
     public class MockEnvironmentConditionsService : IEnvironmentConditionsService
     {

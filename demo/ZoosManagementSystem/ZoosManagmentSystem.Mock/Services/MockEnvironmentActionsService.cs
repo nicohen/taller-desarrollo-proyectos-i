@@ -7,7 +7,7 @@ using System.Text;
 
 using ZoosManagementSystem.Interfaces;
 
-namespace ZoosManagmentSystem.Mock
+namespace ZoosManagmentSystem.Mock.Services
 {
     public class MockEnvironmentActionsService : IEnvironmentActionsService
     {

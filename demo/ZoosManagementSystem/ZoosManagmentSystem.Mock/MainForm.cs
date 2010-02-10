@@ -10,20 +10,21 @@ using System.ServiceModel;
 using System.ServiceModel.Description;
 using System.Net;
 using ZoosManagementSystem.Interfaces;
+using ZoosManagmentSystem.Mock.Services;
 
 namespace ZoosManagmentSystem.Mock
 {
     public partial class MainForm : Form
     {
+        #region Fields
+
+        #endregion
+
+        #region Methods
+
         public MainForm()
         {
             InitializeComponent();
-        }
-
-        private void startServiceButton_Click(object sender, EventArgs e)
-        {
-            this.LaunchEnvironmentActionsService();
-            this.LaunchEnvironmentConditionsService();
         }
 
         private void LaunchEnvironmentConditionsService()
@@ -32,17 +33,7 @@ namespace ZoosManagmentSystem.Mock
             {
                 this.LogInfo("Starting environment conditions service...");
 
-                Type serviceType = typeof(MockEnvironmentConditionsService);
-
-                ServiceHost host = new ServiceHost(serviceType, new Uri[] { new Uri("http://localhost:8080/") });
-
-                ServiceMetadataBehavior behavior = new ServiceMetadataBehavior();
-                behavior.HttpGetEnabled = true;
-                host.Description.Behaviors.Add(behavior);
-
-                host.AddServiceEndpoint(typeof(IEnvironmentConditionsService), new BasicHttpBinding(), "MockEnvironmentConditionsService");
-                host.AddServiceEndpoint(typeof(IMetadataExchange), new BasicHttpBinding(), "MEX");
-                host.Open();
+                ServiceStarter.StartEnvironmentConditionsService();
 
                 this.LogInfo("Environment conditions service started.");
             }
@@ -58,18 +49,7 @@ namespace ZoosManagmentSystem.Mock
             {
                 this.LogInfo("Starting environment actions service...");
 
-                Type serviceType = typeof(MockEnvironmentActionsService);
-
-                ServiceHost host = new ServiceHost(serviceType, new Uri[] { new Uri("http://localhost:8081/") });
-
-                ServiceMetadataBehavior behavior = new ServiceMetadataBehavior();
-                behavior.HttpGetEnabled = true;
-                host.Description.Behaviors.Add(behavior);
-
-                host.AddServiceEndpoint(typeof(IEnvironmentActionsService), new BasicHttpBinding(), "MockEnvironmentActionsService");
-                host.AddServiceEndpoint(typeof(IMetadataExchange), new BasicHttpBinding(), "MEX");
-
-                host.Open();
+                ServiceStarter.StartEnvironmentActionsService();
 
                 this.LogInfo("Environment actions service started.");
             }
@@ -90,5 +70,17 @@ namespace ZoosManagmentSystem.Mock
             this.statusMessagesTextbox.Text += message + ":" + ex.Message + ".";
             this.statusMessagesTextbox.Text += Environment.NewLine;
         }
+
+        #endregion
+
+        #region Events
+
+        private void StartServiceButtonClick(object sender, EventArgs e)
+        {
+            this.LaunchEnvironmentActionsService();
+            this.LaunchEnvironmentConditionsService();
+        }
+
+        #endregion
     }
 }
