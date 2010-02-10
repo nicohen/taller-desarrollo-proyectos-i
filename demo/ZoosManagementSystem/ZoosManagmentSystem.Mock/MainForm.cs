@@ -22,23 +22,73 @@ namespace ZoosManagmentSystem.Mock
 
         private void startServiceButton_Click(object sender, EventArgs e)
         {
-            this.LaunchService();
+            this.LaunchEnvironmentActionsService();
+            this.LaunchEnvironmentConditionsService();
         }
 
-        private void LaunchService()
+        private void LaunchEnvironmentConditionsService()
         {
-            Type serviceType = typeof(MockEnvironmentActionsService);
+            try
+            {
+                this.LogInfo("Starting environment conditions service...");
 
-            ServiceHost host = new ServiceHost(serviceType, new Uri[] { new Uri("http://localhost:8080/") });
+                Type serviceType = typeof(MockEnvironmentConditionsService);
 
-            ServiceMetadataBehavior behavior = new ServiceMetadataBehavior();
-            behavior.HttpGetEnabled = true;
-            host.Description.Behaviors.Add(behavior);
+                ServiceHost host = new ServiceHost(serviceType, new Uri[] { new Uri("http://localhost:8080/") });
 
-            host.AddServiceEndpoint(typeof(IEnvironmentActionsService), new BasicHttpBinding(), "MockEnvironmentActionsService");
-            host.AddServiceEndpoint(typeof(IMetadataExchange), new BasicHttpBinding(), "MEX");
+                ServiceMetadataBehavior behavior = new ServiceMetadataBehavior();
+                behavior.HttpGetEnabled = true;
+                host.Description.Behaviors.Add(behavior);
 
-            host.Open();
+                host.AddServiceEndpoint(typeof(IEnvironmentConditionsService), new BasicHttpBinding(), "MockEnvironmentConditionsService");
+                host.AddServiceEndpoint(typeof(IMetadataExchange), new BasicHttpBinding(), "MEX");
+                host.Open();
+
+                this.LogInfo("Environment conditions service started.");
+            }
+            catch (Exception ex)
+            {
+                this.LogError("An error ocurred starting environment conditions service.", ex);
+            }
+        }
+
+        private void LaunchEnvironmentActionsService()
+        {
+            try
+            {
+                this.LogInfo("Starting environment actions service...");
+
+                Type serviceType = typeof(MockEnvironmentActionsService);
+
+                ServiceHost host = new ServiceHost(serviceType, new Uri[] { new Uri("http://localhost:8081/") });
+
+                ServiceMetadataBehavior behavior = new ServiceMetadataBehavior();
+                behavior.HttpGetEnabled = true;
+                host.Description.Behaviors.Add(behavior);
+
+                host.AddServiceEndpoint(typeof(IEnvironmentActionsService), new BasicHttpBinding(), "MockEnvironmentActionsService");
+                host.AddServiceEndpoint(typeof(IMetadataExchange), new BasicHttpBinding(), "MEX");
+
+                host.Open();
+
+                this.LogInfo("Environment actions service started.");
+            }
+            catch (Exception ex)
+            {
+                this.LogError("An error ocurred starting environment actions service.", ex);
+            }
+        }
+
+        private void LogInfo(string message)
+        {
+            this.statusMessagesTextbox.Text += message + ".";
+            this.statusMessagesTextbox.Text += Environment.NewLine;
+        }
+
+        private void LogError(string message, Exception ex)
+        {
+            this.statusMessagesTextbox.Text += message + ":" + ex.Message + ".";
+            this.statusMessagesTextbox.Text += Environment.NewLine;
         }
     }
 }

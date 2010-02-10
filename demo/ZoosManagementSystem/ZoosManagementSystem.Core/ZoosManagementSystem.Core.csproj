@@ -62,6 +62,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\MockEnvironmentConditionsService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Switch\MockSensorManager.cs" />
     <Compile Include="ProjectInstaller.cs">
       <SubType>Component</SubType>
@@ -98,6 +103,7 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\MockEnvironmentActionsService\" />
+    <WCFMetadataStorage Include="Service References\MockEnvironmentConditionsService\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\MockEnvironmentActionsService\item.disco" />
@@ -110,6 +116,25 @@
     <None Include="Service References\MockEnvironmentActionsService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\MockEnvironmentConditionsService\item.xsd" />
+    <None Include="Service References\MockEnvironmentConditionsService\item1.xsd" />
+    <None Include="Service References\MockEnvironmentConditionsService\MockEnvironmentConditionsService.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MockEnvironmentConditionsService\item.disco" />
+    <None Include="Service References\MockEnvironmentConditionsService\item2.xsd" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MockEnvironmentConditionsService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MockEnvironmentConditionsService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\MockEnvironmentConditionsService\ZoosManagementSystem.Core.MockEnvironmentConditionsService.EnvironmentConditions.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
