@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{68FB0F76-58CB-4055-8612-1EE7182A9680}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -38,6 +38,12 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -50,6 +56,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Foundation\SensorManager.cs" />
+    <Compile Include="Service References\MockEnvironmentActionsService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Switch\MockSensorManager.cs" />
     <Compile Include="ProjectInstaller.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -68,10 +81,36 @@
   <ItemGroup>
     <EmbeddedResource Include="ProjectInstaller.resx">
       <DependentUpon>ProjectInstaller.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ZoosManagementSystemService.resx">
       <DependentUpon>ZoosManagementSystemService.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Service References\MockEnvironmentActionsService\item.xsd" />
+    <None Include="Service References\MockEnvironmentActionsService\MockEnvironmentActionsService.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\MockEnvironmentActionsService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MockEnvironmentActionsService\item.disco" />
+    <None Include="Service References\MockEnvironmentActionsService\item1.xsd" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MockEnvironmentActionsService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MockEnvironmentActionsService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
