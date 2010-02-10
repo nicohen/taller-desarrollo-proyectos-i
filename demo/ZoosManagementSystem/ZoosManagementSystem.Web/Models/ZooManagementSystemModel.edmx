@@ -53,7 +53,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="EnvironmentId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="EnvironmentId" Type="uniqueidentifier" />
           <Property Name="ResponsibleId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="Sex" Type="char" Nullable="false" MaxLength="1" />
@@ -163,7 +163,7 @@
           <Property Name="LuminosityMax" Type="float" />
         </EntityType>
         <Association Name="FK_Animal_Environment">
-          <End Role="Environment" Type="ZoosManagementSystemModel.Store.Environment" Multiplicity="1" />
+          <End Role="Environment" Type="ZoosManagementSystemModel.Store.Environment" Multiplicity="0..1" />
           <End Role="Animal" Type="ZoosManagementSystemModel.Store.Animal" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Environment">
@@ -429,7 +429,7 @@
           <NavigationProperty Name="Environment" Relationship="ZoosManagementSystemModel.FK_TimeSlot_Environment" FromRole="TimeSlot" ToRole="Environment" />
         </EntityType>
         <Association Name="FK_Animal_Environment">
-          <End Role="Environment" Type="ZoosManagementSystemModel.Environment" Multiplicity="1" />
+          <End Role="Environment" Type="ZoosManagementSystemModel.Environment" Multiplicity="0..1" />
           <End Role="Animal" Type="ZoosManagementSystemModel.Animal" Multiplicity="*" />
         </Association>
         <Association Name="FK_Animal_Responsible">
@@ -588,6 +588,7 @@
             <EndProperty Name="Animal">
               <ScalarProperty Name="Id" ColumnName="Id" />
             </EndProperty>
+            <Condition ColumnName="EnvironmentId" IsNull="false" />
           </AssociationSetMapping>
           <AssociationSetMapping Name="FK_Animal_Responsible" TypeName="ZoosManagementSystemModel.FK_Animal_Responsible" StoreEntitySet="Animal">
             <EndProperty Name="Responsible">

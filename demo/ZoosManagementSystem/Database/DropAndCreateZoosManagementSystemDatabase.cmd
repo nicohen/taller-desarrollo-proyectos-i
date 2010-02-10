@@ -36,5 +36,5 @@ echo Please review messages above.
 echo ======================================
 
 :FINISH
-REM @PAUSE
-exit %ERRORLEVEL%
+@PAUSE
+EXIT %ERRORLEVEL%

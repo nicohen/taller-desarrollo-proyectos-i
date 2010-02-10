@@ -296,6 +296,30 @@ h1 a:link, h1 a:visited, h1 a:hover, h1 a:active
 	vertical-align: middle;
 }
 
+.mainblock > .deleteerror
+{
+	color: red;
+}
+
+.mainblock > .deletesucess
+{
+	color: green;
+}
+
+.mainblock > .normal
+{
+	color:#267F00;
+}
+
+.mainblock > h3
+{
+	text-align: center;
+	margin-top: 10px;
+	padding: 5px;
+	border-bottom: 1px solid;
+	border-top:1px solid;
+}
+
 .leftblock
 {
 	border: 1px solid #DBDB79;
@@ -477,9 +501,7 @@ legend
 	font-weight: bold;
 	color: #666666;
 	font-size: 1em;
-	padding-left: 4px;
-	padding-right: 4px;
-	margin-bottom: 7px;
+	padding-top: 5px;
 }
 
 /* apply zero margin to all forms and hide fieldset borders. Keep fieldset borders in the markup for better accessibility */
@@ -494,6 +516,12 @@ fieldset
 	margin: 0px;
 	padding: 0px;
 	border: none;
+}
+
+fieldset h4
+{
+	padding: 5px;
+	text-align:center;
 }
 
 /* sometimes we hide elements from display in visual browsers (but leave them in the source for non visual browsers and for accessibility) */
@@ -865,7 +893,7 @@ fieldset
 	margin-top: 10px;
 }
 
-#maincontent div
+#maincontent .contentbox
 {
 	background-color: #E4E9B9;
 	border: 1px dotted #AABBCC;
@@ -880,4 +908,19 @@ fieldset
     font-size: 120%;
     margin-bottom: 8px;
     color: #443366;
+}
+
+div .contentbox h3
+{
+	float: left;
+}
+
+div .contentbox span
+{
+	float: right;
+}
+
+div .contentbox p
+{
+	margin: 3px;
 }

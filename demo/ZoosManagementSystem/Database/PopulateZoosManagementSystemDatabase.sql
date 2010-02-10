@@ -4,8 +4,9 @@ GO
 DECLARE @environmentID UNIQUEIDENTIFIER
 INSERT INTO [dbo].[Environment] ([Name], [Description], [Surface], [Type]) VALUES ('Jaula de Leones', 'Jaula para tres leones', 1800, 'Mamiferos')
 INSERT INTO [dbo].[Environment] ([Name], [Description], [Surface], [Type]) VALUES ('Jaula de Osos', 'Jaula para dos osos', 2000, 'Mamiferos')
-INSERT INTO [dbo].[Environment] ([Name], [Description], [Surface], [Type]) VALUES ('Jaula de Cebras', 'Jaula para cuatro cebras', 3500, 'Mamiferos')
-SET @environmentID = (SELECT TOP 1 [Id] FROM [dbo].[Environment])
+INSERT INTO [dbo].[Environment] ([Name], [Description], [Surface], [Type]) VALUES ('Jaula de Cebras', 'Jaula para cuatro cebras', 3000, 'Mamiferos')
+INSERT INTO [dbo].[Environment] ([Name], [Description], [Surface], [Type]) VALUES ('Jaula de Elefantes', 'Jaula para dos elefantes', 3200, 'Mamiferos')
+SET @environmentID = (SELECT TOP 1 [Id] FROM [dbo].[Environment] WHERE [Name] = 'Jaula de Leones')
 
 DECLARE @feedingID UNIQUEIDENTIFIER
 INSERT INTO [dbo].[Feeding] ([Name], [Description]) VALUES ('Carne de Cebra, Búfalo y Antílope', 'Mezcla de carnes de cebras, búfalos y antílopes')
