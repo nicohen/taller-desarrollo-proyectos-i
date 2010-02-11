@@ -37,10 +37,14 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Data.Entity">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Management" />
     <Reference Include="System.Runtime.Serialization">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Security" />
     <Reference Include="System.ServiceModel">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
@@ -66,6 +70,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Storage\DbHelper.cs" />
+    <Compile Include="Storage\ZoosManagmentSystemDbModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ZoosManagmentSystemDbModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Switch\MockSensorManager.cs" />
     <Compile Include="ProjectInstaller.cs">
@@ -128,6 +138,7 @@
     <None Include="Service References\MockEnvironmentConditionsService\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="Service References\MockEnvironmentConditionsService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -135,6 +146,10 @@
     <None Include="Service References\MockEnvironmentConditionsService\ZoosManagementSystem.Core.MockEnvironmentConditionsService.EnvironmentConditions.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <EntityDeploy Include="Storage\ZoosManagmentSystemDbModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ZoosManagmentSystemDbModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

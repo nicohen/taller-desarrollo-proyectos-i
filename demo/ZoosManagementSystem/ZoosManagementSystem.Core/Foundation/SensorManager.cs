@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.ServiceProcess;
+using ZoosManagementSystem.Core.Storage;
 
 namespace ZoosManagmentSystem.Core.Foundation
 {
@@ -10,8 +11,10 @@ namespace ZoosManagmentSystem.Core.Foundation
         #region Fields
 
         private string name;
+        private Guid environmentId;
         private int actionExecutionDelay;
-        //private List<ActionEntry> actionExecutionEntries;
+        protected List<TimeSlot> timeSlotEntries;
+        private DbHelper dbHelper;
 
         #endregion
 
@@ -37,11 +40,25 @@ namespace ZoosManagmentSystem.Core.Foundation
 
         #region Methods
 
-        public SensorManager(string name, int actionExecutionDelay)
+        public SensorManager(string name, int actionExecutionDelay, Guid environmentId)
         {
             this.name = name;
             this.actionExecutionDelay = actionExecutionDelay;
-            //this.actionExecutionEntries = new List<ActionEntry>();
+            this.timeSlotEntries = new List<TimeSlot>();
+            this.environmentId = environmentId;
+        }
+
+        public void LoadDataFromStorage()
+        {
+            try
+            {
+                this.dbHelper = new DbHelper();
+                this.timeSlotEntries = this.dbHelper.GetEnvironmentTimeSlots(this.environmentId);
+            }
+            catch (Exception e)
+            {
+
+            }
         }
 
         public virtual void Initialize(object settings)

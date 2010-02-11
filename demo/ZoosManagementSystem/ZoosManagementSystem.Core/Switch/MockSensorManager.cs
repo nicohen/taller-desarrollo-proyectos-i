@@ -21,8 +21,8 @@ namespace ZoosManagmentSystem.Core.Switch
 
         #region Methods
 
-        public MockSensorManager()
-            : base("MockSensorManager", 3000)
+        public MockSensorManager(string name, int actionExecutionDelay, Guid environmentId)
+            : base(name, actionExecutionDelay, environmentId)
         {
             this.environmentActionsClient = new EnvironmentActionsServiceClient();
             this.environmentConditionsServiceClient = new EnvironmentConditionsServiceClient();
@@ -30,7 +30,7 @@ namespace ZoosManagmentSystem.Core.Switch
 
         public override void Start()
         {
-            Thread poolingThread = new Thread(new ThreadStart(this.StartEnvironmentPooling));
+            Thread poolingThread = new Thread(new ThreadStart(this.StartPoolingEnvironment));
 
             poolingThread.Start();
         }
@@ -47,7 +47,7 @@ namespace ZoosManagmentSystem.Core.Switch
 
         private void StartPoolingEnvironment()
         {
-            EnvironmentConditions environmentConditions = this.environmentConditionsServiceClient.GetEnvironmentConditions(null);
+            //sEnvironmentConditions environmentConditions = this.environmentConditionsServiceClient.GetEnvironmentConditions(null);
 
         }
 
