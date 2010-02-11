@@ -6,6 +6,7 @@ using System.Text;
 using ZoosManagmentSystem.Core.Foundation;
 using ZoosManagementSystem.Core.MockEnvironmentActionsService;
 using ZoosManagementSystem.Core.MockEnvironmentConditionsService;
+using System.Threading;
 
 namespace ZoosManagmentSystem.Core.Switch
 {
@@ -29,12 +30,25 @@ namespace ZoosManagmentSystem.Core.Switch
 
         public override void Start()
         {
+            Thread poolingThread = new Thread(new ThreadStart(this.StartEnvironmentPooling));
 
+            poolingThread.Start();
+        }
+
+        protected override void Stop()
+        {
+            base.Stop();
         }
 
         protected override void ProcessData()
         {
             base.ProcessData();
+        }
+
+        private void StartPoolingEnvironment()
+        {
+            EnvironmentConditions environmentConditions = this.environmentConditionsServiceClient.GetEnvironmentConditions(null);
+
         }
 
         #endregion

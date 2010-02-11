@@ -65,6 +65,11 @@ namespace ZoosManagmentSystem.Core.Foundation
 
         }
 
+        protected virtual void Stop()
+        {
+
+        }
+
         //protected virtual void ExecuteAction(IAction action)
         //{
 
