@@ -11,7 +11,7 @@ namespace ZoosManagmentSystem.Core.Foundation
         #region Fields
 
         private string name;
-        private Guid environmentId;
+        protected Guid environmentId;
         private int actionExecutionDelay;
         protected List<TimeSlot> timeSlotEntries;
         private DbHelper dbHelper;
@@ -61,6 +61,26 @@ namespace ZoosManagmentSystem.Core.Foundation
             }
         }
 
+        protected TimeSlot GetCurrentTimeSlot()
+        {
+            TimeSlot currentTimeSlot = this.timeSlotEntries.Find(
+                                      delegate(TimeSlot slot)
+                                      {
+                                          DateTime now = DateTime.Now;
+
+                                          if (now.Hour >= slot.InitialTime.Hours && now.Hour <= slot.FinalTime.Hours)
+                                          {
+                                              if (now.Minute >= slot.InitialTime.Hours && now.Minute <= slot.FinalTime.Minutes)
+                                              {
+                                                  return true;
+                                              }
+                                          }
+                                          return false;
+                                      });
+
+            return currentTimeSlot;
+        }
+
         public virtual void Initialize(object settings)
         {
 
@@ -74,6 +94,11 @@ namespace ZoosManagmentSystem.Core.Foundation
 
         }
 
+        public virtual void Stop()
+        {
+
+        }
+
         /// <summary>
         /// Processes retrieved data which may result in executing an <see cref="IAction"/>.
         /// </summary>
@@ -82,7 +107,7 @@ namespace ZoosManagmentSystem.Core.Foundation
 
         }
 
-        protected virtual void Stop()
+        protected virtual void CheckEnvironmentAndExecute()
         {
 
         }
