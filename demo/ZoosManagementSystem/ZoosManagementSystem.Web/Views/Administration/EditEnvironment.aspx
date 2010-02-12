@@ -6,6 +6,13 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+
+    <script type="text/javascript">
+        function removeAnimal(id) {
+            // TODO
+        }
+    </script>
+
     <div class="mainblock">
         <h2>Administraci&oacute;n de Ambientes</h2>       
         
