@@ -84,6 +84,9 @@
       <DependentUpon>ZooManagementSystemModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewData\AnimalViewData.cs" />
+    <Compile Include="ViewData\EnvironmentViewData.cs" />
+    <Compile Include="ViewData\TimeSlotViewData.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Images\background.png" />
@@ -93,6 +96,7 @@
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Views\Administration\Animals.aspx" />
+    <Content Include="Views\Administration\EditEnvironment.aspx" />
     <Content Include="Views\Administration\Environments.aspx" />
     <Content Include="Views\Administration\Index.aspx" />
     <Content Include="Views\Administration\Surveys.aspx" />

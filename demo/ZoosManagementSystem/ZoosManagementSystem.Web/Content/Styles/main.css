@@ -296,12 +296,12 @@ h1 a:link, h1 a:visited, h1 a:hover, h1 a:active
 	vertical-align: middle;
 }
 
-.mainblock > .deleteerror
+.mainblock > .accionerror
 {
 	color: red;
 }
 
-.mainblock > .deletesucess
+.mainblock > .accionsucess
 {
 	color: green;
 }
@@ -903,6 +903,14 @@ fieldset h4
 	width: 331px;
 }
 
+#maincontent .editbox
+{
+	background-color:#E4E9B9;
+	border:1px dotted #AABBCC;
+	margin:2px;
+	padding:5px;
+}
+
 #maincontent h3
 {
     font-size: 120%;
@@ -918,9 +926,31 @@ div .contentbox h3
 div .contentbox span
 {
 	float: right;
+	margin-top: 2px;
 }
 
 div .contentbox p
 {
 	margin: 3px;
+}
+
+.editlink
+{
+	background: transparent url(../Images/edit.png) no-repeat scroll 0 50%;
+	padding: 5px 0 5px 23px;
+}
+
+.deletelink
+{
+	background: transparent url(../Images/delete.png) no-repeat scroll 0 50%;
+	padding: 5px 0 5px 23px;	
+}
+
+.newlink
+{
+	background: transparent url(../Images/new.png) no-repeat scroll 0 50%;
+	padding: 5px 0 5px 23px;
+	float: right;
+	margin: 8px 2px 0 0;
+	font-size: 1.2em;
 }

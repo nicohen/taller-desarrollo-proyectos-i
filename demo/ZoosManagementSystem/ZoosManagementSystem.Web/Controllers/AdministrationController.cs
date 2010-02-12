@@ -7,6 +7,7 @@ namespace ZoosManagementSystem.Web.Controllers
     using ZoosManagementSystem.Web.Models;
 
     using Environment=ZoosManagementSystem.Web.Models.Environment;
+    using ZoosManagementSystem.Web.ViewData;
 
     public class AdministrationController : Controller
     {
@@ -15,10 +16,6 @@ namespace ZoosManagementSystem.Web.Controllers
         public AdministrationController(IZooCatalogRepository repository)
         {
             this.repository = repository;
-
-            this.TempData["DeleteMessage"] = null;
-            this.TempData["NoItemsMessage"] = null;
-            this.TempData["DeleteSucess"] = null;
         }
 
         public AdministrationController(): this(new SqlZooCatalogRepository())
@@ -39,6 +36,12 @@ namespace ZoosManagementSystem.Web.Controllers
         {
             var environments = this.repository.GetEnvironments();
             this.TempData["NoItemsMessage"] = "¡No hay ambientes disponibles para el Zoológico!";
+
+            if (this.Request.Path == "/ZoosManagementSystem/Administration/Environments")
+            {
+                this.TempData["DeleteMessage"] = null;
+                this.TempData["DeleteSucess"] = null;
+            }
 
             return this.View("Environments", environments);
         }
@@ -87,6 +90,29 @@ namespace ZoosManagementSystem.Web.Controllers
             }
 
             return this.Environments();                
+        }
+
+        public ActionResult EditEnvironment(string environmentId)
+        {
+            try
+            {
+                this.TempData["EditMessage"] = null;
+                var id = new System.Guid(environmentId);
+
+                var environment = this.repository.GetEnvironment(id);
+            }
+            catch (FormatException)
+            {
+                this.TempData["EditMessage"] = string.Format(
+                    CultureInfo.CurrentCulture, "El formato del Id '{0}' es inválido.", environmentId);
+            }
+            catch (OverflowException)
+            {
+                this.TempData["EditMessage"] = string.Format(
+                    CultureInfo.CurrentCulture, "El formato del Id '{0}' es inválido.", environmentId);
+            }
+
+            return this.View(new EnvironmentViewData { Animals = new List<AnimalViewData>(), TimeSlots = new List<TimeSlotViewData>() });  
         }
 
         public ActionResult Animals()

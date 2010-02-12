@@ -1,4 +1,5 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IList<ZoosManagementSystem.Web.Models.Environment>>" %>
+<%@ Import Namespace="System.Globalization" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     Administraci&oacute;n Inteligente de Zool&oacute;gicos - Administraci&oacute;n/Ambientes
@@ -6,20 +7,22 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="mainblock">
-        <h2>Administraci&oacute;n de Ambientes</h2>
+        <h2>Administraci&oacute;n de Ambientes</h2>       
         
         <% if (!string.IsNullOrEmpty((string)this.TempData["DeleteMessage"]))
            { %>
-            <h3 class="<%= ((bool)this.TempData["DeleteSucess"]) ? "deletesucess" : "deleteerror" %>"><%= Html.Encode(this.TempData["DeleteMessage"])%></h3> 
+            <h3 class="<%= ((bool)this.TempData["DeleteSucess"]) ? "actionsucess" : "actionerror" %>"><%= Html.Encode(this.TempData["DeleteMessage"])%></h3> 
         <% } %>
         
-        
-        <% this.Html.BeginForm("SearchEnvironments", "Administration", FormMethod.Get, new { style = "margin-top: 8px; padding: 2px" }); %>
-        
+        <% this.Html.BeginForm("SearchEnvironments", "Administration", FormMethod.Get, new { style = "margin-top: 8px; padding: 2px; float:left" }); %>
+                
         Buscar ambiente: <%= this.Html.TextBox("searchCriteria", Html.Encode(this.TempData["SearchCriteria"]), new { style = "width: 190px" })%>
         <input type="submit" value="Buscar" />
         
-        <% this.Html.EndForm(); %>        
+        <% this.Html.EndForm(); %>
+        
+        <%= Html.ActionLink("Nuevo Ambiente", "NewEnvironment", "Administration", null, new { Class = "newlink" }) %>
+        <div class="clear"></div>
         
         <% if ((this.Model != null) && (this.Model.Count > 0))
            {
@@ -34,8 +37,8 @@
                  <div class="contentbox">
                     <h3><%= environment.Name %></h3>
                     <span>
-                    <%= Html.ActionLink("Editar", "EditEnvironment", "Administration", new { environmentId = environment.Id.ToString() }, null)%> &nbsp;|&nbsp;
-                    <%= Html.ActionLink("Eliminar", "DeleteEnvironment", "Administration", new { environmentId = environment.Id.ToString() }, null) %>
+                    <%= Html.ActionLink("Editar", "EditEnvironment", "Administration", new { environmentId = environment.Id.ToString() }, new { Class = "editlink" })%> &nbsp;|&nbsp;
+                    <%= Html.ActionLink("Eliminar", "DeleteEnvironment", "Administration", new { environmentId = environment.Id.ToString() }, new { Class = "deletelink" }) %>
                     </span>
                     <fieldset class="clear">
                         <p><label for="Description">Descripci&oacute;n: </label><%= environment.Description%></p>
@@ -50,7 +53,7 @@
                             <ul>
                             <% foreach (var animal in environment.Animal)
                                { %>
-                                   <li><%= Html.ActionLink(animal.Name, "EditAnimal", "Administration", new { animalId = animal.Id }, null) %> (<%= animal.Species %>)</li>
+                                   <li><%= Html.ActionLink(animal.Name, "EditAnimal", "Administration", new { animalId = animal.Id }, null) %> (<%= string.Format(CultureInfo.CurrentCulture, "{0}: {1}", (animal.Sex.ToLowerInvariant() == "m") ? "Macho" : "Hembra", animal.Species) %>)</li>
                             <% } %>
                             </ul>                          
                         <% }
@@ -70,7 +73,7 @@
                                foreach (var timeSlot in environment.TimeSlot.OrderBy(t => t.InitialTime))
                                {
                                    timeSlotCount++; %>
-                                   <li>Itervalo <%= timeSlotCount %>: Desde <%= timeSlot.InitialTime %> hasta <%= timeSlot.FinalTime %></li>
+                                   <li>Itervalo <%= timeSlotCount %>: <%= string.Format(CultureInfo.CurrentUICulture, "Desde {0} hs hasta {1} hs.", timeSlot.InitialTime, timeSlot.FinalTime) %></li>
                             <% } %>
                             </ul>
                         <% }

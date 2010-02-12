@@ -5,7 +5,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="mainblock">
-        <h2>Animales</h2>
+        <h2>Estad&iacute;sticas de Animales</h2>
         <p><strong>TODO</strong></p>
     </div>
 </asp:Content>
