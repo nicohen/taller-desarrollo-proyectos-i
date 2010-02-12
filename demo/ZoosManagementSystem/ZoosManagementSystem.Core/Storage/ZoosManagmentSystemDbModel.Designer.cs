@@ -19,7 +19,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("ZoosManagementSystemModel", "FK_FeedingTime_Feeding", "Feeding", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ZoosManagementSystem.Core.Storage.Feeding), "FeedingTime", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ZoosManagementSystem.Core.Storage.FeedingTime))]
 
 // Nombre de archivo original:
-// Fecha de generación: 11/02/2010 07:36:48 p.m.
+// Fecha de generación: 12/02/2010 01:58:35 a.m.
 namespace ZoosManagementSystem.Core.Storage
 {
     

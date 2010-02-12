@@ -3,6 +3,11 @@ using ZoosManagmentSystem.Core.Switch;
 using ZoosManagementSystem.Core.Storage;
 using System.Collections.Generic;
 using ZoosManagmentSystem.Core.Foundation;
+using ZoosManagmentSystem.Core.Switch.Sensor;
+using ZoosManagmentSystem.Core.Foundation.Sensor;
+using ZoosManagementSystem.Core.Switch.Service;
+using System;
+using System.Threading;
 
 namespace ZoosManagementSystem.Core
 {
@@ -10,10 +15,11 @@ namespace ZoosManagementSystem.Core
     {
         private List<SensorManager> sensorManagers;
         private DbHelper dbHelper;
-       
+
         public ZoosManagementSystemService()
         {
             InitializeComponent();
+            this.sensorManagers = new List<SensorManager>();
         }
 
         protected override void OnStart(string[] args)
@@ -27,6 +33,22 @@ namespace ZoosManagementSystem.Core
             foreach (SensorManager sensorManager in this.sensorManagers)
             {
                 sensorManager.Start();
+            }
+
+            Thread feedingServiceThread = new Thread(new ThreadStart(this.StartFeedingService));
+        }
+
+        private void StartFeedingService()
+        {
+            MockFeedingService mockFeedingService = new MockFeedingService();
+            try
+            {
+                mockFeedingService.Initialize();
+                mockFeedingService.Start();
+            }
+            catch (Exception)
+            {
+
             }
         }
 

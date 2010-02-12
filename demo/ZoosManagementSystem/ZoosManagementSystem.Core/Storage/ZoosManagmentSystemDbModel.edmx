@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ZoosManagementSystemModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+    <Schema Namespace="ZoosManagementSystemModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
         <EntityContainer Name="ZoosManagementSystemModelStoreContainer">
           <EntitySet Name="Animal" EntityType="ZoosManagementSystemModel.Store.Animal" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Environment" EntityType="ZoosManagementSystemModel.Store.Environment" store:Type="Tables" Schema="dbo" />
@@ -70,7 +70,7 @@
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="Surface" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Surface" Type="int" Nullable="false" />
           <Property Name="Type" Type="nvarchar" Nullable="false" MaxLength="50" />
         </EntityType>
         <EntityType Name="EnvironmentMeasure">
@@ -258,8 +258,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ZoosManagementSystemModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">

@@ -4,7 +4,7 @@ using System.Text;
 using System.ServiceProcess;
 using ZoosManagementSystem.Core.Storage;
 
-namespace ZoosManagmentSystem.Core.Foundation
+namespace ZoosManagmentSystem.Core.Foundation.Sensor
 {
     public abstract class SensorManager
     {

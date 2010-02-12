@@ -60,7 +60,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Foundation\SensorManager.cs" />
+    <Compile Include="Foundation\Sensor\SensorManager.cs" />
+    <Compile Include="Foundation\Service\BaseService.cs" />
     <Compile Include="Service References\MockEnvironmentActionsService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -77,13 +78,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ZoosManagmentSystemDbModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Switch\MockSensorManager.cs" />
+    <Compile Include="Switch\Sensor\MockSensorManager.cs" />
     <Compile Include="ProjectInstaller.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ProjectInstaller.Designer.cs">
       <DependentUpon>ProjectInstaller.cs</DependentUpon>
     </Compile>
+    <Compile Include="Switch\Service\AnimalHealthService.cs" />
+    <Compile Include="Switch\Service\MockFeedingService.cs" />
     <Compile Include="ZoosManagementSystemService.cs">
       <SubType>Component</SubType>
     </Compile>
