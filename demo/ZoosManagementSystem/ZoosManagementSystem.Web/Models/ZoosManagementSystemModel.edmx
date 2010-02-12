@@ -70,7 +70,7 @@
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="Surface" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Surface" Type="int" Nullable="false" />
           <Property Name="Type" Type="nvarchar" Nullable="false" MaxLength="50" />
         </EntityType>
         <EntityType Name="EnvironmentMeasure">
@@ -330,7 +330,7 @@
           <Property Name="Id" Type="Guid" Nullable="false" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="Description" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Surface" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Surface" Type="Int32" Nullable="false" />
           <Property Name="Type" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Animal" Relationship="ZoosManagementSystemModel.FK_Animal_Environment" FromRole="Environment" ToRole="Animal" />
           <NavigationProperty Name="EnvironmentMeasure" Relationship="ZoosManagementSystemModel.FK_EnvironmentMeasure_Environment" FromRole="Environment" ToRole="EnvironmentMeasure" />
@@ -664,7 +664,7 @@
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram Name="ZooManagementSystemModel">
+      <Diagram Name="ZoosManagementSystemModel">
         <EntityTypeShape EntityType="ZoosManagementSystemModel.Animal" Width="1.5" PointX="6" PointY="7.25" Height="3.3263964843749996" IsExpanded="true" />
         <EntityTypeShape EntityType="ZoosManagementSystemModel.Environment" Width="1.5" PointX="0.75" PointY="7.5" Height="2.7494921874999996" IsExpanded="true" />
         <EntityTypeShape EntityType="ZoosManagementSystemModel.EnvironmentMeasure" Width="1.5" PointX="3" PointY="4.5" Height="2.1725878906249996" IsExpanded="true" />

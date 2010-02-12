@@ -19,7 +19,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("ZoosManagementSystemModel", "FK_FeedingTime_Feeding", "Feeding", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ZoosManagementSystem.Web.Models.Feeding), "FeedingTime", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ZoosManagementSystem.Web.Models.FeedingTime))]
 
 // Original file name:
-// Generation date: 2/10/2010 12:23:04 AM
+// Generation date: 2/12/2010 1:14:11 AM
 namespace ZoosManagementSystem.Web.Models
 {
     
@@ -605,7 +605,7 @@ namespace ZoosManagementSystem.Web.Models
         /// <param name="description">Initial value of Description.</param>
         /// <param name="surface">Initial value of Surface.</param>
         /// <param name="type">Initial value of Type.</param>
-        public static Environment CreateEnvironment(global::System.Guid id, string name, string description, string surface, string type)
+        public static Environment CreateEnvironment(global::System.Guid id, string name, string description, int surface, string type)
         {
             Environment environment = new Environment();
             environment.Id = id;
@@ -689,7 +689,7 @@ namespace ZoosManagementSystem.Web.Models
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string Surface
+        public int Surface
         {
             get
             {
@@ -699,13 +699,13 @@ namespace ZoosManagementSystem.Web.Models
             {
                 this.OnSurfaceChanging(value);
                 this.ReportPropertyChanging("Surface");
-                this._Surface = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this._Surface = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
                 this.ReportPropertyChanged("Surface");
                 this.OnSurfaceChanged();
             }
         }
-        private string _Surface;
-        partial void OnSurfaceChanging(string value);
+        private int _Surface;
+        partial void OnSurfaceChanging(int value);
         partial void OnSurfaceChanged();
         /// <summary>
         /// There are no comments for Property Type in the schema.

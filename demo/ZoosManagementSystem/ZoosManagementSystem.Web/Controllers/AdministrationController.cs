@@ -67,9 +67,8 @@ namespace ZoosManagementSystem.Web.Controllers
             {
                 this.TempData["DeleteSucess"] = true;
                 this.TempData["DeleteMessage"] = "El ambiente se eliminó correctamente.";
-                var id = new System.Guid(environmentId);
 
-                if (!this.repository.DeleteEnvironment(id))
+                if (!this.repository.DeleteEnvironment(new Guid(environmentId)))
                 {
                     this.TempData["DeleteSucess"] = false;
                     this.TempData["DeleteMessage"] = string.Format(
@@ -94,12 +93,22 @@ namespace ZoosManagementSystem.Web.Controllers
 
         public ActionResult EditEnvironment(string environmentId)
         {
+            EnvironmentViewData environmentViewData = null;
+
             try
             {
                 this.TempData["EditMessage"] = null;
-                var id = new System.Guid(environmentId);
+                var environment = this.repository.GetEnvironment(new Guid(environmentId));
 
-                var environment = this.repository.GetEnvironment(id);
+                if (environment == null)
+                {
+                    this.TempData["EditMessage"] = string.Format(
+                        CultureInfo.CurrentCulture, "No se encontró ningún ambiente cuyo Id sea {0}.", environmentId);
+                }
+                else
+                {
+                    environmentViewData = environment.ToViewData(this.repository);
+                }
             }
             catch (FormatException)
             {
@@ -112,7 +121,7 @@ namespace ZoosManagementSystem.Web.Controllers
                     CultureInfo.CurrentCulture, "El formato del Id '{0}' es inválido.", environmentId);
             }
 
-            return this.View(new EnvironmentViewData { Animals = new List<AnimalViewData>(), TimeSlots = new List<TimeSlotViewData>() });  
+            return this.View(environmentViewData);  
         }
 
         public ActionResult Animals()

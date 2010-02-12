@@ -14,22 +14,22 @@ namespace ZoosManagementSystem.Web.ViewData
         public string FinalTime
         { get; set; }
 
-        public string TemperatureMin
+        public double? TemperatureMin
         { get; set; }
 
-        public string TemperatureMax
+        public double? TemperatureMax
         { get; set; }
 
-        public string HumidityMin
+        public double? HumidityMin
         { get; set; }
 
-        public string HumidityMax
+        public double? HumidityMax
         { get; set; }
 
-        public string LuminosityMin
+        public double? LuminosityMin
         { get; set; }
 
-        public string LuminosityMax
+        public double? LuminosityMax
         { get; set; }
     }
 }

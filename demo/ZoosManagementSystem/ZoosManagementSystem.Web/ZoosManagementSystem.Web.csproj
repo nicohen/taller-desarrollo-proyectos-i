@@ -76,12 +76,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\EntityTranslator.cs" />
     <Compile Include="Models\IZooCatalogRepository.cs" />
     <Compile Include="Models\SqlZooCatalogRepository.cs" />
-    <Compile Include="Models\ZooManagementSystemModel.Designer.cs">
+    <Compile Include="Models\ZoosManagementSystemModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ZooManagementSystemModel.edmx</DependentUpon>
+      <DependentUpon>ZoosManagementSystemModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewData\AnimalViewData.cs" />
@@ -121,9 +122,9 @@
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="Models\ZooManagementSystemModel.edmx">
+    <EntityDeploy Include="Models\ZoosManagementSystemModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ZooManagementSystemModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>ZoosManagementSystemModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
