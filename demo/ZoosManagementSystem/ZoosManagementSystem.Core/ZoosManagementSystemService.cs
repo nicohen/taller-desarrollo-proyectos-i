@@ -26,6 +26,9 @@ namespace ZoosManagementSystem.Core
         {
             this.LoadDataFromStorage();
             this.StartSensorManagers();
+
+            Thread feedingServiceThread = new Thread(new ThreadStart(this.StartFeedingService));
+            Thread animalHealthServiceThread = new Thread(new ThreadStart(this.StartAnimalHealthService));
         }
 
         private void StartSensorManagers()
@@ -34,8 +37,6 @@ namespace ZoosManagementSystem.Core
             {
                 sensorManager.Start();
             }
-
-            Thread feedingServiceThread = new Thread(new ThreadStart(this.StartFeedingService));
         }
 
         private void StartFeedingService()
@@ -52,11 +53,25 @@ namespace ZoosManagementSystem.Core
             }
         }
 
+        private void StartAnimalHealthService()
+        {
+            AnimalHealthService animalHealthService = new AnimalHealthService();
+            try
+            {
+                animalHealthService.Initialize();
+                animalHealthService.Start();
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
         private void LoadDataFromStorage()
         {
             this.dbHelper = new DbHelper();
 
-            List<Sensor> sensors = this.dbHelper.GetSensors();
+            List<Sensor> sensors = this.dbHelper.GetAllSensors();
 
             foreach (Sensor sensor in sensors)
             {

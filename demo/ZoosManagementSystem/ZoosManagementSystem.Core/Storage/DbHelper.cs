@@ -22,7 +22,7 @@ namespace ZoosManagementSystem.Core.Storage
 
         #region Sensor
 
-        public List<Sensor> GetSensors()
+        public List<Sensor> GetAllSensors()
         {
             var query = from e in this.entities.Sensor
                         select e;
@@ -90,7 +90,6 @@ namespace ZoosManagementSystem.Core.Storage
 
         #endregion
 
-
         #region TimeSlot
 
         public List<TimeSlot> GetEnvironmentTimeSlots(Guid environmentId)
@@ -113,6 +112,31 @@ namespace ZoosManagementSystem.Core.Storage
                         select e;
 
             return query.ToList();
+        }
+
+        public List<Animal> GetAllAnimals()
+        {
+            var query = from e in this.entities.Animal
+                        select e;
+
+            return query.ToList();
+        }    
+
+        #endregion
+
+        #region HealthMeasure
+
+        #endregion
+
+        #region Responsible
+
+        public Responsible GetResponsible(Guid responsibleId)
+        {
+            var query = from e in this.entities.Responsible
+                        where e.Id == responsibleId
+                        select e;
+
+            return query.First() ;
         }
 
         #endregion

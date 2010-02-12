@@ -13,10 +13,17 @@ namespace ZoosManagementSystem.Core.Switch.Service
 {
     public class MockFeedingService : BaseService
     {
+        #region Fields
+
         DbHelper dbHelper;
         Dictionary<Guid, List<FeedingTime>> environmentFeedingTimes;
         List<Timer> feedingTimers;
+        Timer dbUpdateTimer;
         EnvironmentActionsServiceClient environmentActionsServiceClient;
+
+        #endregion
+
+        #region Methods
 
         #region IService Members
 
@@ -32,6 +39,34 @@ namespace ZoosManagementSystem.Core.Switch.Service
             this.dbHelper = new DbHelper();
             this.LoadDataFromStorage();
         }
+
+        protected override void OnStart()
+        {
+            lock (this.environmentFeedingTimes)
+            {
+                foreach (List<FeedingTime> feedingTimeList in this.environmentFeedingTimes.Values)
+                {
+                    foreach (FeedingTime feedingTime in feedingTimeList)
+                    {
+                        this.feedingTimers.Add(new Timer(new TimerCallback(this.FeedAnimal), feedingTime, feedingTime.Time.Ticks, 0));
+                    }
+                }
+            }
+
+            this.dbUpdateTimer = new Timer(new TimerCallback(this.DbUpdateTimerCallback), null, 10000, 0);
+        }
+
+        protected override void OnStop()
+        {
+            foreach (Timer timer in this.feedingTimers)
+            {
+                timer.Dispose();
+            }
+
+            this.dbUpdateTimer.Dispose();
+        }
+
+        #endregion
 
         private void LoadDataFromStorage()
         {
@@ -63,30 +98,6 @@ namespace ZoosManagementSystem.Core.Switch.Service
             }
             catch (Exception)
             {
-            }
-        }
-
-        protected override void OnStart()
-        {
-            lock (this.environmentFeedingTimes)
-            {
-                foreach (List<FeedingTime> feedingTimeList in this.environmentFeedingTimes.Values)
-                {
-                    foreach (FeedingTime feedingTime in feedingTimeList)
-                    {
-                        this.feedingTimers.Add(new Timer(new TimerCallback(this.FeedAnimal), feedingTime, feedingTime.Time.Ticks, 0));
-                    }
-                }
-            }
-
-            Timer dbUpdateTimer = new Timer(new TimerCallback(this.DbUpdateTimerCallback), null, 10000, 0);
-        }
-
-        protected override void OnStop()
-        {
-            foreach (Timer timer in this.feedingTimers)
-            {
-                timer.Dispose();
             }
         }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.ServiceProcess;
 using ZoosManagementSystem.Core.Storage;
+using ZoosManagementSystem.Core.Util;
 
 namespace ZoosManagmentSystem.Core.Foundation.Sensor
 {
@@ -55,7 +56,7 @@ namespace ZoosManagmentSystem.Core.Foundation.Sensor
                 this.dbHelper = new DbHelper();
                 this.timeSlotEntries = this.dbHelper.GetEnvironmentTimeSlots(this.environmentId);
             }
-            catch (Exception e)
+            catch (Exception)
             {
 
             }
@@ -63,20 +64,10 @@ namespace ZoosManagmentSystem.Core.Foundation.Sensor
 
         protected TimeSlot GetCurrentTimeSlot()
         {
-            TimeSlot currentTimeSlot = this.timeSlotEntries.Find(
-                                      delegate(TimeSlot slot)
-                                      {
-                                          DateTime now = DateTime.Now;
-
-                                          if (now.Hour >= slot.InitialTime.Hours && now.Hour <= slot.FinalTime.Hours)
-                                          {
-                                              if (now.Minute >= slot.InitialTime.Hours && now.Minute <= slot.FinalTime.Minutes)
-                                              {
-                                                  return true;
-                                              }
-                                          }
-                                          return false;
-                                      });
+            TimeSlot currentTimeSlot = this.timeSlotEntries.Find(delegate(TimeSlot slot)
+            {
+                return DateTimeComparer.DateInRange(DateTime.Now, slot.InitialTime, slot.FinalTime);
+            });
 
             return currentTimeSlot;
         }
