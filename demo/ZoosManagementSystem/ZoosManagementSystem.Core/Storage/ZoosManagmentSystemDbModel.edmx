@@ -329,7 +329,7 @@
           <Property Name="Id" Type="Guid" Nullable="false" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="Description" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Surface" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Surface" Type="Int32" Nullable="false" />
           <Property Name="Type" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Animal" Relationship="ZoosManagementSystemModel.FK_Animal_Environment" FromRole="Environment" ToRole="Animal" />
           <NavigationProperty Name="EnvironmentMeasure" Relationship="ZoosManagementSystemModel.FK_EnvironmentMeasure_Environment" FromRole="Environment" ToRole="EnvironmentMeasure" />

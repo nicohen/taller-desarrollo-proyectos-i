@@ -19,7 +19,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("ZoosManagementSystemModel", "FK_FeedingTime_Feeding", "Feeding", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ZoosManagementSystem.Core.Storage.Feeding), "FeedingTime", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ZoosManagementSystem.Core.Storage.FeedingTime))]
 
 // Nombre de archivo original:
-// Fecha de generación: 12/02/2010 01:58:35 a.m.
+// Fecha de generación: 12/02/2010 02:21:32 a.m.
 namespace ZoosManagementSystem.Core.Storage
 {
     
@@ -605,7 +605,7 @@ namespace ZoosManagementSystem.Core.Storage
         /// <param name="description">Valor inicial de Description.</param>
         /// <param name="surface">Valor inicial de Surface.</param>
         /// <param name="type">Valor inicial de Type.</param>
-        public static Environment CreateEnvironment(global::System.Guid id, string name, string description, string surface, string type)
+        public static Environment CreateEnvironment(global::System.Guid id, string name, string description, int surface, string type)
         {
             Environment environment = new Environment();
             environment.Id = id;
@@ -689,7 +689,7 @@ namespace ZoosManagementSystem.Core.Storage
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string Surface
+        public int Surface
         {
             get
             {
@@ -699,13 +699,13 @@ namespace ZoosManagementSystem.Core.Storage
             {
                 this.OnSurfaceChanging(value);
                 this.ReportPropertyChanging("Surface");
-                this._Surface = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this._Surface = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
                 this.ReportPropertyChanged("Surface");
                 this.OnSurfaceChanged();
             }
         }
-        private string _Surface;
-        partial void OnSurfaceChanging(string value);
+        private int _Surface;
+        partial void OnSurfaceChanging(int value);
         partial void OnSurfaceChanged();
         /// <summary>
         /// No hay ningún comentario para la propiedad Type en el esquema.
