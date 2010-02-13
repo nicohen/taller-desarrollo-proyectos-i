@@ -6,6 +6,7 @@ using System.ServiceModel;
 using System.Text;
 
 using ZoosManagementSystem.Interfaces;
+using ZoosManagmentSystem.Mock.EnvironmentEmulation;
 
 namespace ZoosManagmentSystem.Mock.Services
 {
@@ -15,12 +16,12 @@ namespace ZoosManagmentSystem.Mock.Services
 
         public void ModifyTemperature(Guid environmentId, float temperatureOffset)
         {
-            throw new NotImplementedException();
+            EnvironmentSimulator.SetTemperature(environmentId, temperatureOffset);
         }
 
         public void ModifyLuminosity(Guid environmentId, float luminosityOffset)
         {
-            throw new NotImplementedException();
+            EnvironmentSimulator.SetLuminosity(environmentId,luminosityOffset);
         }
 
         public void StartWatering(Guid environmentId)
