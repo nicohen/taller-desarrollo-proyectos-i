@@ -15,6 +15,7 @@ using ZoosManagmentSystem.Mock.Storage;
 
 using ZooEnvironment = ZoosManagmentSystem.Mock.Storage.Environment;
 using ZoosManagmentSystem.Mock.EnvironmentEmulation;
+using System.Threading;
 
 
 namespace ZoosManagmentSystem.Mock
@@ -22,6 +23,8 @@ namespace ZoosManagmentSystem.Mock
     public partial class MainForm : Form
     {
         #region Fields
+
+        private Guid selectedEnvironmentId;
 
         #endregion
 
@@ -31,6 +34,9 @@ namespace ZoosManagmentSystem.Mock
         {
             InitializeComponent();
             this.LoadDataFromStorage();
+            this.temperatureGaugeBar.Value = 0;
+            this.luminosityGaugeBar.Value = 0;
+            this.humidityGaugeBar.Value = 0;
         }
 
         private void LoadDataFromStorage()
@@ -39,22 +45,35 @@ namespace ZoosManagmentSystem.Mock
 
             environments = DbHelper.GetEnvironments();
 
-            EnvironmentSimulator.Initialize(environments, 500, 32, 150);
+            this.selectedEnvironmentId = environments[0].Id;
+            
+            EnvironmentSimulator.Initialize(environments, 16, 32, 12);
+
+            //this.LogInfo(string.Format("Initializing environment values: Humidity = {0} - Temperature = {1} - Luminosity = {2}", 16, 32, 12));
+        }
+
+        private void UpdateEnvironmentGauges(object state)
+        {
+            EnvironmentMeasure currentMeasure = EnvironmentSimulator.GetEnvironmentMeasures(this.selectedEnvironmentId);
+
+            this.temperatureGaugeBar.Value = (int)currentMeasure.Temperature;
+            this.humidityGaugeBar.Value = (int)currentMeasure.Humidity;
+            this.luminosityGaugeBar.Value = (int)currentMeasure.Luminosity;
         }
 
         private void LaunchEnvironmentConditionsService()
         {
             try
             {
-                this.LogInfo("Starting environment conditions service...");
+                this.LogInfo("Iniciando servicio de condiciones de ambiente...");
 
                 ServiceStarter.StartEnvironmentConditionsService();
 
-                this.LogInfo("Environment conditions service started.");
+                this.LogInfo("Servicio de condiciones de ambiente iniciado.");
             }
             catch (Exception ex)
             {
-                this.LogError("An error ocurred starting environment conditions service.", ex);
+                this.LogError("Ocurrio un error al iniciar servicio de condiciones de ambiente.", ex);
             }
         }
 
@@ -62,15 +81,15 @@ namespace ZoosManagmentSystem.Mock
         {
             try
             {
-                this.LogInfo("Starting environment actions service...");
+                this.LogInfo("Iniciando servicio de acciones de ambiente...");
 
                 ServiceStarter.StartEnvironmentActionsService();
 
-                this.LogInfo("Environment actions service started.");
+                this.LogInfo("Servicio de acciones de ambiente iniciado.");
             }
             catch (Exception ex)
             {
-                this.LogError("An error ocurred starting environment actions service.", ex);
+                this.LogError("Ocurrio un error al iniciar servicio de acciones de ambiente.", ex);
             }
         }
 
@@ -94,8 +113,11 @@ namespace ZoosManagmentSystem.Mock
         {
             this.LaunchEnvironmentActionsService();
             this.LaunchEnvironmentConditionsService();
+
+            System.Threading.Timer timer = new System.Threading.Timer(new TimerCallback(this.UpdateEnvironmentGauges), null, 0, 3000);
         }
 
         #endregion
+
     }
 }

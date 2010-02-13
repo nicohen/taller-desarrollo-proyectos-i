@@ -172,7 +172,7 @@
             this.groupBox4.Size = new System.Drawing.Size(242, 174);
             this.groupBox4.TabIndex = 4;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Conditions";
+            this.groupBox4.Text = "Condiciones";
             // 
             // label6
             // 
