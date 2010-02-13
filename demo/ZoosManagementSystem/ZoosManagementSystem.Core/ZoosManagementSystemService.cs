@@ -9,6 +9,7 @@ using ZoosManagementSystem.Core.Switch.Service;
 using System;
 using System.Threading;
 using System.Diagnostics;
+using System.Configuration;
 
 namespace ZoosManagementSystem.Core
 {
@@ -16,6 +17,10 @@ namespace ZoosManagementSystem.Core
     {
         private List<SensorManager> sensorManagers;
         private DbHelper dbHelper;
+
+        private const string MockSensorPoolingTimeConfigurationKey = "MockSensorPoolingTime";
+        private const string AnimalHealthPoolingTimeConfigurationKey = "AnimalHealthPoolingTime";
+        private const string FeedingServicePoolingTimeConfigurationKey = "FeedingServicePoolingTime";
 
         public ZoosManagementSystemService()
         {
@@ -45,7 +50,7 @@ namespace ZoosManagementSystem.Core
 
         private void StartFeedingService()
         {
-            MockFeedingService mockFeedingService = new MockFeedingService(900000);
+            MockFeedingService mockFeedingService = new MockFeedingService(int.Parse(ConfigurationManager.AppSettings[ZoosManagementSystemService.FeedingServicePoolingTimeConfigurationKey]));
             try
             {
                 mockFeedingService.Initialize();
@@ -59,7 +64,7 @@ namespace ZoosManagementSystem.Core
 
         private void StartAnimalHealthService()
         {
-            MockAnimalHealthService animalHealthService = new MockAnimalHealthService(5000);
+            MockAnimalHealthService animalHealthService = new MockAnimalHealthService(int.Parse(ConfigurationManager.AppSettings[ZoosManagementSystemService.AnimalHealthPoolingTimeConfigurationKey]));
             try
             {
                 animalHealthService.Initialize();
@@ -79,7 +84,7 @@ namespace ZoosManagementSystem.Core
 
             foreach (Sensor sensor in sensors)
             {
-                SensorManager manager = new MockSensorManager(sensor.Name, 3000, sensor.Environment.Id);
+                SensorManager manager = new MockSensorManager(sensor.Name, int.Parse(ConfigurationManager.AppSettings[ZoosManagementSystemService.MockSensorPoolingTimeConfigurationKey]), sensor.Environment.Id);
 
                 this.sensorManagers.Add(manager);
             }
