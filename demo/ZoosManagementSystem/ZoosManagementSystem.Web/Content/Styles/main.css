@@ -296,19 +296,19 @@ h1 a:link, h1 a:visited, h1 a:hover, h1 a:active
 	vertical-align: middle;
 }
 
-.mainblock > .accionerror
+.actionerror
 {
 	color: red;
 }
 
-.mainblock > .accionsucess
+.accionsucess
 {
 	color: green;
 }
 
-.mainblock > .normal
+.normal
 {
-	color:#267F00;
+	color: #267F00;
 }
 
 .mainblock > h3
@@ -317,7 +317,7 @@ h1 a:link, h1 a:visited, h1 a:hover, h1 a:active
 	margin-top: 10px;
 	padding: 5px;
 	border-bottom: 1px solid;
-	border-top:1px solid;
+	border-top: 1px solid;
 }
 
 .leftblock
@@ -953,4 +953,11 @@ div .contentbox p
 	float: right;
 	margin: 8px 2px 0 0;
 	font-size: 1.2em;
+}
+
+#search
+{
+	margin-top: 8px;
+	padding: 2px;
+	float:left;
 }

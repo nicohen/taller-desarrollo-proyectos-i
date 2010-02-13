@@ -11,15 +11,15 @@
         
         <% if (!string.IsNullOrEmpty((string)this.TempData["DeleteMessage"]))
            { %>
-            <h3 class="<%= ((bool)this.TempData["DeleteSucess"]) ? "actionsucess" : "actionerror" %>"><%= Html.Encode(this.TempData["DeleteMessage"])%></h3> 
+            <h3 class="<%= ((bool)this.TempData["DeleteSucess"]) ? "accionsucess" : "actionerror" %>"><%= Html.Encode(this.TempData["DeleteMessage"])%></h3> 
         <% } %>
         
-        <% this.Html.BeginForm("SearchEnvironments", "Administration", FormMethod.Get, new { style = "margin-top: 8px; padding: 2px; float:left" }); %>
+        <div id="search">
                 
-        Buscar ambiente: <%= this.Html.TextBox("searchCriteria", Html.Encode(this.TempData["SearchCriteria"]), new { style = "width: 190px" })%>
-        <input type="submit" value="Buscar" />
+        Buscar ambiente: <%= this.Html.TextBox("searchCriteria", Html.Encode(this.TempData["SearchCriteria"]), new { style = "width: 190px", onkeypress = "searchEnvironmentKeyPressed(this, event)" })%>
+        <input type="submit" value="Buscar" onclick="redirectSearchEnvironment();" />
         
-        <% this.Html.EndForm(); %>
+        </div>
         
         <%= Html.ActionLink("Nuevo Ambiente", "NewEnvironment", "Administration", null, new { Class = "newlink" }) %>
         <div class="clear"></div>

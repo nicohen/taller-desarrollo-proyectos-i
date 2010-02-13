@@ -30,4 +30,18 @@ function changeSurvey() {
             lastSurveySelected = currentSurveySelected;
         }
     }
-}       
+}
+
+function searchEnvironmentKeyPressed(control, e) {
+    key = (document.all) ? e.keyCode : e.which;
+
+    if (key == 13) {
+        redirectSearchEnvironment();
+    }
+}
+
+function redirectSearchEnvironment() {
+    var searchCriteria = $("#searchCriteria")[0].value;
+
+    window.location = "/ZoosManagementSystem/Administration/Environments/Search/" + searchCriteria;
+}
