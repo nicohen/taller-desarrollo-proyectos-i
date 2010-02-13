@@ -31,7 +31,18 @@ namespace ZoosManagementSystem.Core.Util
         {
             if (date.Hour >= rangeStart.Hours && date.Hour <= rangeEnd.Hours)
             {
-                if (date.Minute >= rangeStart.Hours && date.Minute <= rangeEnd.Minutes)
+                if (date.Hour == rangeStart.Hours && date.Hour == rangeEnd.Hours)
+                {
+                    if (date.Minute >= rangeStart.Hours && date.Minute <= rangeEnd.Minutes)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
                 {
                     return true;
                 }

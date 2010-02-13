@@ -116,7 +116,7 @@ namespace ZoosManagementSystem.Core.Switch.Service
         private void FeedAnimal(FeedingTime feedingTime)
         {
             //TODO: guarda aca, no creo que EF mapée feedingTime.Animal.Environment.Id
-            this.environmentActionsServiceClient.FeedingAnimal(feedingTime.Animal.Environment.Id, feedingTime.Animal.Id, feedingTime.Feeding.Id, feedingTime.Amount);
+            this.environmentActionsServiceClient.FeedAnimal(feedingTime.Animal.Environment.Id, feedingTime.Animal.Id, feedingTime.Feeding.Id, feedingTime.Amount);
         }
 
         #endregion

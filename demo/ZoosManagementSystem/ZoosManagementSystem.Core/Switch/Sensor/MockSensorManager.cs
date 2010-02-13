@@ -68,14 +68,9 @@ namespace ZoosManagmentSystem.Core.Switch.Sensor
                     EnvironmentConditions environmentConditions = this.environmentConditionsServiceClient.GetEnvironmentConditions(this.environmentId);
                     
                     //this.dbHelper.UpdateEnvironmentMeasures(this.environmentId, environmentConditions.Humidity, environmentConditions.Temperature, environmentConditions.Luminosity);
-                    if (environmentConditions.Humidity >= currentTimeSlot.HumidityMax)
+                    if (environmentConditions.Humidity <= currentTimeSlot.HumidityMin || environmentConditions.Humidity >= currentTimeSlot.HumidityMax)
                     {
-                        this.environmentActionsClient.StartWatering(this.environmentId);
-                    }
-
-                    if ((environmentConditions.Humidity >= currentTimeSlot.HumidityMin && environmentConditions.Humidity <= currentTimeSlot.HumidityMax) || (environmentConditions.Humidity < currentTimeSlot.HumidityMin))
-                    {
-                        this.environmentActionsClient.StopWatering(this.environmentId);
+                        this.environmentActionsClient.ModifyHumidity(this.environmentId, (float)(currentTimeSlot.HumidityMin + currentTimeSlot.HumidityMax) / 2);
                     }
 
                     if (environmentConditions.Luminosity <= currentTimeSlot.LuminosityMin || environmentConditions.Luminosity >= currentTimeSlot.LuminosityMax)

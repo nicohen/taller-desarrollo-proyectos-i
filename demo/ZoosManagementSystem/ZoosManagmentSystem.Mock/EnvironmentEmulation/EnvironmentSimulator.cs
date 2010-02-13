@@ -38,58 +38,122 @@ namespace ZoosManagmentSystem.Mock.EnvironmentEmulation
 
         public static void SetTemperature(Guid environmentId, float temperatureOffset)
         {
-            double firstIncrement, secondIncrement, thirdIncrement;
             double environmentConditionValue = EnvironmentSimulator.GetEnvironmentMeasures(environmentId).Luminosity;
 
-            Thread.Sleep(2000);
-            firstIncrement = (environmentConditionValue + temperatureOffset) / 2;
-            EnvironmentSimulator.environmentsMeasures[environmentId].Temperature = firstIncrement;
+            EnvironmentChangeItem item = new EnvironmentChangeItem(environmentId, temperatureOffset, environmentConditionValue);
+
+            ThreadPool.QueueUserWorkItem(new WaitCallback(EnvironmentSimulator.SetTemperatureThread), item);
+        }
+
+        private static void SetTemperatureThread(object state)
+        {
+            EnvironmentChangeItem environmentChangeItem = (EnvironmentChangeItem)state;
+
+            double firstIncrement, secondIncrement, thirdIncrement;
 
             Thread.Sleep(2000);
-            secondIncrement = (firstIncrement + temperatureOffset) / 2;
-            EnvironmentSimulator.environmentsMeasures[environmentId].Temperature = secondIncrement;
+            firstIncrement = (environmentChangeItem.EnvironmentConditionValue + environmentChangeItem.Offset) / 2;
+            EnvironmentSimulator.environmentsMeasures[environmentChangeItem.EnvironmentId].Temperature = firstIncrement;
+
 
             Thread.Sleep(2000);
-            thirdIncrement = (secondIncrement + temperatureOffset) / 2;
-            EnvironmentSimulator.environmentsMeasures[environmentId].Temperature = thirdIncrement;
+            secondIncrement = (firstIncrement + environmentChangeItem.Offset) / 2;
+            EnvironmentSimulator.environmentsMeasures[environmentChangeItem.EnvironmentId].Temperature = secondIncrement;
+
+            Thread.Sleep(2000);
+            thirdIncrement = (secondIncrement + environmentChangeItem.Offset) / 2;
+            EnvironmentSimulator.environmentsMeasures[environmentChangeItem.EnvironmentId].Temperature = thirdIncrement;
         }
 
         public static void SetLuminosity(Guid environmentId, float luminosityOffset)
         {
-            double firstIncrement, secondIncrement, thirdIncrement;
             double environmentConditionValue = EnvironmentSimulator.GetEnvironmentMeasures(environmentId).Luminosity;
 
-            Thread.Sleep(2000);
-            firstIncrement = (environmentConditionValue + luminosityOffset) / 2;
-            EnvironmentSimulator.environmentsMeasures[environmentId].Luminosity = firstIncrement;
+            EnvironmentChangeItem item = new EnvironmentChangeItem(environmentId, luminosityOffset, environmentConditionValue);
 
-
-            Thread.Sleep(2000);
-            secondIncrement = (firstIncrement + luminosityOffset) / 2;
-            EnvironmentSimulator.environmentsMeasures[environmentId].Luminosity = secondIncrement;
-
-            Thread.Sleep(2000);
-            thirdIncrement = (secondIncrement + luminosityOffset) / 2;
-            EnvironmentSimulator.environmentsMeasures[environmentId].Luminosity = thirdIncrement;
+            ThreadPool.QueueUserWorkItem(new WaitCallback(EnvironmentSimulator.SetLuminosityThread), item);
         }
 
-        public static void SetHumidity(Guid environmentId, float humidityIncrement)
+        public static void SetHumidity(Guid environmentId, float humidityOffset)
         {
-            //double firstIncrement, secondIncrement, thirdIncrement;
-            //double environmentConditionValue = EnvironmentSimulator.GetEnvironmentMeasures(environmentId).Luminosity;
+            double environmentConditionValue = EnvironmentSimulator.GetEnvironmentMeasures(environmentId).Humidity;
 
-            //Thread.Sleep(2000);
-            //firstIncrement = (environmentConditionValue + luminosityOffset) / 2;
-            //EnvironmentSimulator.environmentsMeasures[environmentId].Luminosity = firstIncrement;
+            EnvironmentChangeItem item = new EnvironmentChangeItem(environmentId, humidityOffset, environmentConditionValue);
 
-
-            //Thread.Sleep(2000);
-            //secondIncrement = (firstIncrement + luminosityOffset) / 2;
-            //EnvironmentSimulator.environmentsMeasures[environmentId].Luminosity = secondIncrement;
-
-            //Thread.Sleep(2000);
-            //thirdIncrement = (secondIncrement + luminosityOffset) / 2;
-            //EnvironmentSimulator.environmentsMeasures[environmentId].Luminosity = thirdIncrement;
+            ThreadPool.QueueUserWorkItem(new WaitCallback(EnvironmentSimulator.SetHumidityThread), item);
         }
+
+        private static void SetLuminosityThread(object state)
+        {
+            EnvironmentChangeItem environmentChangeItem = (EnvironmentChangeItem)state;
+
+            double firstIncrement, secondIncrement, thirdIncrement;
+
+            Thread.Sleep(2000);
+            firstIncrement = (environmentChangeItem.EnvironmentConditionValue + environmentChangeItem.Offset) / 2;
+            EnvironmentSimulator.environmentsMeasures[environmentChangeItem.EnvironmentId].Luminosity = firstIncrement;
+
+
+            Thread.Sleep(2000);
+            secondIncrement = (firstIncrement + environmentChangeItem.Offset) / 2;
+            EnvironmentSimulator.environmentsMeasures[environmentChangeItem.EnvironmentId].Luminosity = secondIncrement;
+
+            Thread.Sleep(2000);
+            thirdIncrement = (secondIncrement + environmentChangeItem.Offset) / 2;
+            EnvironmentSimulator.environmentsMeasures[environmentChangeItem.EnvironmentId].Luminosity = thirdIncrement;
+        }
+
+        private static void SetHumidityThread(object state)
+        {
+            EnvironmentChangeItem environmentChangeItem = (EnvironmentChangeItem)state;
+            double firstIncrement, secondIncrement, thirdIncrement;
+
+            Thread.Sleep(2000);
+            firstIncrement = (environmentChangeItem.EnvironmentConditionValue + environmentChangeItem.Offset) / 2;
+            EnvironmentSimulator.environmentsMeasures[environmentChangeItem.EnvironmentId].Luminosity = firstIncrement;
+
+
+            Thread.Sleep(2000);
+            secondIncrement = (firstIncrement + environmentChangeItem.Offset) / 2;
+            EnvironmentSimulator.environmentsMeasures[environmentChangeItem.EnvironmentId].Luminosity = secondIncrement;
+
+            Thread.Sleep(2000);
+            thirdIncrement = (secondIncrement + environmentChangeItem.Offset) / 2;
+            EnvironmentSimulator.environmentsMeasures[environmentChangeItem.EnvironmentId].Luminosity = thirdIncrement;
+        }
+    }
+
+    public class EnvironmentChangeItem
+    {
+        private double environmentConditionValue;
+
+        public double EnvironmentConditionValue
+        {
+            get { return environmentConditionValue; }
+            set { environmentConditionValue = value; }
+        }
+        private Guid environmentId;
+
+        public Guid EnvironmentId
+        {
+            get { return environmentId; }
+            set { environmentId = value; }
+        }
+        private float offset;
+
+        public float Offset
+        {
+            get { return offset; }
+            set { offset = value; }
+        }
+
+        public EnvironmentChangeItem(Guid environmentId, float offset, double environmentConditionValue)
+        {
+            this.environmentId = environmentId;
+            this.offset = offset;
+            this.environmentConditionValue = environmentConditionValue;
+        }
+
+        
     }
 }

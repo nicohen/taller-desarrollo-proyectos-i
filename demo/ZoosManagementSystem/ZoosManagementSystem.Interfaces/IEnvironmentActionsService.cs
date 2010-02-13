@@ -13,12 +13,9 @@
         void ModifyLuminosity(Guid environmentId, float luminosityOffset);
 
         [OperationContract]
-        void StartWatering(Guid environmentId);
+        void ModifyHumidity(Guid environmentId, float humidityOffset);
 
         [OperationContract]
-        void StopWatering(Guid environmentId);
-
-        [OperationContract]
-        void FeedingAnimal(Guid environmentId, Guid animalId, Guid feedingId, int amount);
+        void FeedAnimal(Guid environmentId, Guid animalId, Guid feedingId, int amount);
     }
 }

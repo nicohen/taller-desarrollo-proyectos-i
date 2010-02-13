@@ -26,17 +26,14 @@ namespace ZoosManagmentSystem.Mock.Services
             EnvironmentSimulator.SetLuminosity(environmentId, luminosityOffset);
         }
 
-        public void StartWatering(Guid environmentId)
+        public void ModifyHumidity(Guid environmentId, float humidityOffset)
         {
-            throw new NotImplementedException();
+            MainForm.LogInfo(string.Format("Received humidity modification request. Offset: {0}", humidityOffset));
+            EnvironmentSimulator.SetHumidity(environmentId, humidityOffset);
         }
 
-        public void StopWatering(Guid environmentId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void FeedingAnimal(Guid environmentId, Guid animalId, Guid feedingId, int amount)
+       
+        public void FeedAnimal(Guid environmentId, Guid animalId, Guid feedingId, int amount)
         {
             throw new NotImplementedException();
         }
