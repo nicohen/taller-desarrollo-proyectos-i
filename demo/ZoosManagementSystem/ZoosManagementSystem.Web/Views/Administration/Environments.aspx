@@ -21,7 +21,7 @@
         
         </div>
         
-        <%= Html.ActionLink("Nuevo Ambiente", "NewEnvironment", "Administration", null, new { Class = "newlink" }) %>
+        <%= Html.ActionLink("Nuevo Ambiente", "NewEnvironment", "Administration", null, new { Class = "newlinkbig" })%>
         <div class="clear"></div>
         
         <% if ((this.Model != null) && (this.Model.Count > 0))

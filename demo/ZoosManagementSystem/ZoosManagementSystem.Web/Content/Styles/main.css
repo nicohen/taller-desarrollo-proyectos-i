@@ -950,6 +950,12 @@ div .contentbox p
 {
 	background: transparent url(../Images/new.png) no-repeat scroll 0 50%;
 	padding: 5px 0 5px 23px;
+}
+
+.newlinkbig
+{
+	background: transparent url(../Images/new_big.png) no-repeat scroll 0 50%;
+	padding: 5px 0 5px 23px;
 	float: right;
 	margin: 8px 2px 0 0;
 	font-size: 1.2em;

@@ -18,6 +18,7 @@ SET @responsibleID = (SELECT TOP 1 [Id] FROM [dbo].[Responsible])
 
 DECLARE @animalID UNIQUEIDENTIFIER
 INSERT INTO [dbo].[Animal] ([EnvironmentId], [ResponsibleId], [Name], [Sex], [Species], [BirthDate], [BornInCaptivity], [Cost], [NextHealthMeasure]) VALUES (@environmentID, @responsibleID, 'Simba', 'M','Phantera Leo', '2007-05-08', 1, NULL, '2010-02-15')
+INSERT INTO [dbo].[Animal] ([EnvironmentId], [ResponsibleId], [Name], [Sex], [Species], [BirthDate], [BornInCaptivity], [Cost], [NextHealthMeasure]) VALUES (NULL, @responsibleID, 'Nala', 'F','Phantera Leo', '2007-11-28', 0, 25000, '2010-02-22')
 SET @animalID = (SELECT TOP 1 [Id] FROM [dbo].[Animal])
 
 DECLARE @sensorID UNIQUEIDENTIFIER

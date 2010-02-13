@@ -16,6 +16,7 @@
                     Type = environmentModel.Type,
                     Animals = environmentModel.Animal.Select(a => a.ToViewData()).ToList(),
                     TimeSlots = environmentModel.TimeSlot.Select(ts => ts.ToViewData()).ToList(),
+                    FreeAnimals = repository.GetFreeAnimals().Select(a => a.ToViewData()).ToList()
                 };
         }
 
@@ -26,7 +27,7 @@
                     AnimalId = animalModel.Id.ToString(),
                     Name = animalModel.Name,
                     Species = animalModel.Species,
-                    Sex = (animalModel.Sex.ToLowerInvariant()) == "M" ? "Macho" : "Hembra",
+                    Sex = (animalModel.Sex.ToLowerInvariant() == "m") ? "Macho" : "Hembra",
                     AnimalStatus = "Original"
                 };
         }

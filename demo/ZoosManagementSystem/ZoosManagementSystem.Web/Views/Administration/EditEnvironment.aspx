@@ -9,7 +9,8 @@
 
     <script type="text/javascript">
         function removeAnimal(id) {
-            // TODO
+            $("#" + id + " input")[1].value = "REMOVE";
+            $("#" + id)[0].style.display = "none";
         }
     </script>
 
@@ -25,7 +26,7 @@
                 
         <div id="maincontent">
             <div class="editbox">
-                    <h3><%= this.Model.Name %></h3>
+                    <h3><label for="Name">Nombre:</label><%= this.Html.TextBox("Name") %></h3>
                     
                     <%= Html.ValidationSummary("No se pudo editar el ambiente. Por favor corregir los errores e intentar nuevamente.") %>
                     <% using (Html.BeginForm())
@@ -33,8 +34,7 @@
                         <fieldset>
                         <p><label for="Description">Descripci&oacute;n:</label><%= this.Html.TextBox("Description") %></p>
                         <p><label for="Surface">Superficie:</label><%= this.Html.TextBox("Surface") %></p>
-                        <p><label for="Description">Description:</label><%= this.Html.TextBox("Description") %></p>
-                        <%= this.Html.Hidden("EnvironmentId", this.Model.EnvironmentId) %>
+                        <p><label for="Type">Tipo:</label><%= this.Html.TextBox("Type") %></p>
                         <%= this.Html.Hidden("EnvironmentId", this.Model.EnvironmentId) %>
                     </fieldset>
                     <fieldset>
@@ -46,12 +46,26 @@
                            { %>
                                <li id="<%= animal.AnimalId %>">
                                  <%= string.Format(CultureInfo.CurrentCulture, "{0} ({1}: {2})", animal.Name, animal.Sex, animal.Species) %>&nbsp;-&nbsp;
-                                 <a href="JavaScript:removeAnimal('<%= animal.AnimalId %>')">Remover</a>
+                                 <a href="JavaScript:removeAnimal('<%= animal.AnimalId %>')" class="deletelink">Remover</a>
                                  <%= Html.Hidden("Animals[" + animalIndex + "].AnimalId", animal.AnimalId) %>
                                  <%= Html.Hidden("Animals[" + animalIndex + "].AnimalStatus", animal.AnimalStatus) %>
                                </li>
                                <% animalIndex++; %>
                         <% } %>
+                   
+                        <%= (this.Model.FreeAnimals != null) && (this.Model.FreeAnimals.Count > 0)
+                           ? Html.DropDownList(
+                                "freeanimals",
+                                this.Model.FreeAnimals.Select(
+                                    a =>
+                                    new SelectListItem
+                                        {
+                                            Text = string.Format(CultureInfo.CurrentCulture, "{0} ({1}: {2})", a.Name, a.Sex, a.Species),
+                                            Value = a.AnimalId
+                                        }),
+                                "Seleccionar animal...",
+                                new { onchange = "addAnimal();" })
+                           : string.Empty %>
                         </ul>                    
                     </fieldset>
                     <fieldset>

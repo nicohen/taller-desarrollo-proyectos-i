@@ -64,6 +64,19 @@
             }
         }
 
+        public IList<Animal> GetFreeAnimals()
+        {
+            using (var entities = this.EntityContext)
+            {
+                return entities.Animal
+                    .Include("Environment")
+                    .Include("FeedingTime")
+                    .Include("Responsible")
+                    .Where(a => a.Environment == null)
+                    .ToList();
+            }
+        }
+
         public IList<Environment> SearchEnvironments(string searchCriteria)
         {
             using (var entities = this.EntityContext)
