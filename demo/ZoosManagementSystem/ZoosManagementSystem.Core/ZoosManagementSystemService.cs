@@ -30,6 +30,9 @@ namespace ZoosManagementSystem.Core
 
             Thread feedingServiceThread = new Thread(new ThreadStart(this.StartFeedingService));
             Thread animalHealthServiceThread = new Thread(new ThreadStart(this.StartAnimalHealthService));
+
+            feedingServiceThread.Start();
+            animalHealthServiceThread.Start();
         }
 
         private void StartSensorManagers()
@@ -56,7 +59,7 @@ namespace ZoosManagementSystem.Core
 
         private void StartAnimalHealthService()
         {
-            AnimalHealthService animalHealthService = new AnimalHealthService(900000);
+            MockAnimalHealthService animalHealthService = new MockAnimalHealthService(5000);
             try
             {
                 animalHealthService.Initialize();
@@ -64,7 +67,7 @@ namespace ZoosManagementSystem.Core
             }
             catch (Exception)
             {
-
+                throw;
             }
         }
 

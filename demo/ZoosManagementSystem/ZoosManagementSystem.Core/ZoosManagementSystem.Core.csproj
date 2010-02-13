@@ -85,7 +85,7 @@
     <Compile Include="ProjectInstaller.Designer.cs">
       <DependentUpon>ProjectInstaller.cs</DependentUpon>
     </Compile>
-    <Compile Include="Switch\Service\AnimalHealthService.cs" />
+    <Compile Include="Switch\Service\MockAnimalHealthService.cs" />
     <Compile Include="Switch\Service\MockFeedingService.cs" />
     <Compile Include="Util\DateTimeComparer.cs" />
     <Compile Include="ZoosManagementSystemService.cs">

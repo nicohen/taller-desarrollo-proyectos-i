@@ -11,12 +11,12 @@ using ZoosManagementSystem.Core.Util;
 
 namespace ZoosManagementSystem.Core.Switch.Service
 {
-    public class AnimalHealthService : BaseService
+    public class MockAnimalHealthService : BaseService
     {
         private DbHelper dbHelper;
         private List<Animal> animals;
 
-        public AnimalHealthService(int poolingInterval)
+        public MockAnimalHealthService(int poolingInterval)
             : base(poolingInterval)
         {
             this.animals = new List<Animal>();
@@ -25,6 +25,7 @@ namespace ZoosManagementSystem.Core.Switch.Service
         public override void Initialize()
         {
             this.dbHelper = new DbHelper();
+            this.LoadDataFromStorage();
         }
 
         protected override void OnStart()
@@ -41,6 +42,7 @@ namespace ZoosManagementSystem.Core.Switch.Service
                             this.SendNotificationEmail(responsible, animalToMeasure, animalToMeasure.NextHealthMeasure);
                         }
                     }
+
                     Thread.Sleep(this.poolingInterval);
                 }
                 catch (Exception)

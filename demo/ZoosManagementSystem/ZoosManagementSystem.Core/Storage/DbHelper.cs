@@ -116,7 +116,7 @@ namespace ZoosManagementSystem.Core.Storage
 
         public List<Animal> GetAllAnimals()
         {
-            var query = from e in this.entities.Animal
+            var query = from e in this.entities.Animal.Include("Responsible")
                         select e;
 
             return query.ToList();

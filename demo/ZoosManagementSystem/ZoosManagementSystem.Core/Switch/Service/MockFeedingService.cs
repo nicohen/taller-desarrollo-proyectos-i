@@ -39,6 +39,7 @@ namespace ZoosManagementSystem.Core.Switch.Service
         public override void Initialize()
         {
             this.dbHelper = new DbHelper();
+            this.LoadDataFromStorage();
         }
 
         protected override void OnStart()
@@ -63,9 +64,6 @@ namespace ZoosManagementSystem.Core.Switch.Service
 
                 Thread.Sleep(poolingInterval);
             }
-
-
-            
         }
 
         protected override void OnStop()
