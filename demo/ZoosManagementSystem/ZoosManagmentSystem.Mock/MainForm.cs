@@ -18,6 +18,7 @@ using ZoosManagmentSystem.Mock.EnvironmentEmulation;
 using System.Threading;
 
 
+
 namespace ZoosManagmentSystem.Mock
 {
     public partial class MainForm : Form
@@ -46,7 +47,7 @@ namespace ZoosManagmentSystem.Mock
             environments = DbHelper.GetEnvironments();
 
             this.selectedEnvironmentId = environments[0].Id;
-            
+
             EnvironmentSimulator.Initialize(environments, 16, 32, 12);
 
             //this.LogInfo(string.Format("Initializing environment values: Humidity = {0} - Temperature = {1} - Luminosity = {2}", 16, 32, 12));
@@ -54,11 +55,22 @@ namespace ZoosManagmentSystem.Mock
 
         private void UpdateEnvironmentGauges(object state)
         {
-            EnvironmentMeasure currentMeasure = EnvironmentSimulator.GetEnvironmentMeasures(this.selectedEnvironmentId);
+            while (true)
+            {
+                CheckForIllegalCrossThreadCalls = false;
 
-            this.temperatureGaugeBar.Value = (int)currentMeasure.Temperature;
-            this.humidityGaugeBar.Value = (int)currentMeasure.Humidity;
-            this.luminosityGaugeBar.Value = (int)currentMeasure.Luminosity;
+                EnvironmentMeasure currentMeasure = EnvironmentSimulator.GetEnvironmentMeasures(this.selectedEnvironmentId);
+
+                this.temperatureGaugeBar.Value = (int)currentMeasure.Temperature;
+                this.humidityGaugeBar.Value = (int)currentMeasure.Humidity;
+                this.luminosityGaugeBar.Value = (int)currentMeasure.Luminosity;
+                this.temperatureGaugeValueTextbox.Text = currentMeasure.Temperature.ToString();
+                this.humidityGaugeValueTextbox.Text = currentMeasure.Humidity.ToString();
+                this.luminosityGaugeValueTextbox.Text = currentMeasure.Luminosity.ToString();
+
+                Thread.Sleep(2000);
+            }
+
         }
 
         private void LaunchEnvironmentConditionsService()
@@ -95,14 +107,14 @@ namespace ZoosManagmentSystem.Mock
 
         public static void LogInfo(string message)
         {
-            MainForm.statusMessagesTextbox.Text += message + ".";
-            MainForm.statusMessagesTextbox.Text += System.Environment.NewLine;
+            MainForm.statusConsoleTextbox.Text += message + ".";
+            MainForm.statusConsoleTextbox.Text += System.Environment.NewLine;
         }
 
         public static void LogError(string message, Exception ex)
         {
-            MainForm.statusMessagesTextbox.Text += message + ":" + ex.Message + ".";
-            MainForm.statusMessagesTextbox.Text += System.Environment.NewLine;
+            MainForm.statusConsoleTextbox.Text += message + ":" + ex.Message + ".";
+            MainForm.statusConsoleTextbox.Text += System.Environment.NewLine;
         }
 
         #endregion
@@ -114,7 +126,7 @@ namespace ZoosManagmentSystem.Mock
             this.LaunchEnvironmentActionsService();
             this.LaunchEnvironmentConditionsService();
 
-            System.Threading.Timer timer = new System.Threading.Timer(new TimerCallback(this.UpdateEnvironmentGauges), null, 0, 3000);
+            ThreadPool.QueueUserWorkItem(new WaitCallback(this.UpdateEnvironmentGauges));
         }
 
         #endregion

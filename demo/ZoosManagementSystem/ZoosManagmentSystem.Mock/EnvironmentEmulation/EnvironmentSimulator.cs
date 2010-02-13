@@ -30,10 +30,7 @@ namespace ZoosManagmentSystem.Mock.EnvironmentEmulation
 
         public static EnvironmentMeasure GetEnvironmentMeasures(Guid environmentId)
         {
-            lock (EnvironmentSimulator.environmentsMeasures)
-            {
-                return EnvironmentSimulator.environmentsMeasures[environmentId];
-            }
+            return EnvironmentSimulator.environmentsMeasures[environmentId];
         }
 
         public static void SetTemperature(Guid environmentId, float temperatureOffset)
@@ -63,6 +60,9 @@ namespace ZoosManagmentSystem.Mock.EnvironmentEmulation
             Thread.Sleep(2000);
             thirdIncrement = (secondIncrement + environmentChangeItem.Offset) / 2;
             EnvironmentSimulator.environmentsMeasures[environmentChangeItem.EnvironmentId].Temperature = thirdIncrement;
+
+            Thread.Sleep(2000);
+            EnvironmentSimulator.environmentsMeasures[environmentChangeItem.EnvironmentId].Temperature = environmentChangeItem.Offset;
         }
 
         public static void SetLuminosity(Guid environmentId, float luminosityOffset)
@@ -101,6 +101,9 @@ namespace ZoosManagmentSystem.Mock.EnvironmentEmulation
             Thread.Sleep(2000);
             thirdIncrement = (secondIncrement + environmentChangeItem.Offset) / 2;
             EnvironmentSimulator.environmentsMeasures[environmentChangeItem.EnvironmentId].Luminosity = thirdIncrement;
+
+            Thread.Sleep(2000);
+            EnvironmentSimulator.environmentsMeasures[environmentChangeItem.EnvironmentId].Luminosity = environmentChangeItem.Offset;
         }
 
         private static void SetHumidityThread(object state)
@@ -110,16 +113,18 @@ namespace ZoosManagmentSystem.Mock.EnvironmentEmulation
 
             Thread.Sleep(2000);
             firstIncrement = (environmentChangeItem.EnvironmentConditionValue + environmentChangeItem.Offset) / 2;
-            EnvironmentSimulator.environmentsMeasures[environmentChangeItem.EnvironmentId].Luminosity = firstIncrement;
+            EnvironmentSimulator.environmentsMeasures[environmentChangeItem.EnvironmentId].Humidity = firstIncrement;
 
 
             Thread.Sleep(2000);
             secondIncrement = (firstIncrement + environmentChangeItem.Offset) / 2;
-            EnvironmentSimulator.environmentsMeasures[environmentChangeItem.EnvironmentId].Luminosity = secondIncrement;
+            EnvironmentSimulator.environmentsMeasures[environmentChangeItem.EnvironmentId].Humidity = secondIncrement;
 
             Thread.Sleep(2000);
             thirdIncrement = (secondIncrement + environmentChangeItem.Offset) / 2;
-            EnvironmentSimulator.environmentsMeasures[environmentChangeItem.EnvironmentId].Luminosity = thirdIncrement;
+            EnvironmentSimulator.environmentsMeasures[environmentChangeItem.EnvironmentId].Humidity = thirdIncrement;
+
+            EnvironmentSimulator.environmentsMeasures[environmentChangeItem.EnvironmentId].Humidity = environmentChangeItem.Offset;
         }
     }
 
@@ -154,6 +159,6 @@ namespace ZoosManagmentSystem.Mock.EnvironmentEmulation
             this.environmentConditionValue = environmentConditionValue;
         }
 
-        
+
     }
 }

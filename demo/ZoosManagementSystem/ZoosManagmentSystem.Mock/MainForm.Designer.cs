@@ -1,4 +1,5 @@
-﻿namespace ZoosManagmentSystem.Mock
+﻿using System.Windows.Forms;
+namespace ZoosManagmentSystem.Mock
 {
     partial class MainForm
     {
@@ -29,7 +30,6 @@
         private void InitializeComponent()
         {
             this.startServiceButton = new System.Windows.Forms.Button();
-            MainForm.statusMessagesTextbox = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -46,6 +46,10 @@
             this.humidityGaugeBar = new VerticalProgressBar.VerticalProgressBar();
             this.label4 = new System.Windows.Forms.Label();
             this.temperatureGaugeBar = new VerticalProgressBar.VerticalProgressBar();
+            this.temperatureGaugeValueTextbox = new System.Windows.Forms.TextBox();
+            this.humidityGaugeValueTextbox = new System.Windows.Forms.TextBox();
+            this.luminosityGaugeValueTextbox = new System.Windows.Forms.TextBox();
+            MainForm.statusConsoleTextbox = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -65,17 +69,9 @@
             this.startServiceButton.UseVisualStyleBackColor = true;
             this.startServiceButton.Click += new System.EventHandler(this.StartServiceButtonClick);
             // 
-            // statusMessagesTextbox
-            // 
-            MainForm.statusMessagesTextbox.Location = new System.Drawing.Point(9, 18);
-            MainForm.statusMessagesTextbox.Multiline = true;
-            MainForm.statusMessagesTextbox.Name = "statusMessagesTextbox";
-            MainForm.statusMessagesTextbox.Size = new System.Drawing.Size(237, 146);
-            MainForm.statusMessagesTextbox.TabIndex = 1;
-            // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(MainForm.statusMessagesTextbox);
+            this.groupBox1.Controls.Add(MainForm.statusConsoleTextbox);
             this.groupBox1.Location = new System.Drawing.Point(15, 116);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(257, 174);
@@ -161,6 +157,9 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.luminosityGaugeValueTextbox);
+            this.groupBox4.Controls.Add(this.humidityGaugeValueTextbox);
+            this.groupBox4.Controls.Add(this.temperatureGaugeValueTextbox);
             this.groupBox4.Controls.Add(this.label6);
             this.groupBox4.Controls.Add(this.label5);
             this.groupBox4.Controls.Add(this.luminosityGaugeBar);
@@ -169,7 +168,7 @@
             this.groupBox4.Controls.Add(this.temperatureGaugeBar);
             this.groupBox4.Location = new System.Drawing.Point(514, 116);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(242, 174);
+            this.groupBox4.Size = new System.Drawing.Size(242, 202);
             this.groupBox4.TabIndex = 4;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Condiciones";
@@ -243,11 +242,41 @@
             this.temperatureGaugeBar.TabIndex = 0;
             this.temperatureGaugeBar.Value = 50;
             // 
+            // temperatureGaugeValueTextbox
+            // 
+            this.temperatureGaugeValueTextbox.Location = new System.Drawing.Point(21, 176);
+            this.temperatureGaugeValueTextbox.Name = "temperatureGaugeValueTextbox";
+            this.temperatureGaugeValueTextbox.Size = new System.Drawing.Size(31, 20);
+            this.temperatureGaugeValueTextbox.TabIndex = 6;
+            // 
+            // humidityGaugeValueTextbox
+            // 
+            this.humidityGaugeValueTextbox.Location = new System.Drawing.Point(106, 176);
+            this.humidityGaugeValueTextbox.Name = "humidityGaugeValueTextbox";
+            this.humidityGaugeValueTextbox.Size = new System.Drawing.Size(31, 20);
+            this.humidityGaugeValueTextbox.TabIndex = 7;
+            // 
+            // luminosityGaugeValueTextbox
+            // 
+            this.luminosityGaugeValueTextbox.Location = new System.Drawing.Point(188, 175);
+            this.luminosityGaugeValueTextbox.Name = "luminosityGaugeValueTextbox";
+            this.luminosityGaugeValueTextbox.Size = new System.Drawing.Size(31, 20);
+            this.luminosityGaugeValueTextbox.TabIndex = 8;
+            // 
+            // statusConsoleTextbox
+            // 
+            MainForm.statusConsoleTextbox.Location = new System.Drawing.Point(6, 19);
+            MainForm.statusConsoleTextbox.Multiline = true;
+            MainForm.statusConsoleTextbox.Name = "statusConsoleTextbox";
+            MainForm.statusConsoleTextbox.Size = new System.Drawing.Size(245, 149);
+            MainForm.statusConsoleTextbox.TabIndex = 0;
+            MainForm.statusConsoleTextbox.ScrollBars = ScrollBars.Vertical;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(777, 311);
+            this.ClientSize = new System.Drawing.Size(792, 330);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
@@ -271,7 +300,6 @@
         #endregion
 
         private System.Windows.Forms.Button startServiceButton;
-        private static System.Windows.Forms.TextBox statusMessagesTextbox;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
@@ -288,6 +316,10 @@
         private VerticalProgressBar.VerticalProgressBar humidityGaugeBar;
         private System.Windows.Forms.Label label4;
         private VerticalProgressBar.VerticalProgressBar temperatureGaugeBar;
+        private System.Windows.Forms.TextBox luminosityGaugeValueTextbox;
+        private System.Windows.Forms.TextBox humidityGaugeValueTextbox;
+        private System.Windows.Forms.TextBox temperatureGaugeValueTextbox;
+        private static System.Windows.Forms.TextBox statusConsoleTextbox;
     }
 }
 

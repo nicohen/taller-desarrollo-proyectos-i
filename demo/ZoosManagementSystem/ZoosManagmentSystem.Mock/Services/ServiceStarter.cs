@@ -25,7 +25,6 @@ namespace ZoosManagmentSystem.Mock.Services
             host.AddServiceEndpoint(typeof(IMetadataExchange), new BasicHttpBinding(), "MEX");
 
             host.Open();
-
         }
 
         public static void StartEnvironmentConditionsService()
