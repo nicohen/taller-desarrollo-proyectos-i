@@ -86,6 +86,7 @@ namespace ZoosManagementSystem.Core
 
             foreach (Sensor sensor in sensors)
             {
+                sensor.EnvironmentReference.Load();
                 SensorManager manager = new MockSensorManager(sensor.Name, 3000, sensor.Environment.Id);
 
                 this.sensorManagers.Add(manager);

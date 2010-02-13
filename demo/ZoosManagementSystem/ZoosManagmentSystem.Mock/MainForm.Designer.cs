@@ -81,7 +81,7 @@
             this.groupBox1.Size = new System.Drawing.Size(257, 174);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "General messages";
+            this.groupBox1.Text = "Consola de mensajes";
             // 
             // groupBox2
             // 
@@ -106,7 +106,7 @@
             this.groupBox3.Size = new System.Drawing.Size(225, 174);
             this.groupBox3.TabIndex = 3;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Actions";
+            this.groupBox3.Text = "Acciones";
             // 
             // label3
             // 
@@ -115,7 +115,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(67, 13);
             this.label3.TabIndex = 5;
-            this.label3.Text = "Temperature";
+            this.label3.Text = "Temperatura";
             // 
             // pictureBox3
             // 
@@ -130,13 +130,13 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(63, 82);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(50, 13);
+            this.label2.Size = new System.Drawing.Size(35, 13);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Watering";
+            this.label2.Text = "Riego";
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Location = new System.Drawing.Point(12, 72);
+            this.pictureBox2.Location = new System.Drawing.Point(12, 73);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(32, 33);
             this.pictureBox2.TabIndex = 2;
@@ -147,9 +147,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(63, 43);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(56, 13);
+            this.label1.Size = new System.Drawing.Size(60, 13);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Luminosity";
+            this.label1.Text = "Iluminación";
             // 
             // pictureBox1
             // 
@@ -179,18 +179,18 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(171, 151);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(56, 13);
+            this.label6.Size = new System.Drawing.Size(66, 13);
             this.label6.TabIndex = 5;
-            this.label6.Text = "Luminosity";
+            this.label6.Text = "Luminosidad";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(96, 151);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(47, 13);
+            this.label5.Size = new System.Drawing.Size(53, 13);
             this.label5.TabIndex = 4;
-            this.label5.Text = "Humidity";
+            this.label5.Text = "Humedad";
             // 
             // luminosityGaugeBar
             // 
@@ -253,7 +253,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
             this.Name = "MainForm";
-            this.Text = "Actions/Conditions Emulator";
+            this.Text = "Emulador de Acciones/Condiciones";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);

@@ -111,16 +111,24 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\MockEnvironmentActionsService\item.xsd" />
-    <None Include="Service References\MockEnvironmentActionsService\MockEnvironmentActionsService.wsdl" />
-  </ItemGroup>
-  <ItemGroup>
     <WCFMetadataStorage Include="Service References\MockEnvironmentActionsService\" />
     <WCFMetadataStorage Include="Service References\MockEnvironmentConditionsService\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\MockEnvironmentActionsService\item.disco" />
+    <None Include="app.config" />
+    <None Include="Service References\MockEnvironmentActionsService\item.xsd" />
     <None Include="Service References\MockEnvironmentActionsService\item1.xsd" />
+    <None Include="Service References\MockEnvironmentActionsService\MockEnvironmentActionsService.wsdl" />
+    <EntityDeploy Include="Storage\ZoosManagementSystemDbModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ZoosManagementSystemDbModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MockEnvironmentActionsService\item.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MockEnvironmentActionsService\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\MockEnvironmentActionsService\configuration.svcinfo" />
@@ -139,10 +147,12 @@
     <None Include="Service References\MockEnvironmentConditionsService\item2.xsd" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Service References\MockEnvironmentConditionsService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Service References\MockEnvironmentConditionsService\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="Service References\MockEnvironmentConditionsService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -150,10 +160,6 @@
     <None Include="Service References\MockEnvironmentConditionsService\ZoosManagementSystem.Core.MockEnvironmentConditionsService.EnvironmentConditions.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <EntityDeploy Include="Storage\ZoosManagementSystemDbModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ZoosManagementSystemDbModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

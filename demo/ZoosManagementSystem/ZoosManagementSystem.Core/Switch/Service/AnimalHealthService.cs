@@ -39,11 +39,9 @@ namespace ZoosManagementSystem.Core.Switch.Service
                         {
                             Responsible responsible = this.dbHelper.GetResponsible(animalToMeasure.Responsible.Id);
                             this.SendNotificationEmail(responsible, animalToMeasure, animalToMeasure.NextHealthMeasure);
-
                         }
                     }
-
-                    Thread.Sleep(5000);
+                    Thread.Sleep(this.poolingInterval);
                 }
                 catch (Exception)
                 {

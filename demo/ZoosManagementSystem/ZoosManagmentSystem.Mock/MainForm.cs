@@ -11,6 +11,11 @@ using System.ServiceModel.Description;
 using System.Net;
 using ZoosManagementSystem.Interfaces;
 using ZoosManagmentSystem.Mock.Services;
+using ZoosManagmentSystem.Mock.Storage;
+
+using ZooEnvironment = ZoosManagmentSystem.Mock.Storage.Environment;
+using ZoosManagmentSystem.Mock.EnvironmentEmulation;
+
 
 namespace ZoosManagmentSystem.Mock
 {
@@ -25,6 +30,16 @@ namespace ZoosManagmentSystem.Mock
         public MainForm()
         {
             InitializeComponent();
+            this.LoadDataFromStorage();
+        }
+
+        private void LoadDataFromStorage()
+        {
+            List<ZooEnvironment> environments = new List<ZooEnvironment>();
+
+            environments = DbHelper.GetEnvironments();
+
+            EnvironmentSimulator.Initialize(environments, 500, 32, 150);
         }
 
         private void LaunchEnvironmentConditionsService()
@@ -62,13 +77,13 @@ namespace ZoosManagmentSystem.Mock
         private void LogInfo(string message)
         {
             this.statusMessagesTextbox.Text += message + ".";
-            this.statusMessagesTextbox.Text += Environment.NewLine;
+            this.statusMessagesTextbox.Text += System.Environment.NewLine;
         }
 
         private void LogError(string message, Exception ex)
         {
             this.statusMessagesTextbox.Text += message + ":" + ex.Message + ".";
-            this.statusMessagesTextbox.Text += Environment.NewLine;
+            this.statusMessagesTextbox.Text += System.Environment.NewLine;
         }
 
         #endregion
