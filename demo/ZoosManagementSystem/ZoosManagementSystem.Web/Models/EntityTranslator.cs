@@ -34,18 +34,18 @@
         public static TimeSlotViewData ToViewData(this TimeSlot timeSlotModel)
         {
             return new TimeSlotViewData
-            {
-                TimeSlotId = timeSlotModel.Id.ToString(),
-                InitialTime = timeSlotModel.InitialTime.ToString(),
-                FinalTime = timeSlotModel.FinalTime.ToString(),
-                TemperatureMin = timeSlotModel.TemperatureMin,
-                TemperatureMax = timeSlotModel.TemperatureMax,
-                HumidityMin = timeSlotModel.HumidityMin,
-                HumidityMax = timeSlotModel.HumidityMax,
-                LuminosityMin = timeSlotModel.LuminosityMin,
-                LuminosityMax = timeSlotModel.LuminosityMax,
-                TimeSlotStatus = "Original"
-            };
+                {
+                    TimeSlotId = timeSlotModel.Id.ToString(),
+                    InitialTime = timeSlotModel.InitialTime.ToString(),
+                    FinalTime = timeSlotModel.FinalTime.ToString(),
+                    TemperatureMin = timeSlotModel.TemperatureMin,
+                    TemperatureMax = timeSlotModel.TemperatureMax,
+                    HumidityMin = timeSlotModel.HumidityMin,
+                    HumidityMax = timeSlotModel.HumidityMax,
+                    LuminosityMin = timeSlotModel.LuminosityMin,
+                    LuminosityMax = timeSlotModel.LuminosityMax,
+                    TimeSlotStatus = "Original"
+                };
         }
     }
 }

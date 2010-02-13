@@ -41,6 +41,8 @@ namespace ZoosManagementSystem.Web.Controllers
             {
                 this.TempData["DeleteMessage"] = null;
                 this.TempData["DeleteSucess"] = null;
+                this.TempData["SearchCriteria"] = null;
+
             }
 
             return this.View("Environments", environments);

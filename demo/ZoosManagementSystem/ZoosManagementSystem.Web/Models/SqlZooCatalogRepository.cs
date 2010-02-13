@@ -50,9 +50,18 @@
             }
         }
 
-        public Environment GetEnvironment(Guid guid)
+        public Environment GetEnvironment(Guid environmentId)
         {
-            return new Environment();
+            using (var entities = this.EntityContext)
+            {
+                return entities.Environment
+                    .Include("Animal")
+                    .Include("Sensor")
+                    .Include("TimeSlot")
+                    .Include("EnvironmentMeasure")
+                    .Where(e => e.Id == environmentId)
+                    .FirstOrDefault();
+            }
         }
 
         public IList<Environment> SearchEnvironments(string searchCriteria)
