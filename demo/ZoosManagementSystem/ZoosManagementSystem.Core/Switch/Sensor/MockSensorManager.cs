@@ -30,6 +30,7 @@ namespace ZoosManagmentSystem.Core.Switch.Sensor
         public MockSensorManager(string name, int actionExecutionDelay, Guid environmentId)
             : base(name, actionExecutionDelay, environmentId)
         {
+            this.dbHelper = new DbHelper();
             this.environmentActionsClient = new EnvironmentActionsServiceClient();
             this.environmentConditionsServiceClient = new EnvironmentConditionsServiceClient();
         }
@@ -67,7 +68,7 @@ namespace ZoosManagmentSystem.Core.Switch.Sensor
                 {
                     EnvironmentConditions environmentConditions = this.environmentConditionsServiceClient.GetEnvironmentConditions(this.environmentId);
                     
-                    //this.dbHelper.UpdateEnvironmentMeasures(this.environmentId, environmentConditions.Humidity, environmentConditions.Temperature, environmentConditions.Luminosity);
+                    this.dbHelper.UpdateEnvironmentMeasures(this.environmentId, environmentConditions.Humidity, environmentConditions.Temperature, environmentConditions.Luminosity);
                     if (environmentConditions.Humidity <= currentTimeSlot.HumidityMin || environmentConditions.Humidity >= currentTimeSlot.HumidityMax)
                     {
                         this.environmentActionsClient.ModifyHumidity(this.environmentId, (float)(currentTimeSlot.HumidityMin + currentTimeSlot.HumidityMax) / 2);

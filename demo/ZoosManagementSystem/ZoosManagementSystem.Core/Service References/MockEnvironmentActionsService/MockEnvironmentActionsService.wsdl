@@ -2,8 +2,8 @@
 <wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:tns="http://tempuri.org/" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" name="MockEnvironmentActionsService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
-      <xsd:import schemaLocation="http://localhost:8080/?xsd=xsd0" namespace="http://tempuri.org/" />
-      <xsd:import schemaLocation="http://localhost:8080/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:8081/?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:8081/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IEnvironmentActionsService_ModifyTemperature_InputMessage">
@@ -18,23 +18,17 @@
   <wsdl:message name="IEnvironmentActionsService_ModifyLuminosity_OutputMessage">
     <wsdl:part name="parameters" element="tns:ModifyLuminosityResponse" />
   </wsdl:message>
-  <wsdl:message name="IEnvironmentActionsService_StartWatering_InputMessage">
-    <wsdl:part name="parameters" element="tns:StartWatering" />
+  <wsdl:message name="IEnvironmentActionsService_ModifyHumidity_InputMessage">
+    <wsdl:part name="parameters" element="tns:ModifyHumidity" />
   </wsdl:message>
-  <wsdl:message name="IEnvironmentActionsService_StartWatering_OutputMessage">
-    <wsdl:part name="parameters" element="tns:StartWateringResponse" />
+  <wsdl:message name="IEnvironmentActionsService_ModifyHumidity_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ModifyHumidityResponse" />
   </wsdl:message>
-  <wsdl:message name="IEnvironmentActionsService_StopWatering_InputMessage">
-    <wsdl:part name="parameters" element="tns:StopWatering" />
+  <wsdl:message name="IEnvironmentActionsService_FeedAnimal_InputMessage">
+    <wsdl:part name="parameters" element="tns:FeedAnimal" />
   </wsdl:message>
-  <wsdl:message name="IEnvironmentActionsService_StopWatering_OutputMessage">
-    <wsdl:part name="parameters" element="tns:StopWateringResponse" />
-  </wsdl:message>
-  <wsdl:message name="IEnvironmentActionsService_FeedingAnimal_InputMessage">
-    <wsdl:part name="parameters" element="tns:FeedingAnimal" />
-  </wsdl:message>
-  <wsdl:message name="IEnvironmentActionsService_FeedingAnimal_OutputMessage">
-    <wsdl:part name="parameters" element="tns:FeedingAnimalResponse" />
+  <wsdl:message name="IEnvironmentActionsService_FeedAnimal_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FeedAnimalResponse" />
   </wsdl:message>
   <wsdl:portType name="IEnvironmentActionsService">
     <wsdl:operation name="ModifyTemperature">
@@ -45,17 +39,13 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IEnvironmentActionsService/ModifyLuminosity" message="tns:IEnvironmentActionsService_ModifyLuminosity_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEnvironmentActionsService/ModifyLuminosityResponse" message="tns:IEnvironmentActionsService_ModifyLuminosity_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="StartWatering">
-      <wsdl:input wsaw:Action="http://tempuri.org/IEnvironmentActionsService/StartWatering" message="tns:IEnvironmentActionsService_StartWatering_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IEnvironmentActionsService/StartWateringResponse" message="tns:IEnvironmentActionsService_StartWatering_OutputMessage" />
+    <wsdl:operation name="ModifyHumidity">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEnvironmentActionsService/ModifyHumidity" message="tns:IEnvironmentActionsService_ModifyHumidity_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEnvironmentActionsService/ModifyHumidityResponse" message="tns:IEnvironmentActionsService_ModifyHumidity_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="StopWatering">
-      <wsdl:input wsaw:Action="http://tempuri.org/IEnvironmentActionsService/StopWatering" message="tns:IEnvironmentActionsService_StopWatering_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IEnvironmentActionsService/StopWateringResponse" message="tns:IEnvironmentActionsService_StopWatering_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="FeedingAnimal">
-      <wsdl:input wsaw:Action="http://tempuri.org/IEnvironmentActionsService/FeedingAnimal" message="tns:IEnvironmentActionsService_FeedingAnimal_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IEnvironmentActionsService/FeedingAnimalResponse" message="tns:IEnvironmentActionsService_FeedingAnimal_OutputMessage" />
+    <wsdl:operation name="FeedAnimal">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEnvironmentActionsService/FeedAnimal" message="tns:IEnvironmentActionsService_FeedAnimal_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEnvironmentActionsService/FeedAnimalResponse" message="tns:IEnvironmentActionsService_FeedAnimal_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IEnvironmentActionsService" type="tns:IEnvironmentActionsService">
@@ -78,8 +68,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="StartWatering">
-      <soap:operation soapAction="http://tempuri.org/IEnvironmentActionsService/StartWatering" style="document" />
+    <wsdl:operation name="ModifyHumidity">
+      <soap:operation soapAction="http://tempuri.org/IEnvironmentActionsService/ModifyHumidity" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -87,17 +77,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="StopWatering">
-      <soap:operation soapAction="http://tempuri.org/IEnvironmentActionsService/StopWatering" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="FeedingAnimal">
-      <soap:operation soapAction="http://tempuri.org/IEnvironmentActionsService/FeedingAnimal" style="document" />
+    <wsdl:operation name="FeedAnimal">
+      <soap:operation soapAction="http://tempuri.org/IEnvironmentActionsService/FeedAnimal" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -108,7 +89,7 @@
   </wsdl:binding>
   <wsdl:service name="MockEnvironmentActionsService">
     <wsdl:port name="BasicHttpBinding_IEnvironmentActionsService" binding="tns:BasicHttpBinding_IEnvironmentActionsService">
-      <soap:address location="http://localhost:8080/MockEnvironmentActionsService" />
+      <soap:address location="http://localhost:8081/MockEnvironmentActionsService" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

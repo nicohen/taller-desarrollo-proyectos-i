@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://localhost:8080/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="http://localhost:8081/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
   <xs:element name="ModifyTemperature">
     <xs:complexType>
       <xs:sequence>
@@ -27,41 +27,30 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="StartWatering">
+  <xs:element name="ModifyHumidity">
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="environmentId" type="q3:guid" />
+        <xs:element minOccurs="0" name="humidityOffset" type="xs:float" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="StartWateringResponse">
+  <xs:element name="ModifyHumidityResponse">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="StopWatering">
+  <xs:element name="FeedAnimal">
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="environmentId" type="q4:guid" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="StopWateringResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="FeedingAnimal">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="environmentId" type="q5:guid" />
-        <xs:element xmlns:q6="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="animalId" type="q6:guid" />
-        <xs:element xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="feedingId" type="q7:guid" />
+        <xs:element xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="animalId" type="q5:guid" />
+        <xs:element xmlns:q6="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="feedingId" type="q6:guid" />
         <xs:element minOccurs="0" name="amount" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="FeedingAnimalResponse">
+  <xs:element name="FeedAnimalResponse">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>

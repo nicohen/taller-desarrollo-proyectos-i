@@ -6,5 +6,5 @@
     cause the file to be unrecognizable by the program.
 -->
 <GenericObjectDataSource DisplayName="EnvironmentConditions" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
-   <TypeInfo>ZoosManagementSystem.Core.MockEnvironmentConditionsService.EnvironmentConditions, Service References.MockEnvironmentConditionsService.Reference.cs, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
+   <TypeInfo>ZoosManagementSystem.Core.MockEnvironmentConditionsService.EnvironmentConditions, ZoosManagementSystem.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
 </GenericObjectDataSource>

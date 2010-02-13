@@ -65,23 +65,25 @@ namespace ZoosManagementSystem.Core.Storage
 
         public void UpdateEnvironmentMeasures(Guid environmentId, float humidity, float temperature, float luminosity)
         {
-            EnvironmentMeasure environmentMeasure = this.entities.EnvironmentMeasure.First(e => e.Environment.Id == environmentId);
+            EnvironmentMeasure environmentMeasure = this.entities.EnvironmentMeasure.FirstOrDefault(e => e.Environment.Id == environmentId);
 
             if (environmentMeasure != null)
             {
                 environmentMeasure.Humidity = humidity;
                 environmentMeasure.Temperature = temperature;
                 environmentMeasure.Luminosity = luminosity;
+                environmentMeasure.MeasurementDate = DateTime.Now;
 
                 this.entities.SaveChanges();
             }
             else
             {
                 EnvironmentMeasure newEnvironmentMeasure = new EnvironmentMeasure();
-
+                newEnvironmentMeasure.Environment = this.entities.Environment.Where(en => en.Id == environmentId).First();
                 newEnvironmentMeasure.Humidity = humidity;
                 newEnvironmentMeasure.Temperature = temperature;
                 newEnvironmentMeasure.Luminosity = luminosity;
+                newEnvironmentMeasure.MeasurementDate = DateTime.Now;
 
                 this.entities.AddToEnvironmentMeasure(newEnvironmentMeasure);
                 this.entities.SaveChanges();
