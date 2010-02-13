@@ -32,6 +32,21 @@ function changeSurvey() {
     }
 }
 
+
+function addToList(comboId, listId) {
+    var index = $("#" + comboId)[0].selectedIndex;
+    var currentSelected = $("#" + comboId).children()[index].value;
+
+//<li id="AAAAAAAAAAAAAAAAAAAAAA">
+//BBBBBBBBBBBBBBBBBBBBB&nbsp;-&nbsp;
+//<a class="deletelink" href="JavaScript:removeAnimal('AAAAAAAAAAAAAAAAAAAAAAa')">Remover</a>
+//<input type="hidden" value="AAAAAAAAAAAAAAAAAAAAAAAAA" name="Animals[AAAAAAAAAAAAAAA].AnimalId" id="Animals[AAAAAAAAAAAAAAAAAAAA]_AnimalId">
+//<input type="hidden" value="New" name="Animals[AAAAAAAAAAAAAAAAAAAAAA].AnimalStatus" id="Animals[AAAAAAAAAAAAAAAAA]_AnimalStatus">
+//</li>
+
+    $("#" + listId)[0].innerHTML += "<li>Nuevo</li>";    
+}
+
 function searchEnvironmentKeyPressed(control, e) {
     key = (document.all) ? e.keyCode : e.which;
 

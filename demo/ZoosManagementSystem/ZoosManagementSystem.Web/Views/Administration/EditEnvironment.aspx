@@ -9,7 +9,7 @@
 
     <script type="text/javascript">
         function removeAnimal(id) {
-            $("#" + id + " input")[1].value = "REMOVE";
+            $("#" + id + " input")[1].value = "Remove";
             $("#" + id)[0].style.display = "none";
         }
     </script>
@@ -39,7 +39,7 @@
                     </fieldset>
                     <fieldset>
                     <legend id="animals">Animales</legend>
-                        <ul>
+                        <ul id="listanimals">
                         <%
                            var animalIndex = 0;
                            foreach (var animal in this.Model.Animals)
@@ -52,7 +52,7 @@
                                </li>
                                <% animalIndex++; %>
                         <% } %>
-                   
+                        </ul>                   
                         <%= (this.Model.FreeAnimals != null) && (this.Model.FreeAnimals.Count > 0)
                            ? Html.DropDownList(
                                 "freeanimals",
@@ -64,9 +64,8 @@
                                             Value = a.AnimalId
                                         }),
                                 "Seleccionar animal...",
-                                new { onchange = "addAnimal();" })
+                                new { onchange = "addToList('freeanimals', 'listanimals');" })
                            : string.Empty %>
-                        </ul>                    
                     </fieldset>
                     <fieldset>
                             <legend>Intervalos de Tiempo para Sensores</legend>
