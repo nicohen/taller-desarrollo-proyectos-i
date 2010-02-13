@@ -32,19 +32,38 @@ function changeSurvey() {
     }
 }
 
+function removeAnimal(id) {
+    if ($("#" + id + " input")[1].value == "New") {
+        $("#" + id + " input")[1].value = "None";
+    }
+    else {
+        $("#" + id + " input")[1].value = "Remove";
+    }
+
+    $("#" + id)[0].style.display = "none";
+}
 
 function addToList(comboId, listId) {
     var index = $("#" + comboId)[0].selectedIndex;
-    var currentSelected = $("#" + comboId).children()[index].value;
+    var textSelected = $("#" + comboId).children()[index].text;
+    var valueSelected = $("#" + comboId).children()[index].value;
 
-//<li id="AAAAAAAAAAAAAAAAAAAAAA">
-//BBBBBBBBBBBBBBBBBBBBB&nbsp;-&nbsp;
-//<a class="deletelink" href="JavaScript:removeAnimal('AAAAAAAAAAAAAAAAAAAAAAa')">Remover</a>
-//<input type="hidden" value="AAAAAAAAAAAAAAAAAAAAAAAAA" name="Animals[AAAAAAAAAAAAAAA].AnimalId" id="Animals[AAAAAAAAAAAAAAAAAAAA]_AnimalId">
-//<input type="hidden" value="New" name="Animals[AAAAAAAAAAAAAAAAAAAAAA].AnimalStatus" id="Animals[AAAAAAAAAAAAAAAAA]_AnimalStatus">
-//</li>
+    if (valueSelected != null && valueSelected != "") {
+        if ($("#" + valueSelected).length == 0) {
+            var html = "<li id=\"" + valueSelected + "\">"
+              + textSelected + "&nbsp;-&nbsp;"
+              + "<a class=\"deletelink\" href=\"JavaScript:removeAnimal('" + valueSelected + "')\">Remover</a>"
+              + "<input type=\"hidden\" value=\"" + valueSelected + "\" name=\"Animals[" + valueSelected + "].AnimalId\" id=\"Animals[" + valueSelected + "]_AnimalId\">"
+              + "<input type=\"hidden\" value=\"New\" name=\"Animals[" + valueSelected + "].AnimalStatus\" id=\"Animals[" + valueSelected + "]_AnimalStatus\">"
+              + "</li>";
 
-    $("#" + listId)[0].innerHTML += "<li>Nuevo</li>";    
+            $("#" + listId)[0].innerHTML += html;
+        }
+        else {
+            $("#" + valueSelected + " input")[1].value = "New";
+            $("#" + valueSelected)[0].style.display = "";
+        }
+    }
 }
 
 function searchEnvironmentKeyPressed(control, e) {

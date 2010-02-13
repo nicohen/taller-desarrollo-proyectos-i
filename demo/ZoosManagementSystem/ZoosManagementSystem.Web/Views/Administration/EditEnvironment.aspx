@@ -7,13 +7,6 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <script type="text/javascript">
-        function removeAnimal(id) {
-            $("#" + id + " input")[1].value = "Remove";
-            $("#" + id)[0].style.display = "none";
-        }
-    </script>
-
     <div class="mainblock">
         <h2>Administraci&oacute;n de Ambientes</h2>       
         
@@ -45,7 +38,7 @@
                            foreach (var animal in this.Model.Animals)
                            { %>
                                <li id="<%= animal.AnimalId %>">
-                                 <%= string.Format(CultureInfo.CurrentCulture, "{0} ({1}: {2})", animal.Name, animal.Sex, animal.Species) %>&nbsp;-&nbsp;
+                                 <%= string.Format(CultureInfo.CurrentCulture, "{0} ({1}: {2})", animal.Name, animal.Sex, animal.Species) %>&nbsp;-
                                  <a href="JavaScript:removeAnimal('<%= animal.AnimalId %>')" class="deletelink">Remover</a>
                                  <%= Html.Hidden("Animals[" + animalIndex + "].AnimalId", animal.AnimalId) %>
                                  <%= Html.Hidden("Animals[" + animalIndex + "].AnimalStatus", animal.AnimalStatus) %>
@@ -53,19 +46,26 @@
                                <% animalIndex++; %>
                         <% } %>
                         </ul>                   
-                        <%= (this.Model.FreeAnimals != null) && (this.Model.FreeAnimals.Count > 0)
-                           ? Html.DropDownList(
-                                "freeanimals",
-                                this.Model.FreeAnimals.Select(
-                                    a =>
-                                    new SelectListItem
-                                        {
-                                            Text = string.Format(CultureInfo.CurrentCulture, "{0} ({1}: {2})", a.Name, a.Sex, a.Species),
-                                            Value = a.AnimalId
-                                        }),
-                                "Seleccionar animal...",
-                                new { onchange = "addToList('freeanimals', 'listanimals');" })
-                           : string.Empty %>
+                        <% if((this.Model.FreeAnimals != null) && (this.Model.FreeAnimals.Count > 0))
+                           { %>
+                              <%= Html.DropDownList(
+                                       "freeanimals",
+                                       this.Model.FreeAnimals.Select(
+                                           a =>
+                                           new SelectListItem
+                                               {
+                                                   Text =
+                                                       string.Format(
+                                                       CultureInfo.CurrentCulture,
+                                                       "{0} ({1}: {2})",
+                                                       a.Name,
+                                                       a.Sex,
+                                                       a.Species),
+                                                   Value = a.AnimalId
+                                               }),
+                                       "Seleccionar animal...")%>&nbsp;          
+                              <a href="JavaScript:addToList('freeanimals', 'listanimals');" class="newlink">Agregar</a>         
+                        <% } %>
                     </fieldset>
                     <fieldset>
                             <legend>Intervalos de Tiempo para Sensores</legend>
