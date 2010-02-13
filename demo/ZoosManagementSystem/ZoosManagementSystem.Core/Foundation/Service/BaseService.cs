@@ -8,6 +8,12 @@ namespace ZoosManagementSystem.Core.Foundation.Service
     public abstract class BaseService
     {
         protected bool running;
+        protected int poolingInterval;
+
+        public BaseService(int poolingInterval)
+        {
+            this.poolingInterval = poolingInterval;
+        }
 
         public virtual void Initialize()
         {

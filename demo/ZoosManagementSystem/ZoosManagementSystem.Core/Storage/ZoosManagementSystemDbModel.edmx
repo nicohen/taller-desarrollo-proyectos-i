@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="ZoosManagementSystemModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+      <Schema Namespace="ZoosManagementSystemModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
         <EntityContainer Name="ZoosManagementSystemModelStoreContainer">
           <EntitySet Name="Animal" EntityType="ZoosManagementSystemModel.Store.Animal" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Environment" EntityType="ZoosManagementSystemModel.Store.Environment" store:Type="Tables" Schema="dbo" />
@@ -258,7 +258,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ZoosManagementSystemModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
@@ -663,7 +664,7 @@
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram Name="ZoosManagmentSystemDbModel">
+      <Diagram Name="ZoosManagementSystemDbModel">
         <EntityTypeShape EntityType="ZoosManagementSystemModel.Animal" Width="1.5" PointX="6" PointY="7.25" Height="3.3263964843749996" IsExpanded="true" />
         <EntityTypeShape EntityType="ZoosManagementSystemModel.Environment" Width="1.5" PointX="0.75" PointY="7.5" Height="2.7494921874999996" IsExpanded="true" />
         <EntityTypeShape EntityType="ZoosManagementSystemModel.EnvironmentMeasure" Width="1.5" PointX="3" PointY="4.5" Height="2.1725878906249996" IsExpanded="true" />

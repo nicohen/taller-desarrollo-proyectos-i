@@ -8,6 +8,7 @@ using ZoosManagmentSystem.Core.Foundation.Sensor;
 using ZoosManagementSystem.Core.Switch.Service;
 using System;
 using System.Threading;
+using System.Diagnostics;
 
 namespace ZoosManagementSystem.Core
 {
@@ -24,6 +25,16 @@ namespace ZoosManagementSystem.Core
 
         protected override void OnStart(string[] args)
         {
+#if DEBUG
+            while (!Debugger.IsAttached)      // Waiting until debugger is attached
+            {
+                RequestAdditionalTime(10000);  // Prevents the service from timeout
+                Thread.Sleep(10000);           // Gives you time to attach the debugger   
+            }
+            RequestAdditionalTime(200000);     // for Debugging the OnStart method,
+            // increase as needed to prevent timeouts
+#endif
+
             this.LoadDataFromStorage();
             this.StartSensorManagers();
 
@@ -41,7 +52,7 @@ namespace ZoosManagementSystem.Core
 
         private void StartFeedingService()
         {
-            MockFeedingService mockFeedingService = new MockFeedingService();
+            MockFeedingService mockFeedingService = new MockFeedingService(900000);
             try
             {
                 mockFeedingService.Initialize();
@@ -55,7 +66,7 @@ namespace ZoosManagementSystem.Core
 
         private void StartAnimalHealthService()
         {
-            AnimalHealthService animalHealthService = new AnimalHealthService();
+            AnimalHealthService animalHealthService = new AnimalHealthService(900000);
             try
             {
                 animalHealthService.Initialize();
@@ -75,7 +86,9 @@ namespace ZoosManagementSystem.Core
 
             foreach (Sensor sensor in sensors)
             {
-                this.sensorManagers.Add(new MockSensorManager(sensor.Name, 3000, sensor.Environment.Id));
+                SensorManager manager = new MockSensorManager(sensor.Name, 3000, sensor.Environment.Id);
+
+                this.sensorManagers.Add(manager);
             }
         }
 

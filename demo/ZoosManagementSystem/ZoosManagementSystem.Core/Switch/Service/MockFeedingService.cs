@@ -8,6 +8,7 @@ using ZoosManagementSystem.Core.Foundation.Service;
 using ZoosManagementSystem.Core.Storage;
 using ZoosManagementSystem.Core.MockEnvironmentActionsService;
 using Environment = ZoosManagementSystem.Core.Storage.Environment;
+using ZoosManagementSystem.Core.Util;
 
 namespace ZoosManagementSystem.Core.Switch.Service
 {
@@ -27,7 +28,8 @@ namespace ZoosManagementSystem.Core.Switch.Service
 
         #region IService Members
 
-        public MockFeedingService()
+        public MockFeedingService(int poolingInterval)
+            : base(poolingInterval)
         {
             this.dbHelper = new DbHelper();
             this.environmentActionsServiceClient = new EnvironmentActionsServiceClient();
@@ -42,16 +44,25 @@ namespace ZoosManagementSystem.Core.Switch.Service
 
         protected override void OnStart()
         {
-            lock (this.environmentFeedingTimes)
+            while (this.running)
             {
-                foreach (List<FeedingTime> feedingTimeList in this.environmentFeedingTimes.Values)
+                lock (this.environmentFeedingTimes)
                 {
-                    foreach (FeedingTime feedingTime in feedingTimeList)
+                    foreach (List<FeedingTime> feedingTimeList in this.environmentFeedingTimes.Values)
                     {
-                        this.feedingTimers.Add(new Timer(new TimerCallback(this.FeedAnimal), feedingTime, feedingTime.Time.Ticks, 0));
+                        foreach (FeedingTime feedingTime in feedingTimeList)
+                        {
+                            if (DateTimeComparer.CompareDate(DateTime.Now, feedingTime.Time, 10) == 0)
+                            {
+                                this.FeedAnimal(feedingTime);
+                            }
+                        }
                     }
                 }
+
+                Thread.Sleep(poolingInterval);
             }
+
 
             this.dbUpdateTimer = new Timer(new TimerCallback(this.DbUpdateTimerCallback), null, 10000, 0);
         }
@@ -101,9 +112,8 @@ namespace ZoosManagementSystem.Core.Switch.Service
             }
         }
 
-        private void FeedAnimal(object state)
+        private void FeedAnimal(FeedingTime feedingTime)
         {
-            FeedingTime feedingTime = (FeedingTime)state;
             //TODO: guarda aca, no creo que EF mapée feedingTime.Animal.Environment.Id
             this.environmentActionsServiceClient.FeedingAnimal(feedingTime.Animal.Environment.Id, feedingTime.Animal.Id, feedingTime.Feeding.Id, feedingTime.Amount);
         }

@@ -73,10 +73,10 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Storage\DbHelper.cs" />
-    <Compile Include="Storage\ZoosManagmentSystemDbModel.Designer.cs">
+    <Compile Include="Storage\ZoosManagementSystemDbModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ZoosManagmentSystemDbModel.edmx</DependentUpon>
+      <DependentUpon>ZoosManagementSystemDbModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Switch\Sensor\MockSensorManager.cs" />
     <Compile Include="ProjectInstaller.cs">
@@ -150,9 +150,9 @@
     <None Include="Service References\MockEnvironmentConditionsService\ZoosManagementSystem.Core.MockEnvironmentConditionsService.EnvironmentConditions.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <EntityDeploy Include="Storage\ZoosManagmentSystemDbModel.edmx">
+    <EntityDeploy Include="Storage\ZoosManagementSystemDbModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ZoosManagmentSystemDbModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>ZoosManagementSystemDbModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

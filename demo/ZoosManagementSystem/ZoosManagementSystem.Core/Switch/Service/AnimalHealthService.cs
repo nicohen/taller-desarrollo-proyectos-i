@@ -16,7 +16,8 @@ namespace ZoosManagementSystem.Core.Switch.Service
         private DbHelper dbHelper;
         private List<Animal> animals;
 
-        public AnimalHealthService()
+        public AnimalHealthService(int poolingInterval)
+            : base(poolingInterval)
         {
             this.animals = new List<Animal>();
         }
