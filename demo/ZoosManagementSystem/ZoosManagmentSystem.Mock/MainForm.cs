@@ -65,15 +65,15 @@ namespace ZoosManagmentSystem.Mock
         {
             try
             {
-                this.LogInfo("Iniciando servicio de condiciones de ambiente...");
+                MainForm.LogInfo("Iniciando servicio de condiciones de ambiente...");
 
                 ServiceStarter.StartEnvironmentConditionsService();
 
-                this.LogInfo("Servicio de condiciones de ambiente iniciado.");
+                MainForm.LogInfo("Servicio de condiciones de ambiente iniciado.");
             }
             catch (Exception ex)
             {
-                this.LogError("Ocurrio un error al iniciar servicio de condiciones de ambiente.", ex);
+                MainForm.LogError("Ocurrio un error al iniciar servicio de condiciones de ambiente.", ex);
             }
         }
 
@@ -81,28 +81,28 @@ namespace ZoosManagmentSystem.Mock
         {
             try
             {
-                this.LogInfo("Iniciando servicio de acciones de ambiente...");
+                MainForm.LogInfo("Iniciando servicio de acciones de ambiente...");
 
                 ServiceStarter.StartEnvironmentActionsService();
 
-                this.LogInfo("Servicio de acciones de ambiente iniciado.");
+                MainForm.LogInfo("Servicio de acciones de ambiente iniciado.");
             }
             catch (Exception ex)
             {
-                this.LogError("Ocurrio un error al iniciar servicio de acciones de ambiente.", ex);
+                MainForm.LogError("Ocurrio un error al iniciar servicio de acciones de ambiente.", ex);
             }
         }
 
-        private void LogInfo(string message)
+        public static void LogInfo(string message)
         {
-            this.statusMessagesTextbox.Text += message + ".";
-            this.statusMessagesTextbox.Text += System.Environment.NewLine;
+            MainForm.statusMessagesTextbox.Text += message + ".";
+            MainForm.statusMessagesTextbox.Text += System.Environment.NewLine;
         }
 
-        private void LogError(string message, Exception ex)
+        public static void LogError(string message, Exception ex)
         {
-            this.statusMessagesTextbox.Text += message + ":" + ex.Message + ".";
-            this.statusMessagesTextbox.Text += System.Environment.NewLine;
+            MainForm.statusMessagesTextbox.Text += message + ":" + ex.Message + ".";
+            MainForm.statusMessagesTextbox.Text += System.Environment.NewLine;
         }
 
         #endregion

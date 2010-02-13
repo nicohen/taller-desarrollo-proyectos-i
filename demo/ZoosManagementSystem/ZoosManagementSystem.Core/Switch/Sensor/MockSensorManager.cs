@@ -19,6 +19,7 @@ namespace ZoosManagmentSystem.Core.Switch.Sensor
         EnvironmentActionsServiceClient environmentActionsClient;
         EnvironmentConditionsServiceClient environmentConditionsServiceClient;
         DbHelper dbHelper;
+        Timer poolingTimer;
 
         #endregion
 
@@ -38,8 +39,7 @@ namespace ZoosManagmentSystem.Core.Switch.Sensor
             try
             {
                 this.dbHelper = new DbHelper();
-                Thread poolingThread = new Thread(new ThreadStart(this.StartPoolingEnvironment));
-                poolingThread.Start();
+                this.poolingTimer = new Timer(new TimerCallback(this.PoolEnvironment), null, 0, this.ActionExecutionDelay);
             }
             catch (Exception)
             {
@@ -50,11 +50,7 @@ namespace ZoosManagmentSystem.Core.Switch.Sensor
         public override void Stop()
         {
             base.Stop();
-        }
-
-        protected override void ProcessData()
-        {
-            base.ProcessData();
+            this.poolingTimer.Dispose();
         }
 
         #endregion
@@ -98,12 +94,8 @@ namespace ZoosManagmentSystem.Core.Switch.Sensor
             }
         }
 
-
-
-        private void StartPoolingEnvironment()
+        private void PoolEnvironment(object state)
         {
-            //Pedorro, ver
-            Thread.Sleep(4000);
             this.CheckEnvironmentAndExecute();
         }
 

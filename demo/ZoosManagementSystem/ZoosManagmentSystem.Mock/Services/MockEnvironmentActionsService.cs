@@ -16,12 +16,14 @@ namespace ZoosManagmentSystem.Mock.Services
 
         public void ModifyTemperature(Guid environmentId, float temperatureOffset)
         {
+            MainForm.LogInfo(string.Format("Received temperature modification request. Offset: {0}", temperatureOffset));
             EnvironmentSimulator.SetTemperature(environmentId, temperatureOffset);
         }
 
         public void ModifyLuminosity(Guid environmentId, float luminosityOffset)
         {
-            EnvironmentSimulator.SetLuminosity(environmentId,luminosityOffset);
+            MainForm.LogInfo(string.Format("Received luminosity modification request. Offset: {0}", luminosityOffset));
+            EnvironmentSimulator.SetLuminosity(environmentId, luminosityOffset);
         }
 
         public void StartWatering(Guid environmentId)

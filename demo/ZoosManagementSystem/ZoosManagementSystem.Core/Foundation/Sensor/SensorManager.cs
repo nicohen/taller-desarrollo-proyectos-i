@@ -90,14 +90,6 @@ namespace ZoosManagmentSystem.Core.Foundation.Sensor
 
         }
 
-        /// <summary>
-        /// Processes retrieved data which may result in executing an <see cref="IAction"/>.
-        /// </summary>
-        protected virtual void ProcessData()
-        {
-
-        }
-
         protected virtual void CheckEnvironmentAndExecute()
         {
 

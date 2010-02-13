@@ -39,11 +39,12 @@ namespace ZoosManagementSystem.Core.Switch.Service
         public override void Initialize()
         {
             this.dbHelper = new DbHelper();
-            this.LoadDataFromStorage();
         }
 
         protected override void OnStart()
         {
+            this.dbUpdateTimer = new Timer(new TimerCallback(this.DbUpdateTimerCallback), null, 0, 10000);
+
             while (this.running)
             {
                 lock (this.environmentFeedingTimes)
@@ -64,7 +65,7 @@ namespace ZoosManagementSystem.Core.Switch.Service
             }
 
 
-            this.dbUpdateTimer = new Timer(new TimerCallback(this.DbUpdateTimerCallback), null, 10000, 0);
+            
         }
 
         protected override void OnStop()

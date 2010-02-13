@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.startServiceButton = new System.Windows.Forms.Button();
-            this.statusMessagesTextbox = new System.Windows.Forms.TextBox();
+            MainForm.statusMessagesTextbox = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -67,15 +67,15 @@
             // 
             // statusMessagesTextbox
             // 
-            this.statusMessagesTextbox.Location = new System.Drawing.Point(9, 18);
-            this.statusMessagesTextbox.Multiline = true;
-            this.statusMessagesTextbox.Name = "statusMessagesTextbox";
-            this.statusMessagesTextbox.Size = new System.Drawing.Size(237, 146);
-            this.statusMessagesTextbox.TabIndex = 1;
+            MainForm.statusMessagesTextbox.Location = new System.Drawing.Point(9, 18);
+            MainForm.statusMessagesTextbox.Multiline = true;
+            MainForm.statusMessagesTextbox.Name = "statusMessagesTextbox";
+            MainForm.statusMessagesTextbox.Size = new System.Drawing.Size(237, 146);
+            MainForm.statusMessagesTextbox.TabIndex = 1;
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.statusMessagesTextbox);
+            this.groupBox1.Controls.Add(MainForm.statusMessagesTextbox);
             this.groupBox1.Location = new System.Drawing.Point(15, 116);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(257, 174);
@@ -271,7 +271,7 @@
         #endregion
 
         private System.Windows.Forms.Button startServiceButton;
-        private System.Windows.Forms.TextBox statusMessagesTextbox;
+        private static System.Windows.Forms.TextBox statusMessagesTextbox;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;

@@ -24,7 +24,7 @@ namespace ZoosManagementSystem.Core.Storage
 
         public List<Sensor> GetAllSensors()
         {
-            var query = from e in this.entities.Sensor
+            var query = from e in this.entities.Sensor.Include("Environment")
                         select e;
 
             return query.ToList();
@@ -52,7 +52,7 @@ namespace ZoosManagementSystem.Core.Storage
 
         public List<FeedingTime> GetFeedingTimesFromAnimal(Guid animalId)
         {
-            var query = from e in this.entities.FeedingTime
+            var query = from e in this.entities.FeedingTime.Include("Animal.Environment")
                         where e.Animal.Id == animalId
                         select e;
 
