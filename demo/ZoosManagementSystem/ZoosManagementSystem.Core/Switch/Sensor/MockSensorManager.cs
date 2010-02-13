@@ -38,7 +38,7 @@ namespace ZoosManagmentSystem.Core.Switch.Sensor
         {
             try
             {
-                this.dbHelper = new DbHelper();
+                this.LoadDataFromStorage();
                 this.poolingTimer = new Timer(new TimerCallback(this.PoolEnvironment), null, 0, this.ActionExecutionDelay);
             }
             catch (Exception)
@@ -63,11 +63,11 @@ namespace ZoosManagmentSystem.Core.Switch.Sensor
 
             if (currentTimeSlot != null)
             {
-                EnvironmentConditions environmentConditions = this.environmentConditionsServiceClient.GetEnvironmentConditions(this.environmentId);
-
                 try
                 {
-                    this.dbHelper.UpdateEnvironmentMeasures(this.environmentId, environmentConditions.Humidity, environmentConditions.Temperature, environmentConditions.Luminosity);
+                    EnvironmentConditions environmentConditions = this.environmentConditionsServiceClient.GetEnvironmentConditions(this.environmentId);
+                    
+                    //this.dbHelper.UpdateEnvironmentMeasures(this.environmentId, environmentConditions.Humidity, environmentConditions.Temperature, environmentConditions.Luminosity);
                     if (environmentConditions.Humidity >= currentTimeSlot.HumidityMax)
                     {
                         this.environmentActionsClient.StartWatering(this.environmentId);
