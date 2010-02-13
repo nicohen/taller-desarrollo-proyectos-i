@@ -54,7 +54,7 @@ namespace ZoosManagementSystem.Core.Switch.Service
                     {
                         foreach (FeedingTime feedingTime in feedingTimeList)
                         {
-                            if (DateTimeComparer.CompareDate(DateTime.Now, feedingTime.Time, 10) == 0)
+                            if (DateTimeComparer.CompareDate(DateTime.Now, feedingTime.Time, 10))
                             {
                                 this.FeedAnimal(feedingTime);
                             }

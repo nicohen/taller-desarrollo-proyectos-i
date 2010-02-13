@@ -7,25 +7,87 @@ namespace ZoosManagementSystem.Core.Util
 {
     public class DateTimeComparer
     {
-        public static int CompareDate(DateTime dateToCompare, DateTime date)
+        public static bool CompareDate(DateTime dateToCompare, DateTime date)
         {
-            return 0;
+            return dateToCompare.Equals(date);
         }
 
-        public static int CompareDate(DateTime dateToCompare, TimeSpan date)
+        public static bool CompareDate(DateTime dateToCompare, TimeSpan date)
         {
-            return 0;
+            if (dateToCompare.Hour == date.Hours)
+            {
+                if (dateToCompare.Minute == date.Minutes)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            return false;
         }
 
-        public static int CompareDate(DateTime dateToCompare, DateTime date, int minuteTolerance)
+        public static bool CompareDate(DateTime dateToCompare, DateTime date, int minuteTolerance)
         {
-            return 0;
+            if (!dateToCompare.Equals(date))
+            {
+                date = date.AddMinutes(minuteTolerance);
+
+                if (!dateToCompare.Equals(date))
+                {
+                    date = date.AddMinutes(-2 * minuteTolerance);
+
+                    if (!dateToCompare.Equals(date))
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            else
+            {
+                return true;    
+            }
         }
 
-        public static int CompareDate(DateTime dateToCompare, TimeSpan date, int minuteTolerance)
+        public static bool CompareDate(DateTime dateToCompare, TimeSpan date, int minuteTolerance)
         {
-            return 0;
+            if (dateToCompare.Hour == date.Hours)
+            {
+                if (dateToCompare.Minute == date.Minutes)
+                {
+                    return true;
+                }
+                else
+                {
+                    int fromRange = dateToCompare.Minute - minuteTolerance;
+                    int toRange = dateToCompare.Minute + minuteTolerance;
+
+                    if (date.Minutes >= fromRange && date.Minutes <= toRange)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            else
+            {
+                return false;
+            }
         }
+
 
         public static bool DateInRange(DateTime date, TimeSpan rangeStart, TimeSpan rangeEnd)
         {

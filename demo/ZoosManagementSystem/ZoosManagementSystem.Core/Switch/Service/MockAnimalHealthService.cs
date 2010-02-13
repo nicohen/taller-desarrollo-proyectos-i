@@ -36,7 +36,7 @@ namespace ZoosManagementSystem.Core.Switch.Service
                 {
                     foreach (Animal animalToMeasure in this.animals)
                     {
-                        if (DateTimeComparer.CompareDate(DateTime.Now, animalToMeasure.NextHealthMeasure) == 0)
+                        if (DateTimeComparer.CompareDate(DateTime.Now, animalToMeasure.NextHealthMeasure))
                         {
                             Responsible responsible = this.dbHelper.GetResponsible(animalToMeasure.Responsible.Id);
                             this.SendNotificationEmail(responsible, animalToMeasure, animalToMeasure.NextHealthMeasure);
