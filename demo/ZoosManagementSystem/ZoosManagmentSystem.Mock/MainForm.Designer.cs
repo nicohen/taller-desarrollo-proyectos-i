@@ -30,10 +30,9 @@ namespace ZoosManagmentSystem.Mock
         private void InitializeComponent()
         {
             this.startServiceButton = new System.Windows.Forms.Button();
-            MainForm.statusConsoleTextbox = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.modifyTemperatureButton = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -51,6 +50,9 @@ namespace ZoosManagmentSystem.Mock
             this.humidityGaugeBar = new VerticalProgressBar.VerticalProgressBar();
             this.label4 = new System.Windows.Forms.Label();
             this.temperatureGaugeBar = new VerticalProgressBar.VerticalProgressBar();
+            this.modifyLuminosityButton = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            MainForm.statusConsoleTextbox = new System.Windows.Forms.TextBox();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -61,22 +63,15 @@ namespace ZoosManagmentSystem.Mock
             // 
             // startServiceButton
             // 
+            this.startServiceButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.startServiceButton.Location = new System.Drawing.Point(16, 29);
             this.startServiceButton.Name = "startServiceButton";
             this.startServiceButton.Size = new System.Drawing.Size(75, 23);
             this.startServiceButton.TabIndex = 0;
-            this.startServiceButton.Text = "Start services";
+            this.startServiceButton.Text = "Iniciar";
             this.startServiceButton.UseVisualStyleBackColor = true;
             this.startServiceButton.Click += new System.EventHandler(this.StartServiceButtonClick);
             // 
-            // statusMessagesTextbox
-            // 
-            MainForm.statusConsoleTextbox.Location = new System.Drawing.Point(9, 22);
-            MainForm.statusConsoleTextbox.Multiline = true;
-            MainForm.statusConsoleTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            MainForm.statusConsoleTextbox.Name = "statusMessagesTextbox";
-            MainForm.statusConsoleTextbox.Size = new System.Drawing.Size(420, 440);
-            MainForm.statusConsoleTextbox.TabIndex = 1;
             // groupBox1
             // 
             this.groupBox1.Controls.Add(MainForm.statusConsoleTextbox);
@@ -91,22 +86,25 @@ namespace ZoosManagmentSystem.Mock
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.button1);
+            this.groupBox2.Controls.Add(this.modifyLuminosityButton);
+            this.groupBox2.Controls.Add(this.modifyTemperatureButton);
             this.groupBox2.Controls.Add(this.startServiceButton);
             this.groupBox2.Location = new System.Drawing.Point(17, 4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(591, 72);
+            this.groupBox2.Size = new System.Drawing.Size(803, 74);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Controls";
             // 
-            // button1
+            // modifyTemperatureButton
             // 
-            this.button1.Location = new System.Drawing.Point(129, 29);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Set temperature";
-            this.button1.UseVisualStyleBackColor = true;
+            this.modifyTemperatureButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.modifyTemperatureButton.Location = new System.Drawing.Point(129, 29);
+            this.modifyTemperatureButton.Name = "modifyTemperatureButton";
+            this.modifyTemperatureButton.Size = new System.Drawing.Size(196, 23);
+            this.modifyTemperatureButton.TabIndex = 1;
+            this.modifyTemperatureButton.Text = "Modificar temperatura";
+            this.modifyTemperatureButton.UseVisualStyleBackColor = true;
             // 
             // groupBox3
             // 
@@ -293,6 +291,33 @@ namespace ZoosManagmentSystem.Mock
             this.temperatureGaugeBar.TabIndex = 0;
             this.temperatureGaugeBar.Value = 50;
             // 
+            // modifyLuminosityButton
+            // 
+            this.modifyLuminosityButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.modifyLuminosityButton.Location = new System.Drawing.Point(353, 29);
+            this.modifyLuminosityButton.Name = "modifyLuminosityButton";
+            this.modifyLuminosityButton.Size = new System.Drawing.Size(196, 23);
+            this.modifyLuminosityButton.TabIndex = 2;
+            this.modifyLuminosityButton.Text = "Modificar luminosidad";
+            this.modifyLuminosityButton.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(584, 29);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(196, 23);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Modificar humedad";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            MainForm.statusConsoleTextbox.Location = new System.Drawing.Point(6, 19);
+            MainForm.statusConsoleTextbox.Multiline = true;
+            new System.Drawing.Font("Microsoft Sans Serif", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            MainForm.statusConsoleTextbox.Name = "statusConsoleTextbox";
+            MainForm.statusConsoleTextbox.Size = new System.Drawing.Size(420, 450);
+            MainForm.statusConsoleTextbox.TabIndex = 0;
+            MainForm.statusConsoleTextbox.ScrollBars = ScrollBars.Vertical;
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -339,6 +364,8 @@ namespace ZoosManagmentSystem.Mock
         private System.Windows.Forms.TextBox humidityGaugeValueTextbox;
         private System.Windows.Forms.TextBox temperatureGaugeValueTextbox;
         private static System.Windows.Forms.TextBox statusConsoleTextbox;
+        private Button modifyTemperatureButton;
+        private Button modifyLuminosityButton;
         private Button button1;
     }
 }
