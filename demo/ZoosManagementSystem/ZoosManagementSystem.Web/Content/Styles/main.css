@@ -513,7 +513,7 @@ form
 
 fieldset
 {
-	margin: 0px;
+	margin: 0 0 10px 0;
 	padding: 0px;
 	border: none;
 }
@@ -920,7 +920,8 @@ fieldset h4
 
 .editbox p
 {
-	width: 323px;
+	width: 321px;
+	margin: 5px 0;
 }
 
 .editbox p > label
@@ -933,7 +934,7 @@ fieldset h4
 .editbox p > input
 {
 	float: right;
-	width: 200px;
+	width: 185px;
 }
 
 .editbox legend
@@ -1007,9 +1008,9 @@ div .contentbox p
 #timeslotlist div > p
 {
 	float: left;
-	margin-bottom: 2px;
-	margin-top: 2px;
-	padding: 0 2px;
+	margin-bottom: 3px;
+	margin-top: 3px;
+	padding: 0 3px;
 }
 
 .timeslothead
@@ -1018,10 +1019,7 @@ div .contentbox p
 	cursor: pointer;
 	position: relative;
 	background-color: #FFEA7F;
-	border-top: 1px dotted #AABBCC;
-	border-bottom: 1px dotted #AABBCC;
-	border-left: 1px dotted #AABBCC;
-	border-right: none;
+	border: 1px dotted #AABBCC;
 	margin: 2px 1px 0 1px;
 	border-collapse: collapse;
 }
@@ -1054,7 +1052,6 @@ div .contentbox p
 #listanimals li
 {
 	padding: 3px 0;
-	width: 290px;
 }
 
 #listanimals li > label
@@ -1068,10 +1065,23 @@ div .contentbox p
 {
 	float: right;
 	position: relative;
-	top: -11px;
+	top: -10px;
+	margin-right: 10px;
 }
 
 #freeanimals
 {
 	margin-bottom: 5px;
+	width: 205px;
+}
+
+.editbox fieldset > div > select
+{
+	float: left;
+}
+
+.editbox fieldset > div > a
+{
+	float: right;
+	margin-right: 13px;
 }

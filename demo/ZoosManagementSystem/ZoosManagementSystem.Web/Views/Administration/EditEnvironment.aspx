@@ -29,7 +29,7 @@
                         <div class="clear"></div>                    
                         <p><label for="Description">Descripci&oacute;n:</label><%= this.Html.TextBox("Description") %></p>
                         <div class="clear"></div>
-                        <p><label for="Surface">Superficie:</label><%= this.Html.TextBox("Surface") %></p>
+                        <p><label for="Surface">Superficie (m²):</label><%= this.Html.TextBox("Surface") %></p>
                         <div class="clear"></div>                        
                         <p><label for="Type">Tipo:</label><%= this.Html.TextBox("Type") %></p>
                         <div class="clear"></div>                        
@@ -54,23 +54,25 @@
                         </ul>                   
                         <% if((this.Model.FreeAnimals != null) && (this.Model.FreeAnimals.Count > 0))
                            { %>
-                              <%= Html.DropDownList(
-                                       "freeanimals",
-                                       this.Model.FreeAnimals.Select(
-                                           a =>
-                                           new SelectListItem
-                                               {
-                                                   Text =
-                                                       string.Format(
-                                                       CultureInfo.CurrentCulture,
-                                                       "{0} ({1}: {2})",
-                                                       a.Name,
-                                                       a.Sex,
-                                                       a.Species),
-                                                   Value = a.AnimalId
-                                               }),
-                                       "Seleccionar animal...")%>&nbsp;          
-                              <a href="JavaScript:addToList('freeanimals', 'listanimals');" class="newlink">Agregar</a>         
+                              <div>
+                                  <%= Html.DropDownList(
+                                           "freeanimals",
+                                           this.Model.FreeAnimals.Select(
+                                               a =>
+                                               new SelectListItem
+                                                   {
+                                                       Text =
+                                                           string.Format(
+                                                           CultureInfo.CurrentCulture,
+                                                           "{0} ({1}: {2})",
+                                                           a.Name,
+                                                           a.Sex,
+                                                           a.Species),
+                                                       Value = a.AnimalId
+                                                   }),
+                                           "Seleccionar animal...")%>&nbsp;          
+                                  <a href="JavaScript:addToList('freeanimals', 'listanimals');" class="newlink">Agregar</a>
+                              </div>
                         <% } %>
                     </fieldset>
                     <fieldset>
@@ -93,22 +95,22 @@
                                     <label>Hora final:</label><%= Html.TextBox("TimeSlots[" + timeSlotIndex + "].FinalTime", timeSlot.FinalTime)%>
                                 </p>
                                 <p>
-                                    <label>Temperatura M&iacute;nima:</label><%= Html.TextBox("TimeSlots[" + timeSlotIndex + "].TemperatureMin", timeSlot.TemperatureMin)%>
+                                    <label>Temperatura M&iacute;nima (°C):</label><%= Html.TextBox("TimeSlots[" + timeSlotIndex + "].TemperatureMin", timeSlot.TemperatureMin)%>
                                 </p>
                                 <p>
-                                    <label>Temperatura M&aacute;xima:</label><%= Html.TextBox("TimeSlots[" + timeSlotIndex + "].TemperatureMax", timeSlot.TemperatureMax)%>
+                                    <label>Temperatura M&aacute;xima (°C):</label><%= Html.TextBox("TimeSlots[" + timeSlotIndex + "].TemperatureMax", timeSlot.TemperatureMax)%>
                                 </p>
                                 <p>
-                                    <label>Humedad M&iacute;nima:</label><%= Html.TextBox("TimeSlots[" + timeSlotIndex + "].HumidityMin", timeSlot.HumidityMin)%>
+                                    <label>Humedad M&iacute;nima (%):</label><%= Html.TextBox("TimeSlots[" + timeSlotIndex + "].HumidityMin", timeSlot.HumidityMin)%>
                                 </p>
                                 <p>
-                                    <label>Humedad M&aacute;xima:</label><%= Html.TextBox("TimeSlots[" + timeSlotIndex + "].HumidityMax", timeSlot.HumidityMax)%>
+                                    <label>Humedad M&aacute;xima (%):</label><%= Html.TextBox("TimeSlots[" + timeSlotIndex + "].HumidityMax", timeSlot.HumidityMax)%>
                                 </p>
                                 <p>
-                                    <label>Luminosidad M&iacute;nima:</label><%= Html.TextBox("TimeSlots[" + timeSlotIndex + "].LuminosityMin", timeSlot.LuminosityMin)%>
+                                    <label>Luminosidad M&iacute;nima (lx):</label><%= Html.TextBox("TimeSlots[" + timeSlotIndex + "].LuminosityMin", timeSlot.LuminosityMin)%>
                                 </p>
                                 <p>
-                                    <label>Luminosidad M&aacute;xima:</label><%= Html.TextBox("TimeSlots[" + timeSlotIndex + "].LuminosityMax", timeSlot.LuminosityMax)%>
+                                    <label>Luminosidad M&aacute;xima (lx):</label><%= Html.TextBox("TimeSlots[" + timeSlotIndex + "].LuminosityMax", timeSlot.LuminosityMax)%>
                                 </p>
                                 <%= Html.Hidden("TimeSlots[" + timeSlotIndex + "].TimeSlotId", timeSlot.TimeSlotId) %>
                                 <%= Html.Hidden("TimeSlots[" + timeSlotIndex + "].TimeSlotStatus", timeSlot.TimeSlotStatus) %>
