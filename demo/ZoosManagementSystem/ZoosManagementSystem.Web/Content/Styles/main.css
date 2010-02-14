@@ -918,6 +918,30 @@ fieldset h4
     color: #443366;
 }
 
+.editbox p
+{
+	width: 323px;
+}
+
+.editbox p > label
+{
+	float: left;
+	margin-top: 3px;
+	margin-bottom: 2px;
+}
+
+.editbox p > input
+{
+	float: right;
+	width: 200px;
+}
+
+.editbox legend
+{
+	margin-top: 4px;
+	margin-bottom: 6px;
+}
+
 div .contentbox h3
 {
 	float: left;
@@ -975,6 +999,19 @@ div .contentbox p
 	/*width: 383px;*/
 }
 
+#timeslotlist > p
+{
+	width: auto;
+}
+
+#timeslotlist div > p
+{
+	float: left;
+	margin-bottom: 2px;
+	margin-top: 2px;
+	padding: 0 2px;
+}
+
 .timeslothead
 {
 	padding: 5px 10px;
@@ -991,7 +1028,7 @@ div .contentbox p
 
 .timeslotbody
 {
-	padding: 5px 10px 15px;
+	padding: 5px 10px;
 	background-color: #F4F4F8;
 	border: 1px dotted #AABBCC;
 	border-collapse: collapse;
@@ -1006,4 +1043,20 @@ div .contentbox p
 	top: -5px;
 	position: relative;
 	position: relative;
+}
+
+#listanimals
+{
+	margin-top: 0px;
+}
+
+#listanimals li
+{
+	padding: 5px 0;
+	width: 290px;
+}
+
+#freeanimals
+{
+	margin-bottom: 5px;
 }

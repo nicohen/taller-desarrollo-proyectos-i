@@ -24,11 +24,15 @@
             <% using (Html.BeginForm())
                {%>
             <div class="editbox">
-                    <h3><label for="Name">Nombre:</label><%= this.Html.TextBox("Name") %></h3>
                     <fieldset>
+                        <p><label for="Name">Nombre:</label><%= this.Html.TextBox("Name") %></p>
+                        <div class="clear"></div>                    
                         <p><label for="Description">Descripci&oacute;n:</label><%= this.Html.TextBox("Description") %></p>
+                        <div class="clear"></div>
                         <p><label for="Surface">Superficie:</label><%= this.Html.TextBox("Surface") %></p>
+                        <div class="clear"></div>                        
                         <p><label for="Type">Tipo:</label><%= this.Html.TextBox("Type") %></p>
+                        <div class="clear"></div>                        
                         <%= this.Html.Hidden("EnvironmentId", this.Model.EnvironmentId) %>
                     </fieldset>
                     <fieldset>
@@ -83,22 +87,31 @@
                             <div id="<%= timeSlot.TimeSlotId + "-BODY" %>" class="timeslotbody">
                                 <p>
                                     <label>Hora inicial:</label><%= Html.TextBox("TimeSlots[" + timeSlotIndex + "].InitialTime", timeSlot.InitialTime)%>
+                                </p>
+                                <p>
                                     <label>Hora final:</label><%= Html.TextBox("TimeSlots[" + timeSlotIndex + "].FinalTime", timeSlot.FinalTime)%>
                                 </p>
                                 <p>
                                     <label>Temperatura M&iacute;nima:</label><%= Html.TextBox("TimeSlots[" + timeSlotIndex + "].TemperatureMin", timeSlot.TemperatureMin)%>
+                                </p>
+                                <p>
                                     <label>Temperatura M&aacute;xima:</label><%= Html.TextBox("TimeSlots[" + timeSlotIndex + "].TemperatureMax", timeSlot.TemperatureMax)%>
                                 </p>
                                 <p>
                                     <label>Humedad M&iacute;nima:</label><%= Html.TextBox("TimeSlots[" + timeSlotIndex + "].HumidityMin", timeSlot.HumidityMin)%>
+                                </p>
+                                <p>
                                     <label>Humedad M&aacute;xima:</label><%= Html.TextBox("TimeSlots[" + timeSlotIndex + "].HumidityMax", timeSlot.HumidityMax)%>
                                 </p>
                                 <p>
                                     <label>Luminosidad M&iacute;nima:</label><%= Html.TextBox("TimeSlots[" + timeSlotIndex + "].LuminosityMin", timeSlot.LuminosityMin)%>
+                                </p>
+                                <p>
                                     <label>Luminosidad M&aacute;xima:</label><%= Html.TextBox("TimeSlots[" + timeSlotIndex + "].LuminosityMax", timeSlot.LuminosityMax)%>
                                 </p>
                                 <%= Html.Hidden("TimeSlots[" + timeSlotIndex + "].TimeSlotId", timeSlot.TimeSlotId) %>
                                 <%= Html.Hidden("TimeSlots[" + timeSlotIndex + "].TimeSlotStatus", timeSlot.TimeSlotStatus) %>
+                                <div class="clear"></div>
                             </div>
                                <% timeSlotIndex++; %>
                         <% } %>
