@@ -43,10 +43,11 @@
                            foreach (var animal in this.Model.Animals)
                            { %>
                                <li id="<%= animal.AnimalId %>">
-                                 <%= string.Format(CultureInfo.CurrentCulture, "{0} ({1}: {2})", animal.Name, animal.Sex, animal.Species) %>&nbsp;-
+                                 <label><%= string.Format(CultureInfo.CurrentCulture, "{0} ({1}: {2})", animal.Name, animal.Sex, animal.Species) %></label>
                                  <a href="JavaScript:removeAnimal('<%= animal.AnimalId %>')" class="deletelink">Remover</a>
                                  <%= Html.Hidden("Animals[" + animalIndex + "].AnimalId", animal.AnimalId) %>
                                  <%= Html.Hidden("Animals[" + animalIndex + "].AnimalStatus", animal.AnimalStatus) %>
+                                 <div class="clear"></div>
                                </li>
                                <% animalIndex++; %>
                         <% } %>

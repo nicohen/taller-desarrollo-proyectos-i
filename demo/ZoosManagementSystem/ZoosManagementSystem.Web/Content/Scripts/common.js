@@ -78,10 +78,11 @@ function addToList(comboId, listId) {
     if (valueSelected != null && valueSelected != "") {
         if ($("#" + valueSelected).length == 0) {
             var html = "<li id=\"" + valueSelected + "\">"
-              + textSelected + "&nbsp;-&nbsp;"
+              + "<label>" + textSelected + "</label>"
               + "<a class=\"deletelink\" href=\"JavaScript:removeAnimal('" + valueSelected + "')\">Remover</a>"
               + "<input type=\"hidden\" value=\"" + valueSelected + "\" name=\"Animals[" + valueSelected + "].AnimalId\" id=\"Animals[" + valueSelected + "]_AnimalId\">"
               + "<input type=\"hidden\" value=\"New\" name=\"Animals[" + valueSelected + "].AnimalStatus\" id=\"Animals[" + valueSelected + "]_AnimalStatus\">"
+              + "<div class=\"clear\"></div>"
               + "</li>";
 
             $("#" + listId)[0].innerHTML += html;

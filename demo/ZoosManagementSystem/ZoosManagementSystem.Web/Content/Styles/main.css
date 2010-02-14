@@ -1048,12 +1048,27 @@ div .contentbox p
 #listanimals
 {
 	margin-top: 0px;
+	margin-bottom: 0px;
 }
 
 #listanimals li
 {
-	padding: 5px 0;
+	padding: 3px 0;
 	width: 290px;
+}
+
+#listanimals li > label
+{
+	float: left;
+	position: relative;
+	top: -5px;
+}
+
+#listanimals li > a
+{
+	float: right;
+	position: relative;
+	top: -11px;
 }
 
 #freeanimals
