@@ -12,6 +12,17 @@ $(document).ready(function() {
         ul.hide().fadeIn("fast");
         activeMenu = ul;
     });
+
+    //hide the all of the element with class msg_body
+    $(".timeslotbody").hide();
+    //toggle the componenet with class msg_body
+    $(".timeslothead").click(function(e) {
+        var offset = (this.offsetWidth / 2) + $(this).position().left;
+
+        if (e.clientX - offset <= 542) {
+            $(this).next(".timeslotbody").slideToggle(600);
+        }
+    });
 });
 
 var lastSurveySelected = null;
@@ -42,6 +53,22 @@ function removeAnimal(id) {
 
     $("#" + id)[0].style.display = "none";
 }
+
+function removeTimeSlot(id) {
+    var headId = id + "-HEAD";
+    var bodyId = id + "-BODY";
+    
+    if ($("#" + bodyId + " input")[1].value == "New") {
+        $("#" + bodyId + " input")[1].value = "None";
+    }
+    else {
+        $("#" + bodyId + " input")[1].value = "Remove";
+    }
+
+    $("#" + headId)[0].style.display = "none";
+    $("#" + bodyId)[0].style.display = "none";
+}
+
 
 function addToList(comboId, listId) {
     var index = $("#" + comboId)[0].selectedIndex;

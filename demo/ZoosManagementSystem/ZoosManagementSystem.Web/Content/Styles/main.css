@@ -905,10 +905,10 @@ fieldset h4
 
 #maincontent .editbox
 {
-	background-color:#E4E9B9;
-	border:1px dotted #AABBCC;
-	margin:2px;
-	padding:5px;
+	background-color: #E4E9B9;
+	border: 1px dotted #AABBCC;
+	margin: 2px;
+	padding: 5px;
 }
 
 #maincontent h3
@@ -966,4 +966,44 @@ div .contentbox p
 	margin-top: 8px;
 	padding: 2px;
 	float:left;
+}
+
+.timeslotlist
+{
+	margin: 0px;
+	padding: 0px;
+	/*width: 383px;*/
+}
+
+.timeslothead
+{
+	padding: 5px 10px;
+	cursor: pointer;
+	position: relative;
+	background-color: #FFEA7F;
+	border-top: 1px dotted #AABBCC;
+	border-bottom: 1px dotted #AABBCC;
+	border-left: 1px dotted #AABBCC;
+	border-right: none;
+	margin: 2px 1px 0 1px;
+	border-collapse: collapse;
+}
+
+.timeslotbody
+{
+	padding: 5px 10px 15px;
+	background-color: #F4F4F8;
+	border: 1px dotted #AABBCC;
+	border-collapse: collapse;
+	margin: 0 1px 0 1px;
+	border-collapse: collapse;
+	clear: both;
+}
+
+#timeslotlist > p > a
+{
+	float: right;
+	top: -5px;
+	position: relative;
+	position: relative;
 }
