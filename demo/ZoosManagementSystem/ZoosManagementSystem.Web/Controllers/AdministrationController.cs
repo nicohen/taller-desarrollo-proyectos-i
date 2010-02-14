@@ -5,6 +5,8 @@ namespace ZoosManagementSystem.Web.Controllers
     using System.Globalization;
     using System.Web.Mvc;
     using System.Linq;
+    using System.Web.Routing;
+
     using ZoosManagementSystem.Web.Models;
     using ZoosManagementSystem.Web.ViewData;
 
@@ -36,12 +38,11 @@ namespace ZoosManagementSystem.Web.Controllers
             var environments = this.repository.GetEnvironments();
             this.TempData["NoItemsMessage"] = "¡No hay ambientes disponibles para el Zoológico!";
 
-            if (this.Request.Path == "/ZoosManagementSystem/Administration/Environments")
+            if (this.Request.Path.EndsWith("/Administration/Environments"))
             {
-                this.TempData["DeleteMessage"] = null;
-                this.TempData["DeleteSucess"] = null;
+                this.TempData["EnvironmentMessage"] = null;
+                this.TempData["ActionSucess"] = null;
                 this.TempData["SearchCriteria"] = null;
-
             }
 
             return this.View("Environments", environments);
@@ -49,7 +50,6 @@ namespace ZoosManagementSystem.Web.Controllers
 
         public ActionResult SearchEnvironments(string searchCriteria)
         {
-            this.TempData["DeleteMessage"] = null;
             this.TempData["NoItemsMessage"] = "No se encontraron ambientes.";
             this.TempData["SearchCriteria"] = searchCriteria;
             IList<Models.Environment> environments = null;
@@ -66,26 +66,26 @@ namespace ZoosManagementSystem.Web.Controllers
         {
             try
             {
-                this.TempData["DeleteSucess"] = true;
-                this.TempData["DeleteMessage"] = "El ambiente se eliminó correctamente.";
+                this.TempData["ActionSucess"] = true;
+                this.TempData["EnvironmentMessage"] = "El ambiente se eliminó correctamente.";
 
                 if (!this.repository.DeleteEnvironment(new Guid(environmentId)))
                 {
-                    this.TempData["DeleteSucess"] = false;
-                    this.TempData["DeleteMessage"] = string.Format(
+                    this.TempData["ActionSucess"] = false;
+                    this.TempData["EnvironmentMessage"] = string.Format(
                         CultureInfo.CurrentCulture, "No se encontró ningún ambiente cuyo Id sea {0}.", environmentId);
                 }
             }
             catch (FormatException)
             {
-                this.TempData["DeleteSucess"] = false;
-                this.TempData["DeleteMessage"] = string.Format(
+                this.TempData["ActionSucess"] = false;
+                this.TempData["EnvironmentMessage"] = string.Format(
                     CultureInfo.CurrentCulture, "El formato del Id '{0}' es inválido.", environmentId);
             }
             catch(OverflowException)
             {
-                this.TempData["DeleteSucess"] = false;
-                this.TempData["DeleteMessage"] = string.Format(
+                this.TempData["ActionSucess"] = false;
+                this.TempData["EnvironmentMessage"] = string.Format(
                     CultureInfo.CurrentCulture, "El formato del Id '{0}' es inválido.", environmentId);
             }
 
@@ -140,8 +140,12 @@ namespace ZoosManagementSystem.Web.Controllers
                 return View(environmentViewData);
             }
 
+            environmentViewData.EnvironmentId = environmentId;
             this.SaveOrUpdateEnvironment(environmentViewData);
-            return this.RedirectToAction("SearchEnvironments", "Administration", new { searchCriteria = environmentViewData.EnvironmentId });
+            this.TempData["ActionSucess"] = true;
+            this.TempData["EnvironmentMessage"] = "Se editó correctamente el ambiente";
+
+            return this.RedirectToRoute("SearchEnvironment", new { searchCriteria = environmentViewData.EnvironmentId });
         }
 
         public ActionResult Animals()

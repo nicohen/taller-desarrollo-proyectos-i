@@ -9,9 +9,9 @@
     <div class="mainblock">
         <h2>Administraci&oacute;n de Ambientes</h2>       
         
-        <% if (!string.IsNullOrEmpty((string)this.TempData["DeleteMessage"]))
+        <% if (!string.IsNullOrEmpty((string)this.TempData["EnvironmentMessage"]))
            { %>
-            <h3 class="<%= ((bool)this.TempData["DeleteSucess"]) ? "accionsucess" : "actionerror" %>"><%= Html.Encode(this.TempData["DeleteMessage"])%></h3> 
+            <h3 class="<%= ((bool)this.TempData["ActionSucess"]) ? "accionsucess" : "actionerror" %>"><%= Html.Encode(this.TempData["EnvironmentMessage"])%></h3> 
         <% } %>
         
         <div id="search">

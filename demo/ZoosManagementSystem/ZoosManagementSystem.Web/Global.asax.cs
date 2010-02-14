@@ -36,22 +36,22 @@ namespace ZoosManagementSystem.Web
             routes.MapRoute(
                 "SearchAnimal",                                                        // Route name
                 "Administration/Animals/Search/{searchCriteria}",                      // URL with parameters
-                new { controller = "Administration", action = "SearchAnimal" }); // Parameter defaults
+                new { controller = "Administration", action = "SearchAnimal" });       // Parameter defaults
 
             routes.MapRoute(
                 "DeleteAnimal",                                                        // Route name
                 "Administration/Animals/Delete/{animalId}",                            // URL with parameters
-                new { controller = "Administration", action = "DeleteAnimal" });  // Parameter defaults
+                new { controller = "Administration", action = "DeleteAnimal" });       // Parameter defaults
 
             routes.MapRoute(
                 "EditAnimal",                                                          // Route name
                 "Administration/Animals/Edit/{animalId}",                              // URL with parameters
-                new { controller = "Administration", action = "EditAnimal" });    // Parameter defaults
+                new { controller = "Administration", action = "EditAnimal" });         // Parameter defaults
 
             routes.MapRoute(
                 "NewAnimal",                                                           // Route name
                 "Administration/Animals/New",                                          // URL with parameters
-                new { controller = "Administration", action = "NewAnimal" });     // Parameter defaults
+                new { controller = "Administration", action = "NewAnimal" });          // Parameter defaults
 
             routes.MapRoute(
                 "Default",                                                             // Route name
