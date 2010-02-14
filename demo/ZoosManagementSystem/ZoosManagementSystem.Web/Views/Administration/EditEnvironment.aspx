@@ -95,10 +95,10 @@
                                     <label>Hora final:</label><%= Html.TextBox("TimeSlots[" + timeSlotIndex + "].FinalTime", timeSlot.FinalTime)%>
                                 </p>
                                 <p>
-                                    <label>Temperatura M&iacute;nima (°C):</label><%= Html.TextBox("TimeSlots[" + timeSlotIndex + "].TemperatureMin", timeSlot.TemperatureMin)%>
+                                    <label>Temperatura M&iacute;nima (&#176;C):</label><%= Html.TextBox("TimeSlots[" + timeSlotIndex + "].TemperatureMin", timeSlot.TemperatureMin)%>
                                 </p>
                                 <p>
-                                    <label>Temperatura M&aacute;xima (°C):</label><%= Html.TextBox("TimeSlots[" + timeSlotIndex + "].TemperatureMax", timeSlot.TemperatureMax)%>
+                                    <label>Temperatura M&aacute;xima (&#176;C):</label><%= Html.TextBox("TimeSlots[" + timeSlotIndex + "].TemperatureMax", timeSlot.TemperatureMax)%>
                                 </p>
                                 <p>
                                     <label>Humedad M&iacute;nima (%):</label><%= Html.TextBox("TimeSlots[" + timeSlotIndex + "].HumidityMin", timeSlot.HumidityMin)%>

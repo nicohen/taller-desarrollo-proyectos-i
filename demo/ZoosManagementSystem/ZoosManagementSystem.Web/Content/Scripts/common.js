@@ -16,14 +16,16 @@ $(document).ready(function() {
     //hide the all of the element with class msg_body
     $(".timeslotbody").hide();
     //toggle the componenet with class msg_body
-    $(".timeslothead").click(function(e) {
-        var offset = (this.offsetWidth / 2) + $(this).position().left;
-
-        if (e.clientX - offset <= 542) {
-            $(this).next(".timeslotbody").slideToggle(600);
-        }
-    });
+    $(".timeslothead").click(toggleAnimation);
 });
+
+function toggleAnimation(e) {
+    var offset = (this.offsetWidth / 2) + $(this).position().left;
+
+    if (e.clientX - offset <= 542) {
+        $(this).next(".timeslotbody").slideToggle(600);
+    }
+}
 
 var lastSurveySelected = null;
 function changeSurvey() {
@@ -91,6 +93,48 @@ function addToList(comboId, listId) {
             $("#" + valueSelected)[0].style.display = "";
         }
     }
+}
+
+function addNewTimeSlot(id) {
+    var divElement = $("#" + id)[0];
+    var newIndex = (divElement.children.length / 2) + 1;
+
+    var html = "<p id=\"" + newIndex.toString() + "-HEAD\" class=\"timeslothead\">"
+      + "Itervalo " + newIndex.toString() + "<a href=\"JavaScript:removeTimeSlot('" + newIndex + "')\" class=\"deletelink\">Remover</a>"
+      + "</p>"
+      + "<div id=\"" + newIndex.toString() + "-BODY\" class=\"timeslotbody\">"
+      + "<p>"
+      + "<label>Hora inicial:</label><input id=\"TimeSlots[" + newIndex.toString() + "]_InitialTime\" name=\"TimeSlots[" + newIndex.toString() + "].InitialTime\" type=\"text\" value=\"00:00:00\" />"
+      + "</p>"
+      + "<p>"
+      + "<label>Hora final:</label><input id=\"TimeSlots[" + newIndex.toString() + "]_FinalTime\" name=\"TimeSlots[" + newIndex.toString() + "].FinalTime\" type=\"text\" value=\"00:00:00\" />"
+      + "</p>"
+      + "<p>"
+      + "<label>Temperatura M&iacute;nima (&#176;C):</label><input id=\"TimeSlots[" + newIndex.toString() + "]_TemperatureMin\" name=\"TimeSlots[" + newIndex.toString() + "].TemperatureMin\" type=\"text\" value=\"0\" />"
+      + "</p>"
+      + "<p>"
+      + "<label>Temperatura M&aacute;xima (&#176;C):</label><input id=\"TimeSlots[" + newIndex.toString() + "]_TemperatureMax\" name=\"TimeSlots[" + newIndex.toString() + "].TemperatureMax\" type=\"text\" value=\"0\" />"
+      + "</p>"
+      + "<p>"
+      + "<label>Humedad M&iacute;nima (%):</label><input id=\"TimeSlots[" + newIndex.toString() + "]_HumidityMin\" name=\"TimeSlots[" + newIndex.toString() + "].HumidityMin\" type=\"text\" value=\"0\" />"
+      + "</p>"
+      + "<p>"
+      + "<label>Humedad M&aacute;xima (%):</label><input id=\"TimeSlots[" + newIndex.toString() + "]_HumidityMax\" name=\"TimeSlots[" + newIndex.toString() + "].HumidityMax\" type=\"text\" value=\"0\" />"
+      + "</p>"
+      + "<p>"
+      + "<label>Luminosidad M&iacute;nima (lx):</label><input id=\"TimeSlots[" + newIndex.toString() + "]_LuminosityMin\" name=\"TimeSlots[" + newIndex.toString() + "].LuminosityMin\" type=\"text\" value=\"0\" />"
+      + "</p>"
+      + "<p>"
+      + "<label>Luminosidad M&aacute;xima (lx):</label><input id=\"TimeSlots[" + newIndex.toString() + "]_LuminosityMax\" name=\"TimeSlots[" + newIndex.toString() + "].LuminosityMax\" type=\"text\" value=\"0\" />"
+      + "</p>"
+      + "<input id=\"TimeSlots[" + newIndex.toString() + "]_TimeSlotStatus\" name=\"TimeSlots[" + newIndex.toString() + "].TimeSlotStatus\" type=\"hidden\" value=\"New\" />"
+      + "<div class=\"clear\"></div>"
+      + "</div>";
+
+    divElement.innerHTML += html;
+    
+    //toggle the componenet with class msg_body
+    $(".timeslothead").click(toggleAnimation);
 }
 
 function searchEnvironmentKeyPressed(control, e) {
