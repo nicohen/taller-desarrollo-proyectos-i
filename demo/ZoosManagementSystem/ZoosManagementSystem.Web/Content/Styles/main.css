@@ -513,7 +513,7 @@ form
 
 fieldset
 {
-	margin: 0 0 10px 0;
+	margin: 0 0 16px 0;
 	padding: 0px;
 	border: none;
 }
@@ -993,10 +993,11 @@ div .contentbox p
 	float:left;
 }
 
-.timeslotlist
+#timeslotlist
 {
 	margin: 0px;
 	padding: 0px;
+	clear: both;
 	/*width: 383px;*/
 }
 
@@ -1083,5 +1084,21 @@ div .contentbox p
 .editbox fieldset > div > a
 {
 	float: right;
-	margin-right: 13px;
+	margin-right: 14px;
+	position: relative;
+	top: -5px
+}
+
+#timeslots > legend
+{
+	float: left;
+	margin-bottom: 0;
+}
+
+#timeslots > span
+{
+	float: right;
+	margin-right: 14px;
+	position: relative;
+	top: -17px;
 }

@@ -75,9 +75,9 @@
                               </div>
                         <% } %>
                     </fieldset>
-                    <fieldset>
-                        <legend>Intervalos de Tiempo para Sensores</legend>                 
-                            
+                    <fieldset id="timeslots">
+                        <legend>Intervalos de Tiempo para Sensores</legend>
+                        <span><a href="JavaScript:addNewTimeSlot('timeslotlist');" class="newlink">Agregar</a></span>
                         <div id="timeslotlist">
 
                         <%
@@ -121,6 +121,11 @@
    
                         </div>
                     </fieldset>
+                    <div style="float:right;">
+                        <input type="submit" value="Guardar" />
+                        <input type="reset" value="Cancelar" />
+                    </div>
+                    <div class="clear"></div>
                  </div>
             <% } %>
         </div>

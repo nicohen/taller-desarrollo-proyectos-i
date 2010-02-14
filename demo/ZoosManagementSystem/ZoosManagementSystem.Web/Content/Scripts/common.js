@@ -69,7 +69,6 @@ function removeTimeSlot(id) {
     $("#" + bodyId)[0].style.display = "none";
 }
 
-
 function addToList(comboId, listId) {
     var index = $("#" + comboId)[0].selectedIndex;
     var textSelected = $("#" + comboId).children()[index].text;
