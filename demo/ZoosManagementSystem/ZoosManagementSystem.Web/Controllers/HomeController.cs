@@ -28,8 +28,8 @@
         {
             this.ViewData["Message"] = "Bienvenido al Sistema de Administración de Zoológicos Inteligente!";
             HomeViewData homeData = new HomeViewData();
-            homeData.animals = this.repository.GetAnimalsCount();
-            homeData.environments = this.repository.GetEnvironmentsCount();
+            homeData.environments = this.repository.GetEnvironments();
+            homeData.animals = this.repository.GetFreeAnimals();
             return this.View(homeData);
         }
 

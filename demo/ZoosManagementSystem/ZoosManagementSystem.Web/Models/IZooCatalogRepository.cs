@@ -9,10 +9,6 @@ namespace ZoosManagementSystem.Web.Models
     {
         IList<Environment> GetEnvironments();
 
-        int GetEnvironmentsCount();
-
-        int GetAnimalsCount();
-
         Environment GetEnvironment(Guid guid);
 
         IList<Environment> SearchEnvironments(string searchCriteria);
