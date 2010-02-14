@@ -1067,7 +1067,7 @@ div .contentbox p
 	float: right;
 	position: relative;
 	top: -10px;
-	margin-right: 10px;
+	margin-right: 12px;
 }
 
 #freeanimals
@@ -1084,7 +1084,7 @@ div .contentbox p
 .editbox fieldset > div > a
 {
 	float: right;
-	margin-right: 14px;
+	margin-right: 16px;
 	position: relative;
 	top: -5px
 }
@@ -1092,13 +1092,13 @@ div .contentbox p
 #timeslots > legend
 {
 	float: left;
-	margin-bottom: 0;
+	margin-bottom: 9px;
 }
 
-#timeslots > span
+#timeslots > span 
 {
 	float: right;
-	margin-right: 14px;
+	margin-right: 16px;
 	position: relative;
-	top: -17px;
+	top: 8px;
 }
