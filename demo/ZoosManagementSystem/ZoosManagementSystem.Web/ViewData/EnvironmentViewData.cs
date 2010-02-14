@@ -6,6 +6,13 @@
 
     public class EnvironmentViewData
     {
+        public EnvironmentViewData()
+        {
+            this.Animals = new List<AnimalViewData>();
+            this.FreeAnimals = new List<AnimalViewData>();
+            this.TimeSlots = new List<TimeSlotViewData>();
+        }
+
         public string EnvironmentId
         { get; set; }
 

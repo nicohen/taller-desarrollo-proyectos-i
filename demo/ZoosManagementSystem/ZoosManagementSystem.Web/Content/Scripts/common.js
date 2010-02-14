@@ -46,11 +46,11 @@ function changeSurvey() {
 }
 
 function removeAnimal(id) {
-    if ($("#" + id + " input")[1].value == "New") {
-        $("#" + id + " input")[1].value = "None";
+    if ($("#" + id + " > input")[0].value == "New") {
+        $("#" + id + " > input")[0].value = "None";
     }
     else {
-        $("#" + id + " input")[1].value = "Remove";
+        $("#" + id + " > input")[0].value = "Remove";
     }
 
     $("#" + id)[0].style.display = "none";
@@ -59,12 +59,12 @@ function removeAnimal(id) {
 function removeTimeSlot(id) {
     var headId = id + "-HEAD";
     var bodyId = id + "-BODY";
-    
-    if ($("#" + bodyId + " input")[1].value == "New") {
-        $("#" + bodyId + " input")[1].value = "None";
+
+    if ($("#" + bodyId + " > input")[0].value == "New") {
+        $("#" + bodyId + " > input")[0].value = "None";
     }
     else {
-        $("#" + bodyId + " input")[1].value = "Remove";
+        $("#" + bodyId + " > input")[0].value = "Remove";
     }
 
     $("#" + headId)[0].style.display = "none";
@@ -75,21 +75,22 @@ function addToList(comboId, listId) {
     var index = $("#" + comboId)[0].selectedIndex;
     var textSelected = $("#" + comboId).children()[index].text;
     var valueSelected = $("#" + comboId).children()[index].value;
+    var newIndex = $("#" + listId)[0].children.length;
 
     if (valueSelected != null && valueSelected != "") {
         if ($("#" + valueSelected).length == 0) {
             var html = "<li id=\"" + valueSelected + "\">"
               + "<label>" + textSelected + "</label>"
               + "<a class=\"deletelink\" href=\"JavaScript:removeAnimal('" + valueSelected + "')\">Remover</a>"
-              + "<input type=\"hidden\" value=\"" + valueSelected + "\" name=\"Animals[" + valueSelected + "].AnimalId\" id=\"Animals[" + valueSelected + "]_AnimalId\">"
-              + "<input type=\"hidden\" value=\"New\" name=\"Animals[" + valueSelected + "].AnimalStatus\" id=\"Animals[" + valueSelected + "]_AnimalStatus\">"
+              + "<input type=\"hidden\" value=\"New\" name=\"Animals[" + newIndex.toString() + "].AnimalStatus\" id=\"Animals[" + newIndex.toString() + "]_AnimalStatus\" />"
+              + "<input type=\"hidden\" value=\"" + valueSelected + "\" name=\"Animals[" + newIndex.toString() + "].AnimalId\" id=\"Animals[" + newIndex.toString() + "]_AnimalId\" />"
               + "<div class=\"clear\"></div>"
               + "</li>";
 
             $("#" + listId)[0].innerHTML += html;
         }
         else {
-            $("#" + valueSelected + " input")[1].value = "New";
+            $("#" + valueSelected + " input")[0].value = "New";
             $("#" + valueSelected)[0].style.display = "";
         }
     }
@@ -97,10 +98,10 @@ function addToList(comboId, listId) {
 
 function addNewTimeSlot(id) {
     var divElement = $("#" + id)[0];
-    var newIndex = (divElement.children.length / 2) + 1;
+    var newIndex = divElement.children.length / 2;
 
     var html = "<p id=\"" + newIndex.toString() + "-HEAD\" class=\"timeslothead\">"
-      + "Itervalo " + newIndex.toString() + "<a href=\"JavaScript:removeTimeSlot('" + newIndex + "')\" class=\"deletelink\">Remover</a>"
+      + "Itervalo " + (newIndex + 1).toString() + "<a href=\"JavaScript:removeTimeSlot('" + newIndex + "')\" class=\"deletelink\">Remover</a>"
       + "</p>"
       + "<div id=\"" + newIndex.toString() + "-BODY\" class=\"timeslotbody\">"
       + "<p>"

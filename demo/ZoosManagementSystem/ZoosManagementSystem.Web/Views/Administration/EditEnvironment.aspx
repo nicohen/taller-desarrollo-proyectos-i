@@ -45,8 +45,11 @@
                                <li id="<%= animal.AnimalId %>">
                                  <label><%= string.Format(CultureInfo.CurrentCulture, "{0} ({1}: {2})", animal.Name, animal.Sex, animal.Species) %></label>
                                  <a href="JavaScript:removeAnimal('<%= animal.AnimalId %>')" class="deletelink">Remover</a>
-                                 <%= Html.Hidden("Animals[" + animalIndex + "].AnimalId", animal.AnimalId) %>
                                  <%= Html.Hidden("Animals[" + animalIndex + "].AnimalStatus", animal.AnimalStatus) %>
+                                 <%= Html.Hidden("Animals[" + animalIndex + "].AnimalId", animal.AnimalId) %>                                 
+                                 <%= Html.Hidden("Animals[" + animalIndex + "].Name", animal.Name) %>                                 
+                                 <%= Html.Hidden("Animals[" + animalIndex + "].Sex", animal.Sex) %>                                 
+                                 <%= Html.Hidden("Animals[" + animalIndex + "].Species", animal.Species) %>                                 
                                  <div class="clear"></div>
                                </li>
                                <% animalIndex++; %>
@@ -89,31 +92,31 @@
                             </p>
                             <div id="<%= timeSlot.TimeSlotId + "-BODY" %>" class="timeslotbody">
                                 <p>
-                                    <label>Hora inicial:</label><%= Html.TextBox("TimeSlots[" + timeSlotIndex + "].InitialTime", timeSlot.InitialTime)%>
+                                    <label>Hora inicial:</label><%= Html.TextBox("TimeSlots[" + (timeSlotIndex - 1) + "].InitialTime", timeSlot.InitialTime)%>
                                 </p>
                                 <p>
-                                    <label>Hora final:</label><%= Html.TextBox("TimeSlots[" + timeSlotIndex + "].FinalTime", timeSlot.FinalTime)%>
+                                    <label>Hora final:</label><%= Html.TextBox("TimeSlots[" + (timeSlotIndex - 1) + "].FinalTime", timeSlot.FinalTime)%>
                                 </p>
                                 <p>
-                                    <label>Temperatura M&iacute;nima (&#176;C):</label><%= Html.TextBox("TimeSlots[" + timeSlotIndex + "].TemperatureMin", timeSlot.TemperatureMin)%>
+                                    <label>Temperatura M&iacute;nima (&#176;C):</label><%= Html.TextBox("TimeSlots[" + (timeSlotIndex - 1) + "].TemperatureMin", timeSlot.TemperatureMin)%>
                                 </p>
                                 <p>
-                                    <label>Temperatura M&aacute;xima (&#176;C):</label><%= Html.TextBox("TimeSlots[" + timeSlotIndex + "].TemperatureMax", timeSlot.TemperatureMax)%>
+                                    <label>Temperatura M&aacute;xima (&#176;C):</label><%= Html.TextBox("TimeSlots[" + (timeSlotIndex - 1) + "].TemperatureMax", timeSlot.TemperatureMax)%>
                                 </p>
                                 <p>
-                                    <label>Humedad M&iacute;nima (%):</label><%= Html.TextBox("TimeSlots[" + timeSlotIndex + "].HumidityMin", timeSlot.HumidityMin)%>
+                                    <label>Humedad M&iacute;nima (%):</label><%= Html.TextBox("TimeSlots[" + (timeSlotIndex - 1) + "].HumidityMin", timeSlot.HumidityMin)%>
                                 </p>
                                 <p>
-                                    <label>Humedad M&aacute;xima (%):</label><%= Html.TextBox("TimeSlots[" + timeSlotIndex + "].HumidityMax", timeSlot.HumidityMax)%>
+                                    <label>Humedad M&aacute;xima (%):</label><%= Html.TextBox("TimeSlots[" + (timeSlotIndex - 1) + "].HumidityMax", timeSlot.HumidityMax)%>
                                 </p>
                                 <p>
-                                    <label>Luminosidad M&iacute;nima (lx):</label><%= Html.TextBox("TimeSlots[" + timeSlotIndex + "].LuminosityMin", timeSlot.LuminosityMin)%>
+                                    <label>Luminosidad M&iacute;nima (lx):</label><%= Html.TextBox("TimeSlots[" + (timeSlotIndex - 1) + "].LuminosityMin", timeSlot.LuminosityMin)%>
                                 </p>
                                 <p>
-                                    <label>Luminosidad M&aacute;xima (lx):</label><%= Html.TextBox("TimeSlots[" + timeSlotIndex + "].LuminosityMax", timeSlot.LuminosityMax)%>
+                                    <label>Luminosidad M&aacute;xima (lx):</label><%= Html.TextBox("TimeSlots[" + (timeSlotIndex - 1) + "].LuminosityMax", timeSlot.LuminosityMax)%>
                                 </p>
-                                <%= Html.Hidden("TimeSlots[" + timeSlotIndex + "].TimeSlotId", timeSlot.TimeSlotId) %>
-                                <%= Html.Hidden("TimeSlots[" + timeSlotIndex + "].TimeSlotStatus", timeSlot.TimeSlotStatus) %>
+                                <%= Html.Hidden("TimeSlots[" + (timeSlotIndex - 1) + "].TimeSlotStatus", timeSlot.TimeSlotStatus)%>
+                                <%= Html.Hidden("TimeSlots[" + (timeSlotIndex - 1) + "].TimeSlotId", timeSlot.TimeSlotId)%>                                
                                 <div class="clear"></div>
                             </div>
                                <% timeSlotIndex++; %>

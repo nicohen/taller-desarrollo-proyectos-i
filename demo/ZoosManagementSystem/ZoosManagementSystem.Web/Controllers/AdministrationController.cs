@@ -4,9 +4,8 @@ namespace ZoosManagementSystem.Web.Controllers
     using System.Collections.Generic;
     using System.Globalization;
     using System.Web.Mvc;
+    using System.Linq;
     using ZoosManagementSystem.Web.Models;
-
-    using Environment=ZoosManagementSystem.Web.Models.Environment;
     using ZoosManagementSystem.Web.ViewData;
 
     public class AdministrationController : Controller
@@ -53,7 +52,7 @@ namespace ZoosManagementSystem.Web.Controllers
             this.TempData["DeleteMessage"] = null;
             this.TempData["NoItemsMessage"] = "No se encontraron ambientes.";
             this.TempData["SearchCriteria"] = searchCriteria;
-            IList<Environment> environments = null;
+            IList<Models.Environment> environments = null;
 
             if (!string.IsNullOrEmpty(searchCriteria))
             {
@@ -126,9 +125,33 @@ namespace ZoosManagementSystem.Web.Controllers
             return this.View(environmentViewData);  
         }
 
+        [AcceptVerbs(HttpVerbs.Post)]
+        [ActionName("EditEnvironment")]
+        public ActionResult SaveEnvironment(string environmentId)
+        {
+            var environmentViewData = new EnvironmentViewData();
+            var updateModelResult = this.TryUpdateModel<EnvironmentViewData>(environmentViewData, null, null, new [] { "EnvironmentId", "freeanimals" });
+
+            if (!updateModelResult)
+            {
+                environmentViewData.FreeAnimals = this.repository.GetFreeAnimals()
+                    .Select(a => a.ToViewData())
+                    .ToList();
+                return View(environmentViewData);
+            }
+
+            this.SaveOrUpdateEnvironment(environmentViewData);
+            return this.RedirectToAction("SearchEnvironments", "Administration", new { searchCriteria = environmentViewData.EnvironmentId });
+        }
+
         public ActionResult Animals()
         {
             return this.View();
+        }
+
+        private void SaveOrUpdateEnvironment(EnvironmentViewData data)
+        {
+            //TODO
         }
     }
 }

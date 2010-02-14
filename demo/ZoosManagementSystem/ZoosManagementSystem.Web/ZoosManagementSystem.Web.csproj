@@ -76,6 +76,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="HomeViewData.cs" />
     <Compile Include="Models\EntityTranslator.cs" />
     <Compile Include="Models\IZooCatalogRepository.cs" />
     <Compile Include="Models\SqlZooCatalogRepository.cs" />
@@ -143,7 +144,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>3393</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

@@ -1102,3 +1102,14 @@ div .contentbox p
 	position: relative;
 	top: 8px;
 }
+
+.validation-summary-errors
+{
+	text-align: center;
+	margin-top: 5px;
+	padding: 5px 5px 0 5px;
+	border-top: 1px solid;
+	color: red;
+	display: block;
+	font-weight: bold;
+}
