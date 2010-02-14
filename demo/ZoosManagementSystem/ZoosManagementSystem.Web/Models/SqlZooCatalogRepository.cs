@@ -50,6 +50,22 @@
             }
         }
 
+        public int GetEnvironmentsCount()
+        {
+            using (var entities = this.EntityContext)
+            {
+                return entities.Environment.Count();
+            }
+        }
+
+        public int GetAnimalsCount()
+        {
+            using (var entities = this.EntityContext)
+            {
+                return entities.Animal.Count();
+            }
+        }
+
         public Environment GetEnvironment(Guid environmentId)
         {
             using (var entities = this.EntityContext)
