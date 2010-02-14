@@ -30,8 +30,10 @@ namespace ZoosManagmentSystem.Mock
         private void InitializeComponent()
         {
             this.startServiceButton = new System.Windows.Forms.Button();
+            MainForm.statusConsoleTextbox = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -40,17 +42,15 @@ namespace ZoosManagmentSystem.Mock
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.luminosityGaugeValueTextbox = new System.Windows.Forms.TextBox();
+            this.humidityGaugeValueTextbox = new System.Windows.Forms.TextBox();
+            this.temperatureGaugeValueTextbox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.luminosityGaugeBar = new VerticalProgressBar.VerticalProgressBar();
             this.humidityGaugeBar = new VerticalProgressBar.VerticalProgressBar();
             this.label4 = new System.Windows.Forms.Label();
             this.temperatureGaugeBar = new VerticalProgressBar.VerticalProgressBar();
-            this.temperatureGaugeValueTextbox = new System.Windows.Forms.TextBox();
-            this.humidityGaugeValueTextbox = new System.Windows.Forms.TextBox();
-            this.luminosityGaugeValueTextbox = new System.Windows.Forms.TextBox();
-            MainForm.statusConsoleTextbox = new System.Windows.Forms.TextBox();
-            this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -69,18 +69,28 @@ namespace ZoosManagmentSystem.Mock
             this.startServiceButton.UseVisualStyleBackColor = true;
             this.startServiceButton.Click += new System.EventHandler(this.StartServiceButtonClick);
             // 
+            // statusMessagesTextbox
+            // 
+            MainForm.statusConsoleTextbox.Location = new System.Drawing.Point(9, 22);
+            MainForm.statusConsoleTextbox.Multiline = true;
+            MainForm.statusConsoleTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            MainForm.statusConsoleTextbox.Name = "statusMessagesTextbox";
+            MainForm.statusConsoleTextbox.Size = new System.Drawing.Size(420, 440);
+            MainForm.statusConsoleTextbox.TabIndex = 1;
             // groupBox1
             // 
             this.groupBox1.Controls.Add(MainForm.statusConsoleTextbox);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(15, 116);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(257, 174);
+            this.groupBox1.Size = new System.Drawing.Size(441, 471);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Consola de mensajes";
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.button1);
             this.groupBox2.Controls.Add(this.startServiceButton);
             this.groupBox2.Location = new System.Drawing.Point(17, 4);
             this.groupBox2.Name = "groupBox2";
@@ -88,6 +98,15 @@ namespace ZoosManagmentSystem.Mock
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Controls";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(129, 29);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Set temperature";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // groupBox3
             // 
@@ -97,9 +116,10 @@ namespace ZoosManagmentSystem.Mock
             this.groupBox3.Controls.Add(this.pictureBox2);
             this.groupBox3.Controls.Add(this.label1);
             this.groupBox3.Controls.Add(this.pictureBox1);
-            this.groupBox3.Location = new System.Drawing.Point(278, 116);
+            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox3.Location = new System.Drawing.Point(473, 116);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(225, 174);
+            this.groupBox3.Size = new System.Drawing.Size(235, 471);
             this.groupBox3.TabIndex = 3;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Acciones";
@@ -107,51 +127,54 @@ namespace ZoosManagmentSystem.Mock
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(63, 125);
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(93, 362);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(67, 13);
+            this.label3.Size = new System.Drawing.Size(120, 24);
             this.label3.TabIndex = 5;
-            this.label3.Text = "Temperatura";
+            this.label3.Text = "Climatización";
             // 
             // pictureBox3
             // 
-            this.pictureBox3.Location = new System.Drawing.Point(12, 115);
+            this.pictureBox3.Location = new System.Drawing.Point(12, 338);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(32, 33);
+            this.pictureBox3.Size = new System.Drawing.Size(62, 68);
             this.pictureBox3.TabIndex = 4;
             this.pictureBox3.TabStop = false;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(63, 82);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(117, 248);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.Size = new System.Drawing.Size(60, 24);
             this.label2.TabIndex = 3;
             this.label2.Text = "Riego";
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Location = new System.Drawing.Point(12, 73);
+            this.pictureBox2.Location = new System.Drawing.Point(12, 221);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(32, 33);
+            this.pictureBox2.Size = new System.Drawing.Size(62, 69);
             this.pictureBox2.TabIndex = 2;
             this.pictureBox2.TabStop = false;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(63, 43);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(103, 110);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(60, 13);
+            this.label1.Size = new System.Drawing.Size(106, 24);
             this.label1.TabIndex = 1;
             this.label1.Text = "Iluminación";
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(12, 33);
+            this.pictureBox1.Location = new System.Drawing.Point(12, 93);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(32, 33);
+            this.pictureBox1.Size = new System.Drawing.Size(62, 75);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
@@ -166,28 +189,55 @@ namespace ZoosManagmentSystem.Mock
             this.groupBox4.Controls.Add(this.humidityGaugeBar);
             this.groupBox4.Controls.Add(this.label4);
             this.groupBox4.Controls.Add(this.temperatureGaugeBar);
-            this.groupBox4.Location = new System.Drawing.Point(514, 116);
+            this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox4.Location = new System.Drawing.Point(733, 116);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(242, 202);
+            this.groupBox4.Size = new System.Drawing.Size(420, 471);
             this.groupBox4.TabIndex = 4;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Condiciones";
             // 
+            // luminosityGaugeValueTextbox
+            // 
+            this.luminosityGaugeValueTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.luminosityGaugeValueTextbox.Location = new System.Drawing.Point(335, 394);
+            this.luminosityGaugeValueTextbox.Name = "luminosityGaugeValueTextbox";
+            this.luminosityGaugeValueTextbox.Size = new System.Drawing.Size(31, 31);
+            this.luminosityGaugeValueTextbox.TabIndex = 8;
+            // 
+            // humidityGaugeValueTextbox
+            // 
+            this.humidityGaugeValueTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.humidityGaugeValueTextbox.Location = new System.Drawing.Point(197, 395);
+            this.humidityGaugeValueTextbox.Name = "humidityGaugeValueTextbox";
+            this.humidityGaugeValueTextbox.Size = new System.Drawing.Size(31, 31);
+            this.humidityGaugeValueTextbox.TabIndex = 7;
+            // 
+            // temperatureGaugeValueTextbox
+            // 
+            this.temperatureGaugeValueTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.temperatureGaugeValueTextbox.Location = new System.Drawing.Point(56, 395);
+            this.temperatureGaugeValueTextbox.Name = "temperatureGaugeValueTextbox";
+            this.temperatureGaugeValueTextbox.Size = new System.Drawing.Size(31, 31);
+            this.temperatureGaugeValueTextbox.TabIndex = 6;
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(171, 151);
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(303, 370);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(66, 13);
+            this.label6.Size = new System.Drawing.Size(99, 20);
             this.label6.TabIndex = 5;
             this.label6.Text = "Luminosidad";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(96, 151);
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(177, 370);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(53, 13);
+            this.label5.Size = new System.Drawing.Size(79, 20);
             this.label5.TabIndex = 4;
             this.label5.Text = "Humedad";
             // 
@@ -195,11 +245,11 @@ namespace ZoosManagmentSystem.Mock
             // 
             this.luminosityGaugeBar.BorderStyle = VerticalProgressBar.BorderStyles.Classic;
             this.luminosityGaugeBar.Color = System.Drawing.Color.Blue;
-            this.luminosityGaugeBar.Location = new System.Drawing.Point(195, 22);
+            this.luminosityGaugeBar.Location = new System.Drawing.Point(338, 57);
             this.luminosityGaugeBar.Maximum = 100;
             this.luminosityGaugeBar.Minimum = 0;
             this.luminosityGaugeBar.Name = "luminosityGaugeBar";
-            this.luminosityGaugeBar.Size = new System.Drawing.Size(10, 120);
+            this.luminosityGaugeBar.Size = new System.Drawing.Size(28, 308);
             this.luminosityGaugeBar.Step = 10;
             this.luminosityGaugeBar.Style = VerticalProgressBar.Styles.Classic;
             this.luminosityGaugeBar.TabIndex = 3;
@@ -209,11 +259,11 @@ namespace ZoosManagmentSystem.Mock
             // 
             this.humidityGaugeBar.BorderStyle = VerticalProgressBar.BorderStyles.Classic;
             this.humidityGaugeBar.Color = System.Drawing.Color.Blue;
-            this.humidityGaugeBar.Location = new System.Drawing.Point(113, 22);
+            this.humidityGaugeBar.Location = new System.Drawing.Point(200, 57);
             this.humidityGaugeBar.Maximum = 100;
             this.humidityGaugeBar.Minimum = 0;
             this.humidityGaugeBar.Name = "humidityGaugeBar";
-            this.humidityGaugeBar.Size = new System.Drawing.Size(10, 120);
+            this.humidityGaugeBar.Size = new System.Drawing.Size(28, 308);
             this.humidityGaugeBar.Step = 10;
             this.humidityGaugeBar.Style = VerticalProgressBar.Styles.Classic;
             this.humidityGaugeBar.TabIndex = 2;
@@ -222,9 +272,10 @@ namespace ZoosManagmentSystem.Mock
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(18, 151);
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(49, 370);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(34, 13);
+            this.label4.Size = new System.Drawing.Size(49, 20);
             this.label4.TabIndex = 1;
             this.label4.Text = "T (ºC)";
             // 
@@ -232,59 +283,27 @@ namespace ZoosManagmentSystem.Mock
             // 
             this.temperatureGaugeBar.BorderStyle = VerticalProgressBar.BorderStyles.Classic;
             this.temperatureGaugeBar.Color = System.Drawing.Color.Blue;
-            this.temperatureGaugeBar.Location = new System.Drawing.Point(29, 22);
+            this.temperatureGaugeBar.Location = new System.Drawing.Point(59, 57);
             this.temperatureGaugeBar.Maximum = 100;
             this.temperatureGaugeBar.Minimum = 0;
             this.temperatureGaugeBar.Name = "temperatureGaugeBar";
-            this.temperatureGaugeBar.Size = new System.Drawing.Size(10, 120);
+            this.temperatureGaugeBar.Size = new System.Drawing.Size(28, 308);
             this.temperatureGaugeBar.Step = 10;
             this.temperatureGaugeBar.Style = VerticalProgressBar.Styles.Classic;
             this.temperatureGaugeBar.TabIndex = 0;
             this.temperatureGaugeBar.Value = 50;
             // 
-            // temperatureGaugeValueTextbox
-            // 
-            this.temperatureGaugeValueTextbox.Location = new System.Drawing.Point(21, 176);
-            this.temperatureGaugeValueTextbox.Name = "temperatureGaugeValueTextbox";
-            this.temperatureGaugeValueTextbox.Size = new System.Drawing.Size(31, 20);
-            this.temperatureGaugeValueTextbox.TabIndex = 6;
-            // 
-            // humidityGaugeValueTextbox
-            // 
-            this.humidityGaugeValueTextbox.Location = new System.Drawing.Point(106, 176);
-            this.humidityGaugeValueTextbox.Name = "humidityGaugeValueTextbox";
-            this.humidityGaugeValueTextbox.Size = new System.Drawing.Size(31, 20);
-            this.humidityGaugeValueTextbox.TabIndex = 7;
-            // 
-            // luminosityGaugeValueTextbox
-            // 
-            this.luminosityGaugeValueTextbox.Location = new System.Drawing.Point(188, 175);
-            this.luminosityGaugeValueTextbox.Name = "luminosityGaugeValueTextbox";
-            this.luminosityGaugeValueTextbox.Size = new System.Drawing.Size(31, 20);
-            this.luminosityGaugeValueTextbox.TabIndex = 8;
-            // 
-            // statusConsoleTextbox
-            // 
-            MainForm.statusConsoleTextbox.Location = new System.Drawing.Point(6, 19);
-            MainForm.statusConsoleTextbox.Multiline = true;
-            MainForm.statusConsoleTextbox.Name = "statusConsoleTextbox";
-            MainForm.statusConsoleTextbox.Size = new System.Drawing.Size(245, 149);
-            MainForm.statusConsoleTextbox.TabIndex = 0;
-            MainForm.statusConsoleTextbox.ScrollBars = ScrollBars.Vertical;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(792, 330);
+            this.ClientSize = new System.Drawing.Size(1165, 608);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
             this.Name = "MainForm";
             this.Text = "Emulador de Acciones/Condiciones";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
@@ -320,6 +339,7 @@ namespace ZoosManagmentSystem.Mock
         private System.Windows.Forms.TextBox humidityGaugeValueTextbox;
         private System.Windows.Forms.TextBox temperatureGaugeValueTextbox;
         private static System.Windows.Forms.TextBox statusConsoleTextbox;
+        private Button button1;
     }
 }
 
