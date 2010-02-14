@@ -32,6 +32,8 @@ namespace ZoosManagmentSystem.Mock
             this.startServiceButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.modifyHumidityButton = new System.Windows.Forms.Button();
+            this.modifyLuminosityButton = new System.Windows.Forms.Button();
             this.modifyTemperatureButton = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -50,9 +52,7 @@ namespace ZoosManagmentSystem.Mock
             this.humidityGaugeBar = new VerticalProgressBar.VerticalProgressBar();
             this.label4 = new System.Windows.Forms.Label();
             this.temperatureGaugeBar = new VerticalProgressBar.VerticalProgressBar();
-            this.modifyLuminosityButton = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            MainForm.statusConsoleTextbox = new System.Windows.Forms.TextBox();
+			MainForm.statusConsoleTextbox = new System.Windows.Forms.TextBox();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -74,7 +74,7 @@ namespace ZoosManagmentSystem.Mock
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(MainForm.statusConsoleTextbox);
+			this.groupBox1.Controls.Add(MainForm.statusConsoleTextbox);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(15, 116);
             this.groupBox1.Name = "groupBox1";
@@ -85,7 +85,7 @@ namespace ZoosManagmentSystem.Mock
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.button1);
+            this.groupBox2.Controls.Add(this.modifyHumidityButton);
             this.groupBox2.Controls.Add(this.modifyLuminosityButton);
             this.groupBox2.Controls.Add(this.modifyTemperatureButton);
             this.groupBox2.Controls.Add(this.startServiceButton);
@@ -96,6 +96,28 @@ namespace ZoosManagmentSystem.Mock
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Controls";
             // 
+            // modifyHumidityButton
+            // 
+            this.modifyHumidityButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.modifyHumidityButton.Location = new System.Drawing.Point(584, 29);
+            this.modifyHumidityButton.Name = "modifyHumidityButton";
+            this.modifyHumidityButton.Size = new System.Drawing.Size(196, 23);
+            this.modifyHumidityButton.TabIndex = 3;
+            this.modifyHumidityButton.Text = "Modificar humedad";
+            this.modifyHumidityButton.UseVisualStyleBackColor = true;
+            this.modifyHumidityButton.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // modifyLuminosityButton
+            // 
+            this.modifyLuminosityButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.modifyLuminosityButton.Location = new System.Drawing.Point(353, 29);
+            this.modifyLuminosityButton.Name = "modifyLuminosityButton";
+            this.modifyLuminosityButton.Size = new System.Drawing.Size(196, 23);
+            this.modifyLuminosityButton.TabIndex = 2;
+            this.modifyLuminosityButton.Text = "Modificar luminosidad";
+            this.modifyLuminosityButton.UseVisualStyleBackColor = true;
+            this.modifyLuminosityButton.Click += new System.EventHandler(this.modifyLuminosityButton_Click);
+            // 
             // modifyTemperatureButton
             // 
             this.modifyTemperatureButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -105,6 +127,7 @@ namespace ZoosManagmentSystem.Mock
             this.modifyTemperatureButton.TabIndex = 1;
             this.modifyTemperatureButton.Text = "Modificar temperatura";
             this.modifyTemperatureButton.UseVisualStyleBackColor = true;
+            this.modifyTemperatureButton.Click += new System.EventHandler(this.modifyTemperatureButton_Click);
             // 
             // groupBox3
             // 
@@ -198,25 +221,25 @@ namespace ZoosManagmentSystem.Mock
             // luminosityGaugeValueTextbox
             // 
             this.luminosityGaugeValueTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.luminosityGaugeValueTextbox.Location = new System.Drawing.Point(335, 394);
+            this.luminosityGaugeValueTextbox.Location = new System.Drawing.Point(332, 394);
             this.luminosityGaugeValueTextbox.Name = "luminosityGaugeValueTextbox";
-            this.luminosityGaugeValueTextbox.Size = new System.Drawing.Size(31, 31);
+            this.luminosityGaugeValueTextbox.Size = new System.Drawing.Size(49, 31);
             this.luminosityGaugeValueTextbox.TabIndex = 8;
             // 
             // humidityGaugeValueTextbox
             // 
             this.humidityGaugeValueTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.humidityGaugeValueTextbox.Location = new System.Drawing.Point(197, 395);
+            this.humidityGaugeValueTextbox.Location = new System.Drawing.Point(194, 395);
             this.humidityGaugeValueTextbox.Name = "humidityGaugeValueTextbox";
-            this.humidityGaugeValueTextbox.Size = new System.Drawing.Size(31, 31);
+            this.humidityGaugeValueTextbox.Size = new System.Drawing.Size(53, 31);
             this.humidityGaugeValueTextbox.TabIndex = 7;
             // 
             // temperatureGaugeValueTextbox
             // 
             this.temperatureGaugeValueTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.temperatureGaugeValueTextbox.Location = new System.Drawing.Point(56, 395);
+            this.temperatureGaugeValueTextbox.Location = new System.Drawing.Point(49, 395);
             this.temperatureGaugeValueTextbox.Name = "temperatureGaugeValueTextbox";
-            this.temperatureGaugeValueTextbox.Size = new System.Drawing.Size(31, 31);
+            this.temperatureGaugeValueTextbox.Size = new System.Drawing.Size(54, 31);
             this.temperatureGaugeValueTextbox.TabIndex = 6;
             // 
             // label6
@@ -291,26 +314,6 @@ namespace ZoosManagmentSystem.Mock
             this.temperatureGaugeBar.TabIndex = 0;
             this.temperatureGaugeBar.Value = 50;
             // 
-            // modifyLuminosityButton
-            // 
-            this.modifyLuminosityButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.modifyLuminosityButton.Location = new System.Drawing.Point(353, 29);
-            this.modifyLuminosityButton.Name = "modifyLuminosityButton";
-            this.modifyLuminosityButton.Size = new System.Drawing.Size(196, 23);
-            this.modifyLuminosityButton.TabIndex = 2;
-            this.modifyLuminosityButton.Text = "Modificar luminosidad";
-            this.modifyLuminosityButton.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(584, 29);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(196, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Modificar humedad";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             MainForm.statusConsoleTextbox.Location = new System.Drawing.Point(6, 19);
             MainForm.statusConsoleTextbox.Multiline = true;
             new System.Drawing.Font("Microsoft Sans Serif", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -366,7 +369,7 @@ namespace ZoosManagmentSystem.Mock
         private static System.Windows.Forms.TextBox statusConsoleTextbox;
         private Button modifyTemperatureButton;
         private Button modifyLuminosityButton;
-        private Button button1;
+        private Button modifyHumidityButton;
     }
 }
 

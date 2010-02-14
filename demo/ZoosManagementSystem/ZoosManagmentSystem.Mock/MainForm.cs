@@ -131,5 +131,26 @@ namespace ZoosManagmentSystem.Mock
 
         #endregion
 
+        private void modifyTemperatureButton_Click(object sender, EventArgs e)
+        {
+            VariableInputForm variableInputForm = new VariableInputForm(this.selectedEnvironmentId, EnvironmentVariable.Temperature);
+
+            variableInputForm.ShowDialog();
+        }
+
+        private void modifyLuminosityButton_Click(object sender, EventArgs e)
+        {
+            VariableInputForm variableInputForm = new VariableInputForm(this.selectedEnvironmentId, EnvironmentVariable.Luminosity);
+
+            variableInputForm.ShowDialog();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            VariableInputForm variableInputForm = new VariableInputForm(this.selectedEnvironmentId, EnvironmentVariable.Humidity);
+
+            variableInputForm.ShowDialog();
+        }
+
     }
 }

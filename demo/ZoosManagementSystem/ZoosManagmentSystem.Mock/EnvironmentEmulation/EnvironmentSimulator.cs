@@ -35,7 +35,7 @@ namespace ZoosManagmentSystem.Mock.EnvironmentEmulation
 
         public static void SetTemperature(Guid environmentId, float temperatureOffset)
         {
-            double environmentConditionValue = EnvironmentSimulator.GetEnvironmentMeasures(environmentId).Luminosity;
+            double environmentConditionValue = EnvironmentSimulator.GetEnvironmentMeasures(environmentId).Temperature;
 
             EnvironmentChangeItem item = new EnvironmentChangeItem(environmentId, temperatureOffset, environmentConditionValue);
 
