@@ -12,7 +12,12 @@ namespace ZoosManagementSystem.Web
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-
+			
+            routes.MapRoute(
+                "ViewEnvironmentStats",                                               // Route name
+                "Statistics/Environments/ViewEnvironmentStats/{environmentId}",       // URL with parameters
+                new { controller = "Statistics", action = "ViewEnvironmentStats" });  // Parameter defaults
+			
             // Environments
             routes.MapRoute(
                 "SearchEnvironment",                                                   // Route name

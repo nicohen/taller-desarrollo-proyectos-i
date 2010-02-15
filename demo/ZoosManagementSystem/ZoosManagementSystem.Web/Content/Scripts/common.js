@@ -166,3 +166,11 @@ function redirectSearchAnimal() {
 
     window.location = "/ZoosManagementSystem/Administration/Animals/Search/" + searchCriteria;
 }
+
+function redirectViewEnvironmentStats(comboId) {
+    var index = $("#" + comboId)[0].selectedIndex;
+    var valueSelected = $("#" + comboId).children()[index].value;
+    if (valueSelected != null && valueSelected != "") {
+        window.location = "/ZoosManagementSystem" + "/Statistics/Environments/ViewEnvironmentStats/" + valueSelected
+    }
+}
