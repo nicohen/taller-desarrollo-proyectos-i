@@ -129,82 +129,23 @@
                             environmentViewData.EnvironmentId));
                 }
 
-                environmentEntity.Name = environmentViewData.Name;
-                environmentEntity.Description = environmentViewData.Description;
-                environmentEntity.Surface = environmentViewData.Surface;
-                environmentEntity.Type = environmentViewData.Type;
-
-                foreach (var animal in environmentViewData.Animals.Where(a => !a.AnimalStatus.Equals("None", StringComparison.InvariantCultureIgnoreCase) && !a.AnimalStatus.Equals("Original", StringComparison.InvariantCultureIgnoreCase)))
-                {
-                    var animalId = new Guid(animal.AnimalId);
-                    var animalEntity = entities.Animal
-                        .Include("Environment")
-                        .Where(a => a.Id == animalId)
-                        .FirstOrDefault();
-
-                    if (animalEntity == null)
-                    {
-                        throw new ArgumentException(
-                            string.Format(
-                                CultureInfo.CurrentCulture,
-                                "No existe ningún animal con el Id {0} para actualizar.",
-                                animal.AnimalId));
-                    }
-
-                    animalEntity.Environment = animal.AnimalStatus.Equals(
-                                                   "Remove", StringComparison.InvariantCultureIgnoreCase)
-                                                   ? null
-                                                   : environmentEntity;
-                }
-
-                foreach (var timeSlot in environmentViewData.TimeSlots.Where(ts => !ts.TimeSlotStatus.Equals("None", StringComparison.InvariantCultureIgnoreCase)))
-                {
-                    TimeSlot timeSlotEntity = null;
-                    if (timeSlot.TimeSlotStatus.Equals("New", StringComparison.InvariantCultureIgnoreCase))
-                    {
-                        timeSlotEntity = new TimeSlot
-                            {
-                                Environment = environmentEntity,
-                                Id = Guid.NewGuid()
-                            };
-                        entities.AddToTimeSlot(timeSlotEntity);
-                    }
-                    else
-                    {
-                        var timeSlotId = new Guid(timeSlot.TimeSlotId);
-                        timeSlotEntity = entities.TimeSlot
-                            .Include("Environment")
-                            .Where(ts => ts.Id == timeSlotId)
-                            .FirstOrDefault();
-
-                        if (timeSlotEntity == null)
-                        {
-                            throw new ArgumentException(
-                                string.Format(
-                                    CultureInfo.CurrentCulture,
-                                    "No existe ningún intervalo de tiempo con el Id {0} para actualizar.",
-                                    timeSlot.TimeSlotId));
-                        }
-                    }
-
-                    if (timeSlot.TimeSlotStatus.Equals("Remove", StringComparison.InvariantCultureIgnoreCase))
-                    {
-                        entities.DeleteObject(timeSlotEntity);
-                    }
-                    else
-                    {
-                        timeSlotEntity.InitialTime = TimeSpan.Parse(timeSlot.InitialTime);
-                        timeSlotEntity.FinalTime = TimeSpan.Parse(timeSlot.FinalTime);
-                        timeSlotEntity.TemperatureMin = timeSlot.TemperatureMin;
-                        timeSlotEntity.TemperatureMax = timeSlot.TemperatureMax;
-                        timeSlotEntity.HumidityMin = timeSlot.HumidityMin;
-                        timeSlotEntity.HumidityMax = timeSlot.HumidityMax;
-                        timeSlotEntity.LuminosityMin = timeSlot.LuminosityMin;
-                        timeSlotEntity.LuminosityMax = timeSlot.LuminosityMax;
-                    }
-                }
+                this.SaveOrUpdateEnvironment(environmentViewData, environmentEntity, entities);
 
                 entities.SaveChanges();
+            }
+        }
+
+        public Guid CreateEnvironment(EnvironmentViewData environmentViewData)
+        {
+            using (var entities = this.EntityContext)
+            {
+                var environmentEntity = new Environment { Id = Guid.NewGuid() };
+
+                entities.AddToEnvironment(environmentEntity);
+                this.SaveOrUpdateEnvironment(environmentViewData, environmentEntity, entities);
+                entities.SaveChanges();
+                
+                return environmentEntity.Id;
             }
         }
 
@@ -269,6 +210,85 @@
             }
 
             this.isDisposed = true;
+        }
+
+
+        private void SaveOrUpdateEnvironment(EnvironmentViewData environmentViewData, Environment environmentEntity, ZoosManagementSystemEntities entities)
+        {
+            environmentEntity.Name = environmentViewData.Name;
+            environmentEntity.Description = environmentViewData.Description;
+            environmentEntity.Surface = environmentViewData.Surface;
+            environmentEntity.Type = environmentViewData.Type;
+
+            foreach (var animal in environmentViewData.Animals.Where(a => !a.AnimalStatus.Equals("None", StringComparison.InvariantCultureIgnoreCase) && !a.AnimalStatus.Equals("Original", StringComparison.InvariantCultureIgnoreCase)))
+            {
+                var animalId = new Guid(animal.AnimalId);
+                var animalEntity = entities.Animal
+                    .Include("Environment")
+                    .Where(a => a.Id == animalId)
+                    .FirstOrDefault();
+
+                if (animalEntity == null)
+                {
+                    throw new ArgumentException(
+                        string.Format(
+                            CultureInfo.CurrentCulture,
+                            "No existe ningún animal con el Id {0} para actualizar.",
+                            animal.AnimalId));
+                }
+
+                animalEntity.Environment = animal.AnimalStatus.Equals(
+                                               "Remove", StringComparison.InvariantCultureIgnoreCase)
+                                               ? null
+                                               : environmentEntity;
+            }
+
+            foreach (var timeSlot in environmentViewData.TimeSlots.Where(ts => !ts.TimeSlotStatus.Equals("None", StringComparison.InvariantCultureIgnoreCase)))
+            {
+                TimeSlot timeSlotEntity = null;
+                if (timeSlot.TimeSlotStatus.Equals("New", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    timeSlotEntity = new TimeSlot
+                    {
+                        Environment = environmentEntity,
+                        Id = Guid.NewGuid()
+                    };
+                    entities.AddToTimeSlot(timeSlotEntity);
+                }
+                else
+                {
+                    var timeSlotId = new Guid(timeSlot.TimeSlotId);
+                    timeSlotEntity = entities.TimeSlot
+                        .Include("Environment")
+                        .Where(ts => ts.Id == timeSlotId)
+                        .FirstOrDefault();
+
+                    if (timeSlotEntity == null)
+                    {
+                        throw new ArgumentException(
+                            string.Format(
+                                CultureInfo.CurrentCulture,
+                                "No existe ningún intervalo de tiempo con el Id {0} para actualizar.",
+                                timeSlot.TimeSlotId));
+                    }
+                }
+
+                if (timeSlot.TimeSlotStatus.Equals("Remove", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    entities.DeleteObject(timeSlotEntity);
+                }
+                else
+                {
+                    timeSlotEntity.InitialTime = TimeSpan.Parse(timeSlot.InitialTime);
+                    timeSlotEntity.FinalTime = TimeSpan.Parse(timeSlot.FinalTime);
+                    timeSlotEntity.TemperatureMin = timeSlot.TemperatureMin;
+                    timeSlotEntity.TemperatureMax = timeSlot.TemperatureMax;
+                    timeSlotEntity.HumidityMin = timeSlot.HumidityMin;
+                    timeSlotEntity.HumidityMax = timeSlot.HumidityMax;
+                    timeSlotEntity.LuminosityMin = timeSlot.LuminosityMin;
+                    timeSlotEntity.LuminosityMax = timeSlot.LuminosityMax;
+                }
+            }
         }
     }
 }

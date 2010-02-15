@@ -125,6 +125,50 @@ namespace ZoosManagementSystem.Web.Controllers
             return this.View(environmentViewData);  
         }
 
+
+        public ActionResult NewEnvironment()
+        {
+            var environmentViewData = new EnvironmentViewData
+                {
+                    FreeAnimals = this.repository.GetFreeAnimals()
+                            .Select(a => a.ToViewData())
+                            .ToList()
+                };
+            
+            return this.View("EditEnvironment", environmentViewData);
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        [ActionName("NewEnvironment")]
+        public ActionResult SaveNewEnvironment()
+        {
+            var environmentViewData = new EnvironmentViewData();
+            var updateModelResult = this.TryUpdateModel<EnvironmentViewData>(environmentViewData, null, null, new[] { "EnvironmentId", "freeanimals" });
+
+            if (!updateModelResult)
+            {
+                environmentViewData.FreeAnimals = this.repository.GetFreeAnimals()
+                    .Select(a => a.ToViewData())
+                    .ToList();
+                return View("EditEnvironment", environmentViewData);
+            }
+
+            Guid environmentId = Guid.Empty;
+            try
+            {
+                environmentId = this.repository.CreateEnvironment(environmentViewData);
+                this.TempData["ActionSucess"] = true;
+                this.TempData["EnvironmentMessage"] = "Se creó correctamente el ambiente";
+            }
+            catch (Exception exception)
+            {
+                this.TempData["ActionSucess"] = false;
+                this.TempData["EnvironmentMessage"] = exception.Message;
+            }
+
+            return this.RedirectToRoute("SearchEnvironment", new { searchCriteria = environmentId.ToString() });
+        }
+
         [AcceptVerbs(HttpVerbs.Post)]
         [ActionName("EditEnvironment")]
         public ActionResult UpdateEnvironment(string environmentId)

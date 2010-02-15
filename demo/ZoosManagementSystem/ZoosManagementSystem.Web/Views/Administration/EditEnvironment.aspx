@@ -20,7 +20,7 @@
            { %>
                 
         <div id="maincontent">
-            <%= Html.ValidationSummary("No se pudo editar el ambiente. Por favor corregir los errores e intentar nuevamente.") %>
+            <%= Html.ValidationSummary("No se pudo guardar el ambiente. Por favor corregir los errores e intentar nuevamente.") %>
             <% using (Html.BeginForm())
                {%>
             <div class="editbox">
