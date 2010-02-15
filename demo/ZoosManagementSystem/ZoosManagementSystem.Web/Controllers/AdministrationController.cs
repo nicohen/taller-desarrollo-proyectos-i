@@ -367,13 +367,16 @@ namespace ZoosManagementSystem.Web.Controllers
             if (!updateModelResult)
             {
                 healthMeasureViewData.HealthMeasureId = healthMeasureId;
-                healthMeasureViewData.AnimalsAvailable = this.repository.GetAnimals().Select(a => new AnimalViewData
-                                                                                        {
-                                                                                            AnimalId = a.Id.ToString(),
-                                                                                            Name = a.Name,
-                                                                                            Species = a.Species,
-                                                                                            Sex = (a.Sex.ToLowerInvariant() == "m") ? "Macho" : "Hembra",
-                                                                                        }).ToList();
+                healthMeasureViewData.AnimalsAvailable =
+                    this.repository.GetAnimals().Select(
+                        a =>
+                        new AnimalViewData
+                            {
+                                AnimalId = a.Id.ToString(),
+                                Name = a.Name,
+                                Species = a.Species,
+                                Sex = (a.Sex.ToLowerInvariant() == "m") ? "Macho" : "Hembra",
+                            }).ToList();
                 return View(healthMeasureViewData);
             }
 
@@ -388,6 +391,63 @@ namespace ZoosManagementSystem.Web.Controllers
             {
                 this.TempData["ActionSucess"] = false;
                 this.TempData["EnvironmentMessage"] = exception.Message;
+            }
+
+            return this.RedirectToRoute("SearchAnimals", new { searchCriteria = healthMeasureViewData.AnimalId });
+        }
+
+        public ActionResult NewHealthMeasure(string animalId)
+        {
+            var healthMeasureViewData = new HealthMeasureViewData
+                {
+                    AnimalsAvailable =
+                        this.repository.GetAnimals().Select(
+                        a =>
+                        new AnimalViewData
+                            {
+                                AnimalId = a.Id.ToString(),
+                                Name = a.Name,
+                                Species = a.Species,
+                                Sex = (a.Sex.ToLowerInvariant() == "m") ? "Macho" : "Hembra",
+                            }).ToList(),
+                    AnimalId = animalId
+                };
+
+            return this.View("EditHealthMeasure", healthMeasureViewData);
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        [ActionName("NewHealthMeasure")]
+        public ActionResult SaveNewHealthMeasure(string animalId)
+        {
+            var healthMeasureViewData = new HealthMeasureViewData();
+            var updateModelResult = this.TryUpdateModel<HealthMeasureViewData>(healthMeasureViewData);
+
+            if (!updateModelResult)
+            {
+                healthMeasureViewData.AnimalsAvailable =
+                   this.repository.GetAnimals().Select(
+                       a =>
+                       new AnimalViewData
+                       {
+                           AnimalId = a.Id.ToString(),
+                           Name = a.Name,
+                           Species = a.Species,
+                           Sex = (a.Sex.ToLowerInvariant() == "m") ? "Macho" : "Hembra",
+                       }).ToList();
+                return View("EditHealthMeasure", healthMeasureViewData);
+            }
+
+            try
+            {
+                this.repository.CreateHealthMeasure(healthMeasureViewData);
+                this.TempData["ActionSucess"] = true;
+                this.TempData["AnimalMessage"] = "Se creó correctamente el registro del examen médico";
+            }
+            catch (Exception exception)
+            {
+                this.TempData["ActionSucess"] = false;
+                this.TempData["AnimalMessage"] = exception.Message;
             }
 
             return this.RedirectToRoute("SearchAnimals", new { searchCriteria = healthMeasureViewData.AnimalId });

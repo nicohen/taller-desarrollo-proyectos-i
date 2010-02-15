@@ -310,15 +310,7 @@
                             healthMeasureViewData.HealthMeasureId));
                 }
 
-                healthMeasureEntity.MeasurementDate = DateTime.Parse(healthMeasureViewData.MeasurementDate);
-                healthMeasureEntity.Height = healthMeasureViewData.Height;
-                healthMeasureEntity.Weight = healthMeasureViewData.Weight;
-                healthMeasureEntity.Temperature = healthMeasureViewData.Temperature;
-                healthMeasureEntity.Notes = healthMeasureViewData.Notes;
-                healthMeasureEntity.Vaccine = healthMeasureViewData.Vaccine;
-
-                var animalId = new Guid(healthMeasureViewData.AnimalId);
-                healthMeasureEntity.Animal = entities.Animal.FirstOrDefault(a => a.Id == animalId);
+                this.SaveOrUpdateHealthMeasure(healthMeasureViewData, healthMeasureEntity, entities);
 
                 entities.SaveChanges();
             }
@@ -335,6 +327,20 @@
                 entities.SaveChanges();
                 
                 return environmentEntity.Id;
+            }
+        }
+
+        public Guid CreateHealthMeasure(HealthMeasureViewData healthMeasureViewData)
+        {
+            using (var entities = this.EntityContext)
+            {
+                var healthMeasureEntity = new HealthMeasure { Id = Guid.NewGuid() };
+
+                entities.AddToHealthMeasure(healthMeasureEntity);
+                this.SaveOrUpdateHealthMeasure(healthMeasureViewData, healthMeasureEntity, entities);
+                entities.SaveChanges();
+
+                return healthMeasureEntity.Id;
             }
         }
 
@@ -582,6 +588,19 @@
                     feedingTimeEntity.Feeding = entities.Feeding.FirstOrDefault(f => f.Id == feedingId);
                 }
             }
+        }
+
+        private void SaveOrUpdateHealthMeasure(HealthMeasureViewData healthMeasureViewData, HealthMeasure healthMeasureEntity, ZoosManagementSystemEntities entities)
+        {
+            healthMeasureEntity.MeasurementDate = DateTime.Parse(healthMeasureViewData.MeasurementDate);
+            healthMeasureEntity.Height = healthMeasureViewData.Height;
+            healthMeasureEntity.Weight = healthMeasureViewData.Weight;
+            healthMeasureEntity.Temperature = healthMeasureViewData.Temperature;
+            healthMeasureEntity.Notes = healthMeasureViewData.Notes;
+            healthMeasureEntity.Vaccine = healthMeasureViewData.Vaccine;
+
+            var animalId = new Guid(healthMeasureViewData.AnimalId);
+            healthMeasureEntity.Animal = entities.Animal.FirstOrDefault(a => a.Id == animalId);
         }
     }
 }

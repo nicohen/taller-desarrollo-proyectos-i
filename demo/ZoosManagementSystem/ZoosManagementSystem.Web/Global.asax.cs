@@ -68,7 +68,7 @@ namespace ZoosManagementSystem.Web
 
             routes.MapRoute(
                 "NewHealthMeasure",                                                    // Route name
-                "Administration/Animals/HealthMeasures/New",                           // URL with parameters
+                "Administration/Animals/HealthMeasures/New/{animalId}",                           // URL with parameters
                 new { controller = "Administration", action = "NewHealthMeasure" });   // Parameter defaults
 
 

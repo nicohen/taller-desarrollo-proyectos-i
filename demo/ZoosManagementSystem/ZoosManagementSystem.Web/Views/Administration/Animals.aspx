@@ -55,7 +55,7 @@
                     </fieldset>
                     <fieldset>
                         <legend style="float: left;">Ex&aacute;menes M&eacute;dicos</legend>
-                        <%= Html.ActionLink("Nuevo Examen Médico", "NewHealthMeasure", "Administration", null, new { Class = "newlink", style = "float: right;" })%>
+                        <%= Html.ActionLink("Nuevo Examen Médico", "NewHealthMeasure", "Administration", new { animalId = animal.Id.ToString() }, new { Class = "newlink", style = "float: right;" })%>
                         
                         <div class="clear"></div>
                         <% if ((animal.HealthMeasure != null) && (animal.HealthMeasure.Count > 0))

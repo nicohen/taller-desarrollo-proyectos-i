@@ -43,7 +43,7 @@
                         <div class="clear"></div>
                         <p><label for="Weight">Peso (kg):</label><%= this.Html.TextBox("Weight")%></p>
                         <div class="clear"></div>                        
-                        <p><label for="Height">Altura (m):</label><%= this.Html.TextBox("Height")%></p>
+                        <p><label for="Height">Altura (cm):</label><%= this.Html.TextBox("Height")%></p>
                         <div class="clear"></div>                        
                         <p><label for="Temperature">Temperatura (&#176;C):</label><%= this.Html.TextBox("Temperature")%></p>
                         <div class="clear"></div>                        

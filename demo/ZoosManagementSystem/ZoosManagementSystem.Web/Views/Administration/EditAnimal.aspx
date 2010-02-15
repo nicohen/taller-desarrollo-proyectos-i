@@ -92,7 +92,7 @@
                 <fieldset id="withaddlink">
                     <legend>Ex&aacute;menes M&eacute;dicos</legend>
                     <span>
-                         <%= Html.ActionLink("Agregar", "NewHealthMeasure", "Administration", null, new { Class = "newlink" })%>
+                         <%= Html.ActionLink("Agregar", "NewHealthMeasure", "Administration", new { animalId = this.Model.AnimalId } , new { Class = "newlink" })%>
                     </span>
                     <div class="clear"></div>
                     <ul id="dinlist">
