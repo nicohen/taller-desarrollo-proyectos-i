@@ -120,13 +120,12 @@ namespace ZoosManagementSystem.Web.Controllers
             return this.View(environmentViewData);  
         }
 
-
         public ActionResult NewEnvironment()
         {
             var environmentViewData = new EnvironmentViewData
                 {
                     FreeAnimals = this.repository.GetFreeAnimals()
-                            .Select(a => a.ToViewData())
+                            .Select(a => a.ToViewData(this.repository))
                             .ToList()
                 };
             
@@ -143,7 +142,7 @@ namespace ZoosManagementSystem.Web.Controllers
             if (!updateModelResult)
             {
                 environmentViewData.FreeAnimals = this.repository.GetFreeAnimals()
-                    .Select(a => a.ToViewData())
+                    .Select(a => a.ToViewData(this.repository))
                     .ToList();
                 return View("EditEnvironment", environmentViewData);
             }
@@ -174,7 +173,7 @@ namespace ZoosManagementSystem.Web.Controllers
             if (!updateModelResult)
             {
                 environmentViewData.FreeAnimals = this.repository.GetFreeAnimals()
-                    .Select(a => a.ToViewData())
+                    .Select(a => a.ToViewData(this.repository))
                     .ToList();
                 return View(environmentViewData);
             }
@@ -252,6 +251,39 @@ namespace ZoosManagementSystem.Web.Controllers
             }
 
             return this.Animals();
+        }
+
+        public ActionResult EditAnimal(string animalId)
+        {
+            AnimalViewData environmentViewData = null;
+
+            try
+            {
+                this.TempData["EditMessage"] = null;
+                var animal = this.repository.GetAnimal(new Guid(animalId));
+
+                if (animal == null)
+                {
+                    this.TempData["EditMessage"] = string.Format(
+                        CultureInfo.CurrentCulture, "No se encontró ningún animal cuyo Id sea {0}.", animalId);
+                }
+                else
+                {
+                    environmentViewData = animal.ToViewData(this.repository);
+                }
+            }
+            catch (FormatException)
+            {
+                this.TempData["EditMessage"] = string.Format(
+                    CultureInfo.CurrentCulture, "El formato del Id '{0}' es inválido.", animalId);
+            }
+            catch (OverflowException)
+            {
+                this.TempData["EditMessage"] = string.Format(
+                    CultureInfo.CurrentCulture, "El formato del Id '{0}' es inválido.", animalId);
+            }
+
+            return this.View(environmentViewData);
         }
     }
 }

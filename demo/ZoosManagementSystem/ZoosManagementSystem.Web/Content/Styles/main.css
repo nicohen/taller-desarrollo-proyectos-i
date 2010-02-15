@@ -513,7 +513,7 @@ form
 
 fieldset
 {
-	margin: 0 0 15px 0;
+	margin: 0 0 14px 0;
 	padding: 0px;
 	border: none;
 }
@@ -918,6 +918,23 @@ fieldset h4
     color: #443366;
 }
 
+#dinlist2 .threerow
+{
+	margin: 0 6px;
+	width: auto;
+}
+
+#dinlist2 .threerow > input
+{
+	width: 135px;
+}
+
+#dinlist2 .threerow > select
+{
+	margin-top: 1px;
+	width: 142px;
+}
+
 .editbox p
 {
 	width: 321px;
@@ -937,10 +954,18 @@ fieldset h4
 	width: 185px;
 }
 
+.editbox p > select 
+{
+	float: right;
+	width: 190px;
+	margin: 4px 0 4px 0;
+}
+
+
 .editbox legend
 {
-	margin-top: 4px;
-	margin-bottom: 6px;
+	margin-top: 2px;
+	margin-bottom: 5px;
 }
 
 div .contentbox h3
@@ -993,7 +1018,7 @@ div .contentbox p
 	float:left;
 }
 
-#timeslotlist
+#dinlist2
 {
 	margin: 0px;
 	padding: 0px;
@@ -1001,12 +1026,12 @@ div .contentbox p
 	/*width: 383px;*/
 }
 
-#timeslotlist > p
+#dinlist2 > p
 {
 	width: auto;
 }
 
-#timeslotlist div > p
+#dinlist2 div > p
 {
 	float: left;
 	margin-bottom: 3px;
@@ -1036,7 +1061,7 @@ div .contentbox p
 	clear: both;
 }
 
-#timeslotlist > p > a
+#dinlist2 > p > a
 {
 	float: right;
 	top: -5px;
@@ -1044,30 +1069,35 @@ div .contentbox p
 	position: relative;
 }
 
-#listanimals
+#dinlist
 {
 	margin-top: 0px;
 	margin-bottom: 0px;
 }
 
-#listanimals li
+#dinlist li
 {
 	padding: 3px 0;
 }
 
-#listanimals li > label
+#dinlist li > label
 {
 	float: left;
 	position: relative;
 	top: -5px;
 }
 
-#listanimals li > a
+#dinlist li > a
 {
 	float: right;
 	position: relative;
 	top: -10px;
 	margin-right: 12px;
+}
+
+#dinlist li > .editlink
+{
+	margin-right: 27px;
 }
 
 #freeanimals
@@ -1089,18 +1119,23 @@ div .contentbox p
 	top: -5px
 }
 
-#timeslots > legend
+#withaddlink > legend
 {
 	float: left;
 	margin-bottom: 9px;
 }
 
-#timeslots > span 
+#withaddlink > span 
 {
 	float: right;
 	margin-right: 16px;
 	position: relative;
 	top: 8px;
+}
+
+#withaddlink > #dinlist
+{
+	margin-top: 10px;
 }
 
 .validation-summary-errors

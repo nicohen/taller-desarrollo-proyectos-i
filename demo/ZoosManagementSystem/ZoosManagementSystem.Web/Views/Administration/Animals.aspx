@@ -45,12 +45,12 @@
                         <p><label for="Sex">Sexo: </label><%= (animal.Sex.ToLowerInvariant() == "m") ? "Macho" : "Hembra" %></p>
                         <p><label for="BirthDate">Fecha de nacimiento: </label><%= animal.BirthDate.ToString("yyyy/MM/dd") %></p>                        
                         <p><label for="BornInCaptivity">Nacido en cautiverio: </label><%= animal.BornInCaptivity ? "Si" : "No" %></p>
-                        <% if (!animal.BornInCaptivity)
+                        <% if (animal.Cost.HasValue)
                            { %>
-                        <p><label for="Cost">Costo ($): </label><%= animal.Cost %></p>
+                        <p><label for="Cost">Costo ($): </label><%= animal.Cost.Value %></p>
                         <% } %>
                         <p><label for="NextHealthMeasure">Pr&oacute;ximo examen m&eacute;dico: </label><%= animal.NextHealthMeasure.ToString("yyyy/MM/dd")%></p>
-                        <p><label for="Responsible">Responsable: </label><%= string.Format(CultureInfo.CurrentCulture, "{0} {1}", animal.Responsible.Name, animal.Responsible.LastName) %> (<a href="mailto:<%= animal.Responsible.Email %>"><%= animal.Responsible.Email %></a>)</p>                                                
+                        <p><label for="Responsible">Responsable: </label><%= string.Format(CultureInfo.CurrentCulture, "{0} {1}", animal.Responsible.Name, animal.Responsible.LastName) %> (<a href="mailto:<%= animal.Responsible.Email %>"><%= animal.Responsible.Email %></a>)</p>
                         <p><label for="Environment">Ambiente: </label><%= (animal.Environment != null) ? string.Format(CultureInfo.CurrentCulture, "{0} ({1} m²)", animal.Environment.Name, animal.Environment.Surface) : "¡El animal no est&aacute; asignado a ning&uacute;n ambiente!"%></p>                                                
                     </fieldset>
                     <fieldset>

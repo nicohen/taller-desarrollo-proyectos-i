@@ -38,6 +38,17 @@
             }
         }
 
+        public IList<Feeding> GetFeedings()
+        {
+            using (var entities = this.EntityContext)
+            {
+                return entities.Feeding
+                    .Include("FeedingTime")
+                    .OrderBy(f => f.Name)
+                    .ToList();
+            }
+        }
+
         public IList<Animal> GetAnimals()
         {
             using (var entities = this.EntityContext)
@@ -66,6 +77,18 @@
             }
         }
 
+        public IList<Responsible> GetResponsibles()
+        {
+            using (var entities = this.EntityContext)
+            {
+                return entities.Responsible
+                    .Include("Animal")
+                    .OrderBy(env => env.LastName)
+                    .ThenBy(env => env.Name)
+                    .ToList();
+            }
+        }
+
         public IList<Environment> GetEnvironments()
         {
             using (var entities = this.EntityContext)
@@ -89,8 +112,33 @@
                     .Include("Sensor")
                     .Include("TimeSlot")
                     .Include("EnvironmentMeasure")
-                    .Where(e => e.Id == environmentId)
-                    .FirstOrDefault();
+                    .FirstOrDefault(e => e.Id == environmentId);
+            }
+        }
+
+        public Animal GetAnimal(Guid animalId)
+        {
+            using (var entities = this.EntityContext)
+            {
+                var animal = entities.Animal
+                    .Include("Environment")
+                    .Include("FeedingTime")
+                    .Include("Responsible")
+                    .Include("HealthMeasure")
+                    .FirstOrDefault(a => a.Id == animalId);
+
+                if (animal != null)
+                {
+                    foreach (var feedingTime in animal.FeedingTime)
+                    {
+                        if (!feedingTime.FeedingReference.IsLoaded)
+                        {
+                            feedingTime.FeedingReference.Load();
+                        }
+                    }
+                }
+
+                return animal;
             }
         }
 

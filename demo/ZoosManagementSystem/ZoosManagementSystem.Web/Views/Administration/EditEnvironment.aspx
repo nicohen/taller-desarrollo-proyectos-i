@@ -35,7 +35,7 @@
                     </fieldset>
                     <fieldset>
                     <legend id="animals">Animales</legend>
-                        <ul id="listanimals">
+                        <ul id="dinlist">
                         <%
                            var animalIndex = 0;
                            foreach (var animal in this.Model.Animals)
@@ -71,15 +71,15 @@
                                                            a.Species),
                                                        Value = a.AnimalId
                                                    }),
-                                           "Seleccionar animal...")%>&nbsp;          
-                                  <a href="JavaScript:addToList('freeanimals', 'listanimals');" class="newlink">Agregar</a>
+                                           "Seleccionar animal...") %>&nbsp;          
+                                  <a href="JavaScript:addToList('freeanimals', 'dinlist');" class="newlink">Agregar</a>
                               </div>
                         <% } %>
                     </fieldset>
-                    <fieldset id="timeslots" class="last">
+                    <fieldset id="withaddlink" class="last">
                         <legend>Intervalos de Tiempo para Sensores</legend>
-                        <span><a href="JavaScript:addNewTimeSlot('timeslotlist');" class="newlink">Agregar</a></span>
-                        <div id="timeslotlist">
+                        <span><a href="JavaScript:addNewTimeSlot('dinlist2');" class="newlink">Agregar</a></span>
+                        <div id="dinlist2">
 
                         <%
                            var timeSlotIndex = 1;

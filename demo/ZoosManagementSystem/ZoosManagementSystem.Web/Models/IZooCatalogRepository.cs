@@ -9,11 +9,17 @@ namespace ZoosManagementSystem.Web.Models
     {
         IList<Environment> GetEnvironments();
 
-        Environment GetEnvironment(Guid guid);
+        IList<Feeding> GetFeedings();
 
         IList<Animal> GetAnimals();
 
+        IList<Responsible> GetResponsibles();
+
         IList<Animal> GetFreeAnimals();
+
+        Environment GetEnvironment(Guid environmentId);
+
+        Animal GetAnimal(Guid animalId);
 
         IList<Environment> SearchEnvironments(string searchCriteria);
 
