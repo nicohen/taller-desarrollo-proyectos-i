@@ -7,7 +7,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="mainblock">
-        <h2>Administraci&oacute;n de Ambientes</h2>       
+        <h2>Administraci&oacute;n de Animales</h2>       
         
         <% if (!string.IsNullOrEmpty((string)this.TempData["AnimalMessage"]))
            { %>
@@ -50,26 +50,10 @@
                         <p><label for="Cost">Costo ($): </label><%= animal.Cost %></p>
                         <% } %>
                         <p><label for="NextHealthMeasure">Pr&oacute;ximo examen m&eacute;dico: </label><%= animal.NextHealthMeasure.ToString("yyyy/MM/dd")%></p>
-                        <p><label for="Responsible">Responsable: </label><%= animal.Responsible.Name %> (<a href="mailto:<%= animal.Responsible.Email %>"><%= animal.Responsible.Email %></a>)</p>                                                
+                        <p><label for="Responsible">Responsable: </label><%= string.Format(CultureInfo.CurrentCulture, "{0} {1}", animal.Responsible.Name, animal.Responsible.LastName) %> (<a href="mailto:<%= animal.Responsible.Email %>"><%= animal.Responsible.Email %></a>)</p>                                                
                         <p><label for="Environment">Ambiente: </label><%= (animal.Environment != null) ? string.Format(CultureInfo.CurrentCulture, "{0} ({1} m²)", animal.Environment.Name, animal.Environment.Surface) : "¡El animal no est&aacute; asignado a ning&uacute;n ambiente!"%></p>                                                
                     </fieldset>
                     <fieldset>
-                        <legend>Horas de Alimentaci&oacute;n</legend>
-                        <% if ((animal.FeedingTime != null) && (animal.FeedingTime.Count > 0))
-                           { %>
-                            <ul>
-                            <% foreach (var feedingTime in animal.FeedingTime)
-                               { %>
-                                   <li><%= string.Format(CultureInfo.CurrentCulture, "{0}:{1} hs: {2} ({3} gr.)", feedingTime.Time.Hours.ToString("D2"), feedingTime.Time.Minutes.ToString("D2"), feedingTime.Feeding.Name, feedingTime.Amount)%></li>
-                            <% } %>
-                            </ul>                          
-                        <% }
-                           else
-                           { %>
-                             <h4><%= Html.Encode("No se encontró ninguna hora de alimetación.") %></h4>
-                        <% } %>
-                    </fieldset>
-                    <fieldset class="last">
                         <legend style="float: left;">Ex&aacute;menes M&eacute;dicos</legend>
                         <%= Html.ActionLink("Nuevo Examen Médico", "NewHealthMeasure", "Administration", null, new { Class = "newlink", style = "float: right;" })%>
                         
@@ -89,7 +73,22 @@
                            { %>
                            <h4><%= Html.Encode("No se encontró ningun examen médico.") %></h4>
                         <% } %>
-                        
+                    </fieldset>
+                    <fieldset class="last">
+                        <legend>Horas de Alimentaci&oacute;n</legend>
+                        <% if ((animal.FeedingTime != null) && (animal.FeedingTime.Count > 0))
+                           { %>
+                            <ul>
+                            <% foreach (var feedingTime in animal.FeedingTime)
+                               { %>
+                                   <li><%= string.Format(CultureInfo.CurrentCulture, "{0}:{1} hs: {2} ({3} gr.)", feedingTime.Time.Hours.ToString("D2"), feedingTime.Time.Minutes.ToString("D2"), feedingTime.Feeding.Name, feedingTime.Amount)%></li>
+                            <% } %>
+                            </ul>                          
+                        <% }
+                           else
+                           { %>
+                             <h4><%= Html.Encode("No se encontró ninguna hora de alimetación.") %></h4>
+                        <% } %>
                     </fieldset>
                     <% if ((count % 2) == 0) 
                        { %>
