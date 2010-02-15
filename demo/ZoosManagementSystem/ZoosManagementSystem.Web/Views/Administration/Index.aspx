@@ -7,6 +7,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="mainblock">
         <h2>Administraci&oacute;n</h2>
+        <p>Desde aqu&iacute; podr&aacute; configurar los ambientes y animales del sistema</p>
         <ul>
             <li><%= Html.ActionLink("Ambientes", "Environments", "Administration")%></li>
             <li><%= Html.ActionLink("Animales", "Animals", "Administration")%></li>
