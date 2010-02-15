@@ -324,5 +324,73 @@ namespace ZoosManagementSystem.Web.Controllers
             return this.RedirectToRoute("SearchAnimals", new { searchCriteria = animalViewData.AnimalId });
         }
 
+        public ActionResult EditHealthMeasure(string healthMeasureId)
+        {
+            HealthMeasureViewData healthMeasureViewData = null;
+
+            try
+            {
+                this.TempData["EditMessage"] = null;
+                var healthMeasure = this.repository.GetHealthMeasure(new Guid(healthMeasureId));
+
+                if (healthMeasure == null)
+                {
+                    this.TempData["EditMessage"] = string.Format(
+                        CultureInfo.CurrentCulture, "No se encontró ningún examen médico cuyo Id sea {0}.", healthMeasureId);
+                }
+                else
+                {
+                    healthMeasureViewData = healthMeasure.ToViewData(this.repository);
+                }
+            }
+            catch (FormatException)
+            {
+                this.TempData["EditMessage"] = string.Format(
+                    CultureInfo.CurrentCulture, "El formato del Id '{0}' es inválido.", healthMeasureId);
+            }
+            catch (OverflowException)
+            {
+                this.TempData["EditMessage"] = string.Format(
+                    CultureInfo.CurrentCulture, "El formato del Id '{0}' es inválido.", healthMeasureId);
+            }
+
+            return this.View(healthMeasureViewData);
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        [ActionName("EditHealthMeasure")]
+        public ActionResult UpdateHealthMeasure(string healthMeasureId)
+        {
+            var healthMeasureViewData = new HealthMeasureViewData();
+            var updateModelResult = this.TryUpdateModel<HealthMeasureViewData>(healthMeasureViewData);
+
+            if (!updateModelResult)
+            {
+                healthMeasureViewData.HealthMeasureId = healthMeasureId;
+                healthMeasureViewData.AnimalsAvailable = this.repository.GetAnimals().Select(a => new AnimalViewData
+                                                                                        {
+                                                                                            AnimalId = a.Id.ToString(),
+                                                                                            Name = a.Name,
+                                                                                            Species = a.Species,
+                                                                                            Sex = (a.Sex.ToLowerInvariant() == "m") ? "Macho" : "Hembra",
+                                                                                        }).ToList();
+                return View(healthMeasureViewData);
+            }
+
+            try
+            {
+                healthMeasureViewData.HealthMeasureId = healthMeasureId;
+                this.repository.UpdateHealthMeasure(healthMeasureViewData);
+                this.TempData["ActionSucess"] = true;
+                this.TempData["EnvironmentMessage"] = "Se editaron correctamente los datos del animal";
+            }
+            catch (Exception exception)
+            {
+                this.TempData["ActionSucess"] = false;
+                this.TempData["EnvironmentMessage"] = exception.Message;
+            }
+
+            return this.RedirectToRoute("SearchAnimals", new { searchCriteria = healthMeasureViewData.AnimalId });
+        }
     }
 }

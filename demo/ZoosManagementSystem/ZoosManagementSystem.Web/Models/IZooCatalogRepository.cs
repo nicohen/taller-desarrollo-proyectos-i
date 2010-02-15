@@ -21,6 +21,8 @@ namespace ZoosManagementSystem.Web.Models
 
         Animal GetAnimal(Guid animalId);
 
+        HealthMeasure GetHealthMeasure(Guid healthMeasureId);
+
         IList<Environment> SearchEnvironments(string searchCriteria);
 
         IList<Animal> SearchAnimals(string searchCriteria);
@@ -28,6 +30,8 @@ namespace ZoosManagementSystem.Web.Models
         void UpdateEnvironment(EnvironmentViewData environmentViewData);
 
         void UpdateAnimal(AnimalViewData animalViewData);
+
+        void UpdateHealthMeasure(HealthMeasureViewData healthMeasureViewData);
 
         Guid CreateEnvironment(EnvironmentViewData environmentViewData);
 

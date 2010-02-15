@@ -953,7 +953,7 @@ fieldset h4
 	margin-bottom: 2px;
 }
 
-.editbox p > input
+.editbox p > input, .editbox p > textarea
 {
 	float: right;
 	width: 185px;

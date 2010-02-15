@@ -4,6 +4,15 @@ namespace ZoosManagementSystem.Web.ViewData
 
     public class AnimalViewData
     {
+        public AnimalViewData()
+        {
+            this.EnvironmentsAvailable = new List<EnvironmentViewData>();
+            this.FeedingsAvailable = new List<FeedingViewData>();
+            this.FeedingTimes = new List<FeedingTimeViewData>();
+            this.HealthMeasures = new List<HealthMeasureViewData>();
+            this.ResponsiblesAvailable = new List<ResponsibleViewData>();
+        }
+
         public string AnimalId
         { get; set; }
 

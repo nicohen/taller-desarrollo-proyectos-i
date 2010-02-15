@@ -7,6 +7,11 @@ namespace ZoosManagementSystem.Web.ViewData
 {
     public class HealthMeasureViewData
     {
+        public HealthMeasureViewData()
+        {
+            this.AnimalsAvailable = new List<AnimalViewData>();
+        }
+
         public string HealthMeasureId
         { get; set; }
 
@@ -17,6 +22,24 @@ namespace ZoosManagementSystem.Web.ViewData
         { get; set; }
 
         public string MeasurementDate
+        { get; set; }
+
+        public string Vaccine
+        { get; set; }
+
+        public string Notes
+        { get; set; }
+
+        public int Weight
+        { get; set; }
+
+        public int Height
+        { get; set; }
+
+        public double Temperature
+        { get; set; }
+
+        public IList<AnimalViewData> AnimalsAvailable
         { get; set; }
     }
 }

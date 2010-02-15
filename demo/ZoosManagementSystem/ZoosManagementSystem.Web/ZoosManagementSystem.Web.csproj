@@ -122,6 +122,7 @@
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Views\Administration\Animals.aspx" />
+    <Content Include="Views\Administration\EditHealthMeasure.aspx" />
     <Content Include="Views\Administration\EditAnimal.aspx" />
     <Content Include="Views\Administration\EditEnvironment.aspx" />
     <Content Include="Views\Administration\Environments.aspx" />

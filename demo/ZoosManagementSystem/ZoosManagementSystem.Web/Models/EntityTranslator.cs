@@ -36,7 +36,7 @@
                     BornInCaptivity = animalModel.BornInCaptivity,
                     Cost = animalModel.Cost,
                     FeedingTimes = animalModel.FeedingTime.Select(ft => ft.ToViewData()).ToList(),
-                    HealthMeasures = animalModel.HealthMeasure.Select(hm => hm.ToViewData()).ToList(),
+                    HealthMeasures = animalModel.HealthMeasure.Select(hm => hm.ToViewData(repository)).ToList(),
                     FeedingsAvailable = repository.GetFeedings().Select(f => f.ToViewData()).ToList(),
                     ResponsiblesAvailable = repository.GetResponsibles().Select(r => r.ToViewData()).ToList(),
                     EnvironmentsAvailable = repository.GetEnvironments().Select(env => new EnvironmentViewData
@@ -86,13 +86,25 @@
             return feedingTimeViewData;
         }
 
-        public static HealthMeasureViewData ToViewData(this HealthMeasure healthMeasureModel)
+        public static HealthMeasureViewData ToViewData(this HealthMeasure healthMeasureModel, IZooCatalogRepository repository)
         {
             return new HealthMeasureViewData
                 {
                     HealthMeasureId = healthMeasureModel.Id.ToString(),
                     AnimalId = healthMeasureModel.Animal.Id.ToString(),
                     MeasurementDate = healthMeasureModel.MeasurementDate.ToString("yyyy/MM/dd"),
+                    Weight = healthMeasureModel.Weight,
+                    Height = healthMeasureModel.Height,
+                    Temperature = healthMeasureModel.Temperature,
+                    Vaccine = healthMeasureModel.Vaccine,
+                    Notes = healthMeasureModel.Notes,
+                    AnimalsAvailable = repository.GetAnimals().Select(a => new AnimalViewData
+                        {
+                            AnimalId = a.Id.ToString(),
+                            Name = a.Name,
+                            Species = a.Species,
+                            Sex = (a.Sex.ToLowerInvariant() == "m") ? "Macho" : "Hembra",
+                        }).ToList(),
                     HealthMeasureStatus = "Original"
                 };
         }

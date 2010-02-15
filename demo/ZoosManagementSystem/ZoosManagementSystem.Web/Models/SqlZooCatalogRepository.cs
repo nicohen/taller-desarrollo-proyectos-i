@@ -89,6 +89,17 @@
             }
         }
 
+        public HealthMeasure GetHealthMeasure(Guid healthMeasureId)
+        {
+            using (var entities = this.EntityContext)
+            {
+                return entities.HealthMeasure
+                    .Include("Animal")
+                    .OrderBy(hm => hm.MeasurementDate)
+                    .FirstOrDefault(hm => hm.Id == healthMeasureId);
+            }
+        }
+
         public IList<Environment> GetEnvironments()
         {
             using (var entities = this.EntityContext)
@@ -264,8 +275,7 @@
                     .Include("FeedingTime")
                     .Include("Responsible")
                     .Include("HealthMeasure")
-                    .Where(e => e.Id == id)
-                    .FirstOrDefault();
+                    .FirstOrDefault(e => e.Id == id);
 
                 if (animalEntity == null)
                 {
@@ -277,6 +287,38 @@
                 }
 
                 this.SaveOrUpdateAnimal(animalViewData, animalEntity, entities);
+
+                entities.SaveChanges();
+            }
+        }
+
+        public void UpdateHealthMeasure(HealthMeasureViewData healthMeasureViewData)
+        {
+            using (var entities = this.EntityContext)
+            {
+                var id = new Guid(healthMeasureViewData.HealthMeasureId);
+                var healthMeasureEntity = entities.HealthMeasure
+                    .Include("Animal")
+                    .FirstOrDefault(e => e.Id == id);
+
+                if (healthMeasureEntity == null)
+                {
+                    throw new ArgumentException(
+                        string.Format(
+                            CultureInfo.CurrentCulture,
+                            "No existe ningún examen de salud con el Id {0} para actualizar.",
+                            healthMeasureViewData.HealthMeasureId));
+                }
+
+                healthMeasureEntity.MeasurementDate = DateTime.Parse(healthMeasureViewData.MeasurementDate);
+                healthMeasureEntity.Height = healthMeasureViewData.Height;
+                healthMeasureEntity.Weight = healthMeasureViewData.Weight;
+                healthMeasureEntity.Temperature = healthMeasureViewData.Temperature;
+                healthMeasureEntity.Notes = healthMeasureViewData.Notes;
+                healthMeasureEntity.Vaccine = healthMeasureViewData.Vaccine;
+
+                var animalId = new Guid(healthMeasureViewData.AnimalId);
+                healthMeasureEntity.Animal = entities.Animal.FirstOrDefault(a => a.Id == animalId);
 
                 entities.SaveChanges();
             }
