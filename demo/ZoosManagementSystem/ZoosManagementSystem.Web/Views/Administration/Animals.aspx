@@ -54,10 +54,9 @@
                         <p><label for="Environment">Ambiente: </label><%= (animal.Environment != null) ? string.Format(CultureInfo.CurrentCulture, "{0} ({1} m²)", animal.Environment.Name, animal.Environment.Surface) : "¡El animal no est&aacute; asignado a ning&uacute;n ambiente!"%></p>                                                
                     </fieldset>
                     <fieldset>
-                        <%
-                           if ((animal.FeedingTime != null) && (animal.FeedingTime.Count > 0))
+                        <legend>Horas de Alimentaci&oacute;n</legend>
+                        <% if ((animal.FeedingTime != null) && (animal.FeedingTime.Count > 0))
                            { %>
-                            <legend>Horas de Alimentaci&oacute;n</legend>
                             <ul>
                             <% foreach (var feedingTime in animal.FeedingTime)
                                { %>
@@ -75,15 +74,21 @@
                         <%= Html.ActionLink("Nuevo Examen Médico", "NewHealthMeasure", "Administration", null, new { Class = "newlink", style = "float: right;" })%>
                         
                         <div class="clear"></div>
-                        <ul>                             
-                        <%
-                           var measures = 0;
-                           foreach (var healthMeasure in animal.HealthMeasure.OrderBy(hm => hm.MeasurementDate))
-                           {
-                               measures++; %>
-                               <li>Examen <%= measures %>: <%= Html.ActionLink(healthMeasure.MeasurementDate.ToString("yyyy/MM/dd"), "EditHealthMeasure", "Administration", new { healthMeasureId = healthMeasure.Id }, null)%></li>
-                        <% } %>
+                        <% if ((animal.HealthMeasure != null) && (animal.HealthMeasure.Count > 0))
+                           { %>
+                        <ul>                                                      
+                           <% var measures = 0;
+                              foreach (var healthMeasure in animal.HealthMeasure.OrderBy(hm => hm.MeasurementDate))
+                              {
+                                  measures++; %>
+                           <li>Examen <%= measures %>: <%= Html.ActionLink(healthMeasure.MeasurementDate.ToString("yyyy/MM/dd"), "EditHealthMeasure", "Administration", new { healthMeasureId = healthMeasure.Id }, null)%></li>
+                            <% } %>
                         </ul>
+                        <% } 
+                           else
+                           { %>
+                           <h4><%= Html.Encode("No se encontró ningun examen médico.") %></h4>
+                        <% } %>
                         
                     </fieldset>
                     <% if ((count % 2) == 0) 

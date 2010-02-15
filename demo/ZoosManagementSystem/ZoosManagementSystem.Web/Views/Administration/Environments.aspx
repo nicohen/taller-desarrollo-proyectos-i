@@ -46,10 +46,9 @@
                         <p><label for="Description">Tipo: </label><%= environment.Type %></p>
                     </fieldset>
                     <fieldset>
-                        <%
-                           if ((environment.Animal != null) && (environment.Animal.Count > 0))
+                        <legend>Animales</legend>
+                        <% if ((environment.Animal != null) && (environment.Animal.Count > 0))
                            { %>
-                            <legend>Animales</legend>
                             <ul>
                             <% foreach (var animal in environment.Animal)
                                { %>
@@ -63,10 +62,10 @@
                         <% } %>
                     </fieldset>
                     <fieldset class="last">
-                        <%
-                            if ((environment.TimeSlot != null) && (environment.TimeSlot.Count > 0))
+                        <legend>Intervalos de Tiempo para Sensores</legend>
+                    
+                        <% if ((environment.TimeSlot != null) && (environment.TimeSlot.Count > 0))
                            { %>
-                            <legend>Intervalos de Tiempo para Sensores</legend>
                             <ul>                             
                             <%
                                var timeSlotCount = 0;
