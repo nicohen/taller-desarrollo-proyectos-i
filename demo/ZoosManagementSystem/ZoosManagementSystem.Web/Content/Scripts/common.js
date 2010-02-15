@@ -56,7 +56,7 @@ function removeAnimal(id) {
     $("#" + id)[0].style.display = "none";
 }
 
-function removeTimeSlot(id) {
+function removeCollapsableItem(id) {
     var headId = id + "-HEAD";
     var bodyId = id + "-BODY";
 
@@ -101,7 +101,8 @@ function addNewTimeSlot(id) {
     var newIndex = divElement.children.length / 2;
 
     var html = "<p id=\"" + newIndex.toString() + "-HEAD\" class=\"timeslothead\">"
-      + "Itervalo " + (newIndex + 1).toString() + "<a href=\"JavaScript:removeTimeSlot('" + newIndex + "')\" class=\"deletelink\">Remover</a>"
+      + "Itervalo " + (newIndex + 1).toString()
+      + "<a href=\"JavaScript:removeCollapsableItem('" + newIndex + "')\" class=\"deletelink\">Remover</a>"
       + "</p>"
       + "<div id=\"" + newIndex.toString() + "-BODY\" class=\"timeslotbody\">"
       + "<p>"
@@ -134,6 +135,39 @@ function addNewTimeSlot(id) {
 
     divElement.innerHTML += html;
     
+    //toggle the componenet with class msg_body
+    $(".timeslothead").click(toggleAnimation);
+}
+
+function addFeedingTime(id) {
+    var divElement = $("#" + id)[0];
+    var newIndex = divElement.children.length / 2;
+    
+    var feedingTemplate = $("#feedingsTemplate")[0].innerHTML;
+
+    var html = "<p id=\"" + newIndex.toString() + "-HEAD\" class=\"timeslothead\">"
+      + "Horario " + (newIndex + 1).toString()
+      + "<a href=\"JavaScript:removeCollapsableItem('" + newIndex.toString() + "')\" class=\"deletelink\">Remover</a>"
+      + "</p>"
+      + "<div id=\"" + newIndex.toString() + "-BODY\" class=\"timeslotbody\">"
+      + "<p class=\"threerow\">"
+      + "<label>Hora:&nbsp;</label><input id=\"FeedingTimes[" + newIndex.toString() + "]_Time\" name=\"FeedingTimes[" + newIndex.toString() + "].Time\" type=\"text\" value=\"00:00\" />"
+      + "</p>"
+      + "<p class=\"threerow\">"
+      + "<label>Cantidad (gramos):&nbsp;</label><input id=\"FeedingTimes[" + newIndex.toString() + "]_Amount\" name=\"FeedingTimes[" + newIndex.toString() + "].Amount\" type=\"text\" value=\"0\" />"
+      + "</p>"
+      + "<p class=\"threerow\">"
+      + "<label>Alimento:&nbsp;</label>"
+      + "<select name=\"FeedingTimes[" + newIndex.toString() + "].FeedingId\" id=\"FeedingTimes[" + newIndex.toString() + "]_FeedingId\">"
+      + feedingTemplate
+      + "</select>"
+      + "</p>"
+      + "<input id=\"FeedingTimes[" + newIndex.toString() + "]_FeedingTimeStatus\" name=\"FeedingTimes[" + newIndex.toString() + "].FeedingTimeStatus\" type=\"hidden\" value=\"New\" />"
+      + "<div class=\"clear\"></div>"
+      + "</div>"  
+
+    divElement.innerHTML += html;
+
     //toggle the componenet with class msg_body
     $(".timeslothead").click(toggleAnimation);
 }

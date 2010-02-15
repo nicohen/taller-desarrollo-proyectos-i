@@ -19,7 +19,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("ZoosManagementSystemModel", "FK_FeedingTime_Feeding", "Feeding", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ZoosManagementSystem.Web.Models.Feeding), "FeedingTime", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ZoosManagementSystem.Web.Models.FeedingTime))]
 
 // Original file name:
-// Generation date: 2/12/2010 1:14:11 AM
+// Generation date: 2/15/2010 6:35:28 AM
 namespace ZoosManagementSystem.Web.Models
 {
     
@@ -1553,16 +1553,16 @@ namespace ZoosManagementSystem.Web.Models
         /// <param name="measurementDate">Initial value of MeasurementDate.</param>
         /// <param name="weight">Initial value of Weight.</param>
         /// <param name="height">Initial value of Height.</param>
-        /// <param name="width">Initial value of Width.</param>
+        /// <param name="temperature">Initial value of Temperature.</param>
         /// <param name="notes">Initial value of Notes.</param>
-        public static HealthMeasure CreateHealthMeasure(global::System.Guid id, global::System.DateTime measurementDate, int weight, int height, int width, string notes)
+        public static HealthMeasure CreateHealthMeasure(global::System.Guid id, global::System.DateTime measurementDate, int weight, int height, double temperature, string notes)
         {
             HealthMeasure healthMeasure = new HealthMeasure();
             healthMeasure.Id = id;
             healthMeasure.MeasurementDate = measurementDate;
             healthMeasure.Weight = weight;
             healthMeasure.Height = height;
-            healthMeasure.Width = width;
+            healthMeasure.Temperature = temperature;
             healthMeasure.Notes = notes;
             return healthMeasure;
         }
@@ -1659,28 +1659,51 @@ namespace ZoosManagementSystem.Web.Models
         partial void OnHeightChanging(int value);
         partial void OnHeightChanged();
         /// <summary>
-        /// There are no comments for Property Width in the schema.
+        /// There are no comments for Property Temperature in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public int Width
+        public double Temperature
         {
             get
             {
-                return this._Width;
+                return this._Temperature;
             }
             set
             {
-                this.OnWidthChanging(value);
-                this.ReportPropertyChanging("Width");
-                this._Width = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
-                this.ReportPropertyChanged("Width");
-                this.OnWidthChanged();
+                this.OnTemperatureChanging(value);
+                this.ReportPropertyChanging("Temperature");
+                this._Temperature = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("Temperature");
+                this.OnTemperatureChanged();
             }
         }
-        private int _Width;
-        partial void OnWidthChanging(int value);
-        partial void OnWidthChanged();
+        private double _Temperature;
+        partial void OnTemperatureChanging(double value);
+        partial void OnTemperatureChanged();
+        /// <summary>
+        /// There are no comments for Property Vaccine in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string Vaccine
+        {
+            get
+            {
+                return this._Vaccine;
+            }
+            set
+            {
+                this.OnVaccineChanging(value);
+                this.ReportPropertyChanging("Vaccine");
+                this._Vaccine = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("Vaccine");
+                this.OnVaccineChanged();
+            }
+        }
+        private string _Vaccine;
+        partial void OnVaccineChanging(string value);
+        partial void OnVaccineChanged();
         /// <summary>
         /// There are no comments for Property Notes in the schema.
         /// </summary>

@@ -86,7 +86,7 @@
                            foreach (var timeSlot in this.Model.TimeSlots)
                            { %>
                             <p id="<%= timeSlot.TimeSlotId + "-HEAD" %>" class="timeslothead">
-                                Itervalo <%= timeSlotIndex %><a href="JavaScript:removeTimeSlot('<%= timeSlot.TimeSlotId %>')" class="deletelink">Remover</a>
+                                Itervalo <%= timeSlotIndex %><a href="JavaScript:removeCollapsableItem('<%= timeSlot.TimeSlotId %>')" class="deletelink">Remover</a>
                             </p>
                             <div id="<%= timeSlot.TimeSlotId + "-BODY" %>" class="timeslotbody">
                                 <p>

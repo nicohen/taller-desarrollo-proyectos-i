@@ -122,7 +122,8 @@
           <Property Name="MeasurementDate" Type="datetime" Nullable="false" />
           <Property Name="Weight" Type="int" Nullable="false" />
           <Property Name="Height" Type="int" Nullable="false" />
-          <Property Name="Width" Type="int" Nullable="false" />
+          <Property Name="Temperature" Type="float" Nullable="false" />
+          <Property Name="Vaccine" Type="nvarchar" MaxLength="50" />
           <Property Name="Notes" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="Responsible">
@@ -386,7 +387,8 @@
           <Property Name="MeasurementDate" Type="DateTime" Nullable="false" />
           <Property Name="Weight" Type="Int32" Nullable="false" />
           <Property Name="Height" Type="Int32" Nullable="false" />
-          <Property Name="Width" Type="Int32" Nullable="false" />
+          <Property Name="Temperature" Type="Double" Nullable="false" />
+          <Property Name="Vaccine" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="Notes" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Animal" Relationship="ZoosManagementSystemModel.FK_HealthMeasure_Animal" FromRole="HealthMeasure" ToRole="Animal" />
         </EntityType>
@@ -538,7 +540,8 @@
                 <ScalarProperty Name="MeasurementDate" ColumnName="MeasurementDate" />
                 <ScalarProperty Name="Weight" ColumnName="Weight" />
                 <ScalarProperty Name="Height" ColumnName="Height" />
-                <ScalarProperty Name="Width" ColumnName="Width" />
+                <ScalarProperty Name="Temperature" ColumnName="Temperature" />
+                <ScalarProperty Name="Vaccine" ColumnName="Vaccine" />
                 <ScalarProperty Name="Notes" ColumnName="Notes" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -665,40 +668,37 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram Name="ZoosManagementSystemModel">
-        <EntityTypeShape EntityType="ZoosManagementSystemModel.Animal" Width="1.5" PointX="6" PointY="7.25" Height="3.3263964843749996" IsExpanded="true" />
-        <EntityTypeShape EntityType="ZoosManagementSystemModel.Environment" Width="1.5" PointX="0.75" PointY="7.5" Height="2.7494921874999996" IsExpanded="true" />
-        <EntityTypeShape EntityType="ZoosManagementSystemModel.EnvironmentMeasure" Width="1.5" PointX="3" PointY="4.5" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZoosManagementSystemModel.Animal" Width="1.5" PointX="6" PointY="7.375" Height="3.3263964843749996" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZoosManagementSystemModel.Environment" Width="1.5" PointX="0.75" PointY="7.625" Height="2.7494921874999996" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZoosManagementSystemModel.EnvironmentMeasure" Width="1.5" PointX="3" PointY="4.625" Height="2.1725878906249996" IsExpanded="true" />
         <EntityTypeShape EntityType="ZoosManagementSystemModel.Feeding" Width="1.5" PointX="6" PointY="2" Height="3.9033007812499996" IsExpanded="true" />
         <EntityTypeShape EntityType="ZoosManagementSystemModel.FeedingTime" Width="1.5" PointX="8.25" PointY="7" Height="1.9802864583333344" IsExpanded="true" />
-        <EntityTypeShape EntityType="ZoosManagementSystemModel.HealthMeasure" Width="1.5" PointX="8.25" PointY="10.5" Height="2.3648893229166674" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZoosManagementSystemModel.HealthMeasure" Width="1.5" PointX="8.25" PointY="10.375" Height="2.5571907552083317" IsExpanded="true" />
         <EntityTypeShape EntityType="ZoosManagementSystemModel.Responsible" Width="1.5" PointX="3.75" PointY="0.75" Height="2.3648893229166674" IsExpanded="true" />
         <EntityTypeShape EntityType="ZoosManagementSystemModel.Sensor" Width="1.5" PointX="3" PointY="7.5" Height="2.1725878906249996" IsExpanded="true" />
         <EntityTypeShape EntityType="ZoosManagementSystemModel.TimeSlot" Width="1.5" PointX="3" PointY="10.375" Height="2.9417936197916674" IsExpanded="true" />
         <AssociationConnector Association="ZoosManagementSystemModel.FK_Animal_Environment" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="9.9922900390625" />
-          <ConnectorPoint PointX="4.822916666666667" PointY="9.9922900390625" />
-          <ConnectorPoint PointX="4.989583333333333" PointY="9.9922900390625" />
-          <ConnectorPoint PointX="6" PointY="9.9922900390625" /></AssociationConnector>
+          <ConnectorPoint PointX="2.25" PointY="10.0547900390625" />
+          <ConnectorPoint PointX="6" PointY="10.0547900390625" /></AssociationConnector>
         <AssociationConnector Association="ZoosManagementSystemModel.FK_Animal_Responsible" ManuallyRouted="false">
           <ConnectorPoint PointX="4.90625" PointY="3.1148893229166674" />
-          <ConnectorPoint PointX="4.90625" PointY="10.183647519531249" />
-          <ConnectorPoint PointX="6" PointY="10.183647519531249" /></AssociationConnector>
+          <ConnectorPoint PointX="4.90625" PointY="9.8636864648437488" />
+          <ConnectorPoint PointX="6" PointY="9.8636864648437488" /></AssociationConnector>
         <AssociationConnector Association="ZoosManagementSystemModel.FK_FeedingTime_Animal" ManuallyRouted="false">
-          <ConnectorPoint PointX="7.5" PointY="8.1151432291666676" />
-          <ConnectorPoint PointX="8.25" PointY="8.1151432291666676" /></AssociationConnector>
+          <ConnectorPoint PointX="7.5" PointY="8.1776432291666676" />
+          <ConnectorPoint PointX="8.25" PointY="8.1776432291666676" /></AssociationConnector>
         <AssociationConnector Association="ZoosManagementSystemModel.FK_HealthMeasure_Animal" ManuallyRouted="false">
-          <ConnectorPoint PointX="6.75" PointY="10.576396484375" />
-          <ConnectorPoint PointX="6.75" PointY="11.720643403645834" />
-          <ConnectorPoint PointX="8.25" PointY="11.720643403645834" /></AssociationConnector>
+          <ConnectorPoint PointX="7.5" PointY="10.5381982421875" />
+          <ConnectorPoint PointX="8.25" PointY="10.5381982421875" /></AssociationConnector>
         <AssociationConnector Association="ZoosManagementSystemModel.FK_EnvironmentMeasure_Environment" ManuallyRouted="false">
-          <ConnectorPoint PointX="1.5" PointY="7.5" />
-          <ConnectorPoint PointX="1.5" PointY="5.5862939453125" />
-          <ConnectorPoint PointX="3" PointY="5.5862939453125" /></AssociationConnector>
+          <ConnectorPoint PointX="1.5" PointY="7.625" />
+          <ConnectorPoint PointX="1.5" PointY="5.7112939453125" />
+          <ConnectorPoint PointX="3" PointY="5.7112939453125" /></AssociationConnector>
         <AssociationConnector Association="ZoosManagementSystemModel.FK_Sensor_Environment" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="8.5862939453125" />
-          <ConnectorPoint PointX="3" PointY="8.5862939453125" /></AssociationConnector>
+          <ConnectorPoint PointX="2.25" PointY="8.6487939453125" />
+          <ConnectorPoint PointX="3" PointY="8.6487939453125" /></AssociationConnector>
         <AssociationConnector Association="ZoosManagementSystemModel.FK_TimeSlot_Environment" ManuallyRouted="false">
-          <ConnectorPoint PointX="1.5" PointY="10.2494921875" />
+          <ConnectorPoint PointX="1.5" PointY="10.3744921875" />
           <ConnectorPoint PointX="1.5" PointY="11.845896809895834" />
           <ConnectorPoint PointX="3" PointY="11.845896809895834" /></AssociationConnector>
         <AssociationConnector Association="ZoosManagementSystemModel.FK_FeedingTime_Feeding" ManuallyRouted="false">

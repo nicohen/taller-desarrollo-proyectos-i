@@ -119,7 +119,7 @@
                            { %>
                         <p id="<%= feedingTime.FeedingTimeId + "-HEAD" %>" class="timeslothead">
                             Horario <%= feedingTimeIndex %>
-                            <a href="JavaScript:removeFeedingTime('<%= feedingTime.FeedingTimeId %>')" class="deletelink">Remover</a>
+                            <a href="JavaScript:removeCollapsableItem('<%= feedingTime.FeedingTimeId %>')" class="deletelink">Remover</a>
                         </p>
                         <div id="<%= feedingTime.FeedingTimeId + "-BODY" %>" class="timeslotbody">
                             <p class="threerow">
@@ -137,7 +137,8 @@
                                                                     feeding => new SelectListItem
                                                                     {
                                                                         Text = feeding.Name,
-                                                                        Value = feeding.FeedingId
+                                                                        Value = feeding.FeedingId,
+                                                                        Selected = feeding.FeedingId.Equals(feedingTime.FeedingId, StringComparison.InvariantCultureIgnoreCase)
                                                                     }),
                                                         "Seleccionar Alimento...")%>
                             </p>
@@ -160,7 +161,15 @@
             <% } %>
         </div>
         <% } %>
-        <div class="clear">
-        </div>
+        <div class="clear"></div>
+        
+        <%= Html.DropDownList("feedingsTemplate",
+                            this.Model.FeedingsAvailable.Select(
+                                feeding => new SelectListItem
+                                            {
+                                                Text = feeding.Name,
+                                                Value = feeding.FeedingId,
+                                            }),
+                                "Seleccionar Alimento...", new { style="display: none;" }) %>
     </div>
 </asp:Content>

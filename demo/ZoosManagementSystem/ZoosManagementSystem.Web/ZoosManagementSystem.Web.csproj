@@ -95,9 +95,29 @@
     <Compile Include="ViewData\TimeSlotViewData.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Images\background.png" />
+    <Content Include="Content\Images\background_button_login-ovr.gif" />
+    <Content Include="Content\Images\background_button_login.gif" />
+    <Content Include="Content\Images\background_button_small-ovr.gif" />
+    <Content Include="Content\Images\background_button_small.gif" />
+    <Content Include="Content\Images\background_columnleft.gif" />
+    <Content Include="Content\Images\background_columnright.gif" />
+    <Content Include="Content\Images\background_fullwidth.jpg" />
+    <Content Include="Content\Images\background_main.jpg" />
+    <Content Include="Content\Images\background_nav_main.gif" />
+    <Content Include="Content\Images\background_thumbnail.jpg" />
+    <Content Include="Content\Images\button_search-ovr.gif" />
+    <Content Include="Content\Images\button_search.gif" />
+    <Content Include="Content\Images\delete.png" />
+    <Content Include="Content\Images\edit.png" />
+    <Content Include="Content\Images\logo.new.png" />
     <Content Include="Content\Images\logo.png" />
+    <Content Include="Content\Images\navbar_bg - Copy %282%29.png" />
+    <Content Include="Content\Images\navbar_bg - Copy.png" />
     <Content Include="Content\Images\navbar_bg.png" />
+    <Content Include="Content\Images\new.png" />
+    <Content Include="Content\Images\newsurvey.png" />
+    <Content Include="Content\Images\new_big.png" />
+    <Content Include="Content\Images\poster.jpg" />
     <Content Include="Content\Scripts\common.js" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />

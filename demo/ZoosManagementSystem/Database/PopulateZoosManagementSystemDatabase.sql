@@ -10,6 +10,7 @@ SET @environmentID = (SELECT TOP 1 [Id] FROM [dbo].[Environment] WHERE [Name] = 
 
 DECLARE @feedingID UNIQUEIDENTIFIER
 INSERT INTO [dbo].[Feeding] ([Name], [Description]) VALUES ('Carne de Cebra, Búfalo y Antílope', 'Mezcla de carnes de cebras, búfalos y antílopes')
+INSERT INTO [dbo].[Feeding] ([Name], [Description]) VALUES ('Hierba, Corteza de los Árboles y Arbustos', 'Mezcla de distintas hierbas, cortezas de árboles y arbustos')
 SET @feedingID = (SELECT TOP 1 [Id] FROM [dbo].[Feeding])
 
 DECLARE @responsibleID UNIQUEIDENTIFIER
@@ -26,9 +27,9 @@ DECLARE @sensorID UNIQUEIDENTIFIER
 INSERT INTO [dbo].[Sensor] ([EnvironmentId], [Name], [Type], [Manufacturer], [SerialNumber]) VALUES (@environmentID, 'SensorLuz-Ph1127-1', 'Luz', 'Phidgets Inc.', 'AB285-DE855-EDDR5-ADRR1-15DDR')
 SET @sensorID = (SELECT TOP 1 [Id] FROM [dbo].[Sensor])
 
-INSERT INTO [ZoosManagementSystem].[dbo].[HealthMeasure] ([AnimalId], [MeasurementDate], [Weight], [Height], [Width] ,[Notes]) VALUES (@animalID, '2007-05-10', 2, 14, 5, 'Todo normal')
-INSERT INTO [ZoosManagementSystem].[dbo].[HealthMeasure] ([AnimalId], [MeasurementDate], [Weight], [Height], [Width] ,[Notes]) VALUES (@animalID, '2008-05-15', 7, 20, 9, 'Todo normal')
-INSERT INTO [ZoosManagementSystem].[dbo].[HealthMeasure] ([AnimalId], [MeasurementDate], [Weight], [Height], [Width] ,[Notes]) VALUES (@animalID, '2009-12-20', 10, 24, 11, 'Todo normal')
+INSERT INTO [ZoosManagementSystem].[dbo].[HealthMeasure] ([AnimalId], [MeasurementDate], [Weight], [Height], [Temperature], [Vaccine], [Notes]) VALUES (@animalID, '2007-05-10', 2, 14, 36.5, 'Vacuna ABC - primera dosis', 'Todo normal')
+INSERT INTO [ZoosManagementSystem].[dbo].[HealthMeasure] ([AnimalId], [MeasurementDate], [Weight], [Height], [Temperature], [Vaccine], [Notes]) VALUES (@animalID, '2008-05-15', 7, 20, 36.7, 'Vacuna ABC - segunda dosis', 'Todo normal')
+INSERT INTO [ZoosManagementSystem].[dbo].[HealthMeasure] ([AnimalId], [MeasurementDate], [Weight], [Height], [Temperature], [Vaccine], [Notes]) VALUES (@animalID, '2009-12-20', 10, 24, 37.2, 'Vacuna ABC - tercera dosis', 'Todo normal')
 
 INSERT INTO [dbo].[FeedingTime] ([FeedingId], [AnimalId], [Amount], [Time]) VALUES (@feedingID, @animalID, 3500, '12:00:00.0')
 INSERT INTO [dbo].[FeedingTime] ([FeedingId], [AnimalId], [Amount], [Time]) VALUES (@feedingID, @animalID, 3500, '20:30:00.0')
