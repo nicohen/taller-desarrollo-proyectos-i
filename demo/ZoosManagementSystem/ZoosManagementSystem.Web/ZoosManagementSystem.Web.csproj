@@ -76,7 +76,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="HomeViewData.cs" />
     <Compile Include="Models\EntityTranslator.cs" />
     <Compile Include="Models\IZooCatalogRepository.cs" />
     <Compile Include="Models\SqlZooCatalogRepository.cs" />
@@ -88,6 +87,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewData\AnimalViewData.cs" />
     <Compile Include="ViewData\EnvironmentViewData.cs" />
+    <Compile Include="ViewData\HomeViewData.cs" />
     <Compile Include="ViewData\TimeSlotViewData.cs" />
   </ItemGroup>
   <ItemGroup>
