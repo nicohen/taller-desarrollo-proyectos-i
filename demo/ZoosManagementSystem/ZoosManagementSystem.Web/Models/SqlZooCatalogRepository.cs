@@ -344,6 +344,20 @@
             }
         }
 
+        public Guid CreateAnimal(AnimalViewData animalViewData)
+        {
+            using (var entities = this.EntityContext)
+            {
+                var animalEntity = new Animal { Id = Guid.NewGuid() };
+
+                entities.AddToAnimal(animalEntity);
+                this.SaveOrUpdateAnimal(animalViewData, animalEntity, entities);
+                entities.SaveChanges();
+
+                return animalEntity.Id;
+            }
+        }
+
         public bool DeleteEnvironment(Guid environmentId)
         {
             using (var entities = this.EntityContext)
@@ -529,10 +543,7 @@
             animalEntity.NextHealthMeasure = DateTime.Parse(animalViewData.NextHealthMeasure);
 
             var responsibleId = new Guid(animalViewData.ResponsibleId);
-            if (animalEntity.Responsible.Id != responsibleId)
-            {
-                animalEntity.Responsible = entities.Responsible.FirstOrDefault(r => r.Id == responsibleId);
-            }
+            animalEntity.Responsible = entities.Responsible.FirstOrDefault(r => r.Id == responsibleId);
             
             if (!string.IsNullOrEmpty(animalViewData.EnvironmentId))
             {

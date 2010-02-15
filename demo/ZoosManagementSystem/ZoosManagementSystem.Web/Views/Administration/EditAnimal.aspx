@@ -43,7 +43,7 @@
                     </div>
                     <p>
                         <label for="Cost">
-                            Costo:</label><%= this.Html.TextBox("Cost")%></p>
+                            Costo ($):</label><%= this.Html.TextBox("Cost")%></p>
                     <div class="clear">
                     </div>
                     <p>
@@ -53,7 +53,7 @@
                     </div>
                     <p>
                         <label for="ResponsibleId">
-                            Ambiente:</label><%= Html.DropDownList("ResponsibleId",
+                            Responsable:</label><%= Html.DropDownList("ResponsibleId",
                                                         this.Model.ResponsiblesAvailable.Select(
                                                                     r => new SelectListItem
                                                                         {

@@ -324,6 +324,61 @@ namespace ZoosManagementSystem.Web.Controllers
             return this.RedirectToRoute("SearchAnimals", new { searchCriteria = animalViewData.AnimalId });
         }
 
+        public ActionResult NewAnimal()
+        {
+            var environmentViewData = new AnimalViewData
+            {
+                EnvironmentsAvailable = this.repository.GetEnvironments()
+                        .Select(e => e.ToViewData(this.repository))
+                        .ToList(),
+                ResponsiblesAvailable = this.repository.GetResponsibles()
+                    .Select(r => r.ToViewData())
+                    .ToList(),
+                FeedingsAvailable = this.repository.GetFeedings()
+                    .Select(f => f.ToViewData())
+                    .ToList()
+            };
+
+            return this.View(environmentViewData);
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        [ActionName("NewAnimal")]
+        public ActionResult SaveNewAnimal()
+        {
+            var animalViewData = new AnimalViewData();
+            var updateModelResult = this.TryUpdateModel<AnimalViewData>(animalViewData, null, null, new[] { "freeanimals" });
+
+            if (!updateModelResult)
+            {
+                animalViewData.EnvironmentsAvailable = this.repository.GetEnvironments()
+                        .Select(e => e.ToViewData(this.repository))
+                        .ToList();
+                animalViewData.ResponsiblesAvailable = this.repository.GetResponsibles()
+                    .Select(r => r.ToViewData())
+                    .ToList();
+                animalViewData.FeedingsAvailable = this.repository.GetFeedings()
+                    .Select(f => f.ToViewData())
+                    .ToList();
+                return View(animalViewData);
+            }
+
+            var animalId = Guid.Empty;
+            try
+            {
+                animalId = this.repository.CreateAnimal(animalViewData);
+                this.TempData["ActionSucess"] = true;
+                this.TempData["EnvironmentMessage"] = "Se creó correctamente el ambiente";
+            }
+            catch (Exception exception)
+            {
+                this.TempData["ActionSucess"] = false;
+                this.TempData["EnvironmentMessage"] = exception.Message;
+            }
+
+            return this.RedirectToRoute("SearchAnimals", new { searchCriteria = animalId.ToString() });
+        }
+
         public ActionResult EditHealthMeasure(string healthMeasureId)
         {
             HealthMeasureViewData healthMeasureViewData = null;
@@ -410,7 +465,8 @@ namespace ZoosManagementSystem.Web.Controllers
                                 Species = a.Species,
                                 Sex = (a.Sex.ToLowerInvariant() == "m") ? "Macho" : "Hembra",
                             }).ToList(),
-                    AnimalId = animalId
+                    AnimalId = animalId,
+                    MeasurementDate = DateTime.Now.ToString("yyyy/MM/dd")
                 };
 
             return this.View("EditHealthMeasure", healthMeasureViewData);

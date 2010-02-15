@@ -37,6 +37,8 @@ namespace ZoosManagementSystem.Web.Models
 
         Guid CreateHealthMeasure(HealthMeasureViewData healthMeasureViewData);
 
+        Guid CreateAnimal(AnimalViewData animalViewData);
+
         bool DeleteEnvironment(Guid environmentId);
 
         bool DeleteAnimal(Guid animalId);

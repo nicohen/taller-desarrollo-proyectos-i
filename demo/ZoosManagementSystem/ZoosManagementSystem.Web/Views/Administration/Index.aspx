@@ -7,8 +7,6 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="mainblock">
         <h2>Administraci&oacute;n</h2>
-        <p><strong>TODO</strong></p>
-        
         <ul>
             <li><%= Html.ActionLink("Ambientes", "Environments", "Administration")%></li>
             <li><%= Html.ActionLink("Animales", "Animals", "Administration")%></li>
