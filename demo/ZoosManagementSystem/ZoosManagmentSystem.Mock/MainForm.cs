@@ -38,6 +38,9 @@ namespace ZoosManagmentSystem.Mock
             this.temperatureGaugeBar.Value = 0;
             this.luminosityGaugeBar.Value = 0;
             this.humidityGaugeBar.Value = 0;
+            this.temperatureGaugeBar.Maximum = 1000;
+            this.humidityGaugeBar.Maximum = 1000;
+            this.luminosityGaugeBar.Maximum = 2000;
         }
 
         private void LoadDataFromStorage()
@@ -47,6 +50,8 @@ namespace ZoosManagmentSystem.Mock
             environments = DbHelper.GetEnvironments();
 
             this.selectedEnvironmentId = environments[0].Id;
+
+            this.environmentNameTextBox.Text = environments[0].Name;
 
             EnvironmentSimulator.Initialize(environments, 16, 32, 12);
 

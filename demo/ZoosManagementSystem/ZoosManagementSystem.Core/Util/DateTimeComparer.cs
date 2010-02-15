@@ -91,7 +91,7 @@ namespace ZoosManagementSystem.Core.Util
 
         public static bool DateInRange(DateTime date, TimeSpan rangeStart, TimeSpan rangeEnd)
         {
-            if (date.Hour >= rangeStart.Hours && date.Hour <= rangeEnd.Hours)
+            if ((date.Hour >= rangeStart.Hours && date.Hour <= rangeEnd.Hours) || (date.Hour >= rangeStart.Hours && rangeEnd.Hours< rangeStart.Hours))
             {
                 if (date.Hour == rangeStart.Hours && date.Hour == rangeEnd.Hours)
                 {

@@ -52,7 +52,9 @@ namespace ZoosManagmentSystem.Mock
             this.humidityGaugeBar = new VerticalProgressBar.VerticalProgressBar();
             this.label4 = new System.Windows.Forms.Label();
             this.temperatureGaugeBar = new VerticalProgressBar.VerticalProgressBar();
-			MainForm.statusConsoleTextbox = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.environmentNameTextBox = new System.Windows.Forms.TextBox();
+MainForm.statusConsoleTextbox = new System.Windows.Forms.TextBox();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -74,7 +76,7 @@ namespace ZoosManagmentSystem.Mock
             // 
             // groupBox1
             // 
-			this.groupBox1.Controls.Add(MainForm.statusConsoleTextbox);
+            this.groupBox1.Controls.Add(MainForm.statusConsoleTextbox);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(15, 116);
             this.groupBox1.Name = "groupBox1";
@@ -314,7 +316,25 @@ namespace ZoosManagmentSystem.Mock
             this.temperatureGaugeBar.TabIndex = 0;
             this.temperatureGaugeBar.Value = 50;
             // 
-            MainForm.statusConsoleTextbox.Location = new System.Drawing.Point(6, 19);
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(847, 36);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(68, 16);
+            this.label7.TabIndex = 5;
+            this.label7.Text = "Ambiente:";
+            // 
+            // environmentNameTextBox
+            // 
+            this.environmentNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.environmentNameTextBox.Location = new System.Drawing.Point(936, 30);
+            this.environmentNameTextBox.Name = "environmentNameTextBox";
+            this.environmentNameTextBox.Size = new System.Drawing.Size(198, 31);
+            this.environmentNameTextBox.TabIndex = 6;
+            // 
+MainForm.statusConsoleTextbox.Location = new System.Drawing.Point(6, 19);
             MainForm.statusConsoleTextbox.Multiline = true;
             new System.Drawing.Font("Microsoft Sans Serif", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             MainForm.statusConsoleTextbox.Name = "statusConsoleTextbox";
@@ -326,6 +346,8 @@ namespace ZoosManagmentSystem.Mock
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1165, 608);
+            this.Controls.Add(this.environmentNameTextBox);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
@@ -341,6 +363,7 @@ namespace ZoosManagmentSystem.Mock
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -370,6 +393,8 @@ namespace ZoosManagmentSystem.Mock
         private Button modifyTemperatureButton;
         private Button modifyLuminosityButton;
         private Button modifyHumidityButton;
+        private Label label7;
+        private TextBox environmentNameTextBox;
     }
 }
 
