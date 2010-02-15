@@ -105,10 +105,10 @@ function addNewTimeSlot(id) {
       + "</p>"
       + "<div id=\"" + newIndex.toString() + "-BODY\" class=\"timeslotbody\">"
       + "<p>"
-      + "<label>Hora inicial:</label><input id=\"TimeSlots[" + newIndex.toString() + "]_InitialTime\" name=\"TimeSlots[" + newIndex.toString() + "].InitialTime\" type=\"text\" value=\"00:00:00\" />"
+      + "<label>Hora inicial:</label><input id=\"TimeSlots[" + newIndex.toString() + "]_InitialTime\" name=\"TimeSlots[" + newIndex.toString() + "].InitialTime\" type=\"text\" value=\"00:00\" />"
       + "</p>"
       + "<p>"
-      + "<label>Hora final:</label><input id=\"TimeSlots[" + newIndex.toString() + "]_FinalTime\" name=\"TimeSlots[" + newIndex.toString() + "].FinalTime\" type=\"text\" value=\"00:00:00\" />"
+      + "<label>Hora final:</label><input id=\"TimeSlots[" + newIndex.toString() + "]_FinalTime\" name=\"TimeSlots[" + newIndex.toString() + "].FinalTime\" type=\"text\" value=\"00:00\" />"
       + "</p>"
       + "<p>"
       + "<label>Temperatura M&iacute;nima (&#176;C):</label><input id=\"TimeSlots[" + newIndex.toString() + "]_TemperatureMin\" name=\"TimeSlots[" + newIndex.toString() + "].TemperatureMin\" type=\"text\" value=\"0\" />"
@@ -138,6 +138,15 @@ function addNewTimeSlot(id) {
     $(".timeslothead").click(toggleAnimation);
 }
 
+function searchAnimalKeyPressed(control, e) {
+    key = (document.all) ? e.keyCode : e.which;
+
+    if (key == 13) {
+        redirectSearchAnimal();
+    }
+}
+
+
 function searchEnvironmentKeyPressed(control, e) {
     key = (document.all) ? e.keyCode : e.which;
 
@@ -150,4 +159,10 @@ function redirectSearchEnvironment() {
     var searchCriteria = $("#searchCriteria")[0].value;
 
     window.location = "/ZoosManagementSystem/Administration/Environments/Search/" + searchCriteria;
+}
+
+function redirectSearchAnimal() {
+    var searchCriteria = $("#searchCriteria")[0].value;
+
+    window.location = "/ZoosManagementSystem/Administration/Animals/Search/" + searchCriteria;
 }

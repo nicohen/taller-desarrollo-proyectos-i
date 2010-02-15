@@ -62,7 +62,7 @@
                              <h4><%= Html.Encode("No se encontró ningún animal.") %></h4>
                         <% } %>
                     </fieldset>
-                    <fieldset>
+                    <fieldset class="last">
                         <%
                             if ((environment.TimeSlot != null) && (environment.TimeSlot.Count > 0))
                            { %>
@@ -73,7 +73,7 @@
                                foreach (var timeSlot in environment.TimeSlot.OrderBy(t => t.InitialTime))
                                {
                                    timeSlotCount++; %>
-                                   <li>Itervalo <%= timeSlotCount %>: <%= string.Format(CultureInfo.CurrentUICulture, "Desde {0} hs hasta {1} hs.", timeSlot.InitialTime, timeSlot.FinalTime) %></li>
+                                   <li>Itervalo <%= timeSlotCount %>: <%= string.Format(CultureInfo.CurrentUICulture, "Desde {0}:{1} hs hasta {2}:{3} hs.", timeSlot.InitialTime.Hours.ToString("D2"), timeSlot.InitialTime.Minutes.ToString("D2"), timeSlot.FinalTime.Hours.ToString("D2"), timeSlot.FinalTime.Minutes.ToString("D2")) %></li>
                             <% } %>
                             </ul>
                         <% }

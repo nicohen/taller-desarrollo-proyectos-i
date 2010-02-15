@@ -7,8 +7,6 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-   
-
     <div class="mainblock">
         <h2>Administraci&oacute;n de Ambientes</h2>       
         
@@ -78,7 +76,7 @@
                               </div>
                         <% } %>
                     </fieldset>
-                    <fieldset id="timeslots">
+                    <fieldset id="timeslots" class="last">
                         <legend>Intervalos de Tiempo para Sensores</legend>
                         <span><a href="JavaScript:addNewTimeSlot('timeslotlist');" class="newlink">Agregar</a></span>
                         <div id="timeslotlist">

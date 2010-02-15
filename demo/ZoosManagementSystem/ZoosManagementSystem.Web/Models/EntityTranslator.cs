@@ -1,5 +1,6 @@
 ﻿namespace ZoosManagementSystem.Web.Models
 {
+    using System.Globalization;
     using System.Linq;
     using ZoosManagementSystem.Web.ViewData;
 
@@ -37,8 +38,8 @@
             return new TimeSlotViewData
                 {
                     TimeSlotId = timeSlotModel.Id.ToString(),
-                    InitialTime = timeSlotModel.InitialTime.ToString(),
-                    FinalTime = timeSlotModel.FinalTime.ToString(),
+                    InitialTime = string.Format(CultureInfo.CurrentCulture, "{0}:{1}", timeSlotModel.InitialTime.Hours.ToString("D2"), timeSlotModel.InitialTime.Minutes.ToString("D2")),
+                    FinalTime = string.Format(CultureInfo.CurrentCulture, "{0}:{1}", timeSlotModel.FinalTime.Hours.ToString("D2"), timeSlotModel.FinalTime.Minutes.ToString("D2")),
                     TemperatureMin = timeSlotModel.TemperatureMin,
                     TemperatureMax = timeSlotModel.TemperatureMax,
                     HumidityMin = timeSlotModel.HumidityMin,

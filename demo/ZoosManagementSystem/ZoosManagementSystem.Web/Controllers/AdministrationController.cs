@@ -28,11 +28,6 @@ namespace ZoosManagementSystem.Web.Controllers
             return this.View();
         }
 
-        public ActionResult Surveys()
-        {
-            return this.View();
-        }
-
         public ActionResult Environments()
         {
             var environments = this.repository.GetEnvironments();
@@ -202,7 +197,17 @@ namespace ZoosManagementSystem.Web.Controllers
 
         public ActionResult Animals()
         {
-            return this.View();
+            var animals = this.repository.GetAnimals();
+            this.TempData["NoItemsMessage"] = "¡No hay animales disponibles para el Zoológico!";
+
+            if (this.Request.Path.EndsWith("/Administration/Animals"))
+            {
+                this.TempData["AnimalMessage"] = null;
+                this.TempData["ActionSucess"] = null;
+                this.TempData["SearchCriteria"] = null;
+            }
+
+            return this.View("Animals", animals);
         }
     }
 }

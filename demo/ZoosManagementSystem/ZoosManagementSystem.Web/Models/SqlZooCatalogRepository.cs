@@ -38,6 +38,34 @@
             }
         }
 
+        public IList<Animal> GetAnimals()
+        {
+            using (var entities = this.EntityContext)
+            {
+                var animals = entities.Animal
+                    .Include("Environment")
+                    .Include("FeedingTime")
+                    .Include("Responsible")
+                    .Include("HealthMeasure")
+                    .OrderBy(env => env.Species)
+                    .ThenBy(env => env.Name)
+                    .ToList();
+
+                foreach (var animal in animals)
+                {
+                    foreach (var feedingTime in animal.FeedingTime)
+                    {
+                        if (!feedingTime.FeedingReference.IsLoaded)
+                        {
+                            feedingTime.FeedingReference.Load();
+                        }
+                    }
+                }
+
+                return animals.ToList();
+            }
+        }
+
         public IList<Environment> GetEnvironments()
         {
             using (var entities = this.EntityContext)

@@ -7,11 +7,13 @@ namespace ZoosManagementSystem.Web.Models
 
     public interface IZooCatalogRepository
     {
-        IList<Animal> GetFreeAnimals();
-
         IList<Environment> GetEnvironments();
 
         Environment GetEnvironment(Guid guid);
+
+        IList<Animal> GetAnimals();
+
+        IList<Animal> GetFreeAnimals();
 
         IList<Environment> SearchEnvironments(string searchCriteria);
 
