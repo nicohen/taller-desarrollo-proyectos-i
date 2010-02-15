@@ -24,5 +24,7 @@ namespace ZoosManagementSystem.Web.Models
         Guid CreateEnvironment(EnvironmentViewData environmentViewData);
 
         bool DeleteEnvironment(Guid environmentId);
+
+        bool DeleteAnimal(Guid animalId);
     }
 }

@@ -253,8 +253,40 @@
                         entities.DeleteObject(timeSlot);
                     }
 
-                    entities.SaveChanges();
                     entities.DeleteObject(environment);
+                    entities.SaveChanges();
+
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public bool DeleteAnimal(Guid animalId)
+        {
+            using (var entities = this.EntityContext)
+            {
+                var animal = entities.Animal
+                    .Include("Environment")
+                    .Include("FeedingTime")
+                    .Include("Responsible")
+                    .Include("HealthMeasure")
+                    .FirstOrDefault(a => a.Id == animalId);
+
+                if (animal != null)
+                {
+                    foreach (var feedingTime in animal.FeedingTime.ToList())
+                    {
+                        entities.DeleteObject(feedingTime);
+                    }
+
+                    foreach (var healthMeasure in animal.HealthMeasure.ToList())
+                    {
+                        entities.DeleteObject(healthMeasure);
+                    }
+
+                    entities.DeleteObject(animal);
                     entities.SaveChanges();
 
                     return true;

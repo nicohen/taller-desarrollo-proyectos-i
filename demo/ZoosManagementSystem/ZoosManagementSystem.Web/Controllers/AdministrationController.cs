@@ -223,5 +223,35 @@ namespace ZoosManagementSystem.Web.Controllers
 
             return this.View("Animals", animals);
         }
+
+        public ActionResult DeleteAnimal(string animalId)
+        {
+            try
+            {
+                this.TempData["ActionSucess"] = true;
+                this.TempData["AnimalMessage"] = "El animal se eliminó correctamente.";
+
+                if (!this.repository.DeleteAnimal(new Guid(animalId)))
+                {
+                    this.TempData["ActionSucess"] = false;
+                    this.TempData["AnimalMessage"] = string.Format(
+                        CultureInfo.CurrentCulture, "No se encontró ningún animal cuyo Id sea {0}.", animalId);
+                }
+            }
+            catch (FormatException)
+            {
+                this.TempData["ActionSucess"] = false;
+                this.TempData["AnimalMessage"] = string.Format(
+                    CultureInfo.CurrentCulture, "El formato del Id '{0}' es inválido.", animalId);
+            }
+            catch (OverflowException)
+            {
+                this.TempData["ActionSucess"] = false;
+                this.TempData["AnimalMessage"] = string.Format(
+                    CultureInfo.CurrentCulture, "El formato del Id '{0}' es inválido.", animalId);
+            }
+
+            return this.Animals();
+        }
     }
 }
