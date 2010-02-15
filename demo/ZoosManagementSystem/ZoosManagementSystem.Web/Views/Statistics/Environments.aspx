@@ -58,10 +58,10 @@
             <div class="contentbox" style="text-align:center">
                 <h3>Historial de Humedad</h3>
                 <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase=http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" width="300" height="220" id="Object1" >
-                 <param name="movie" value="<%=Url.Content("~/Content/FusionCharts/FCF_Column3D.swf")%>" />
+                 <param name="movie" value="<%=Url.Content("~/Content/FusionCharts/FCF_Area2D.swf")%>" />
                  <param name="FlashVars" value="&dataXML=<%= (string)this.ViewData["HumiGraph"] %>&chartWidth=300&chartHeight=220">
                  <param name="quality" value="high" />
-                 <embed src="<%=Url.Content("~/Content/FusionCharts/FCF_Column3D.swf")%>" flashVars="&dataXML=<%= (string)this.ViewData["HumiGraph"] %>&chartWidth=300&chartHeight=220" quality="high" width="300" height="220" name="Column3D" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
+                 <embed src="<%=Url.Content("~/Content/FusionCharts/FCF_Area2D.swf")%>" flashVars="&dataXML=<%= (string)this.ViewData["HumiGraph"] %>&chartWidth=300&chartHeight=220" quality="high" width="300" height="220" name="Column3D" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
                 </object>
             </div>
             <div class="clear"></div>

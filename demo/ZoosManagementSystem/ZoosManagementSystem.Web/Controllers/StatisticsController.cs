@@ -51,55 +51,57 @@ namespace ZoosManagementSystem.Web.Controllers
         public ActionResult ViewEnvironmentStats(string environmentId)
         {
 
-            this.TempData["ActionSucess"] = true;
-            this.TempData["EnvironmentStatMessage"] = null;
-            this.ViewData["GraphTitle"] = this.repository.GetEnvironment(new Guid(environmentId)).Name;
-            string tempGraph = "<graph caption='Temperatura' xAxisName='Fecha' yAxisName='*C' showNames='1' decimalPrecision='0' formatNumberScale='0'>"
-                                          + "<set name='Jan' value='462' color='AFD8F8' />"
-                                          + "<set name='Feb' value='857' color='F6BD0F' />"
-                                          + "<set name='Mar' value='671' color='8BBA00' />"
-                                          + "<set name='Apr' value='494' color='FF8E46' />"
-                                          + "<set name='May' value='761' color='008E8E' />"
-                                          + "<set name='Jun' value='960' color='D64646' />"
-                                          + "<set name='Jul' value='629' color='8E468E' />"
-                                          + "<set name='Aug' value='622' color='588526' />"
-                                          + "<set name='Sep' value='376' color='B3AA00' />"
-                                          + "<set name='Oct' value='494' color='008ED6' />"
-                                        + "</graph>";
-            this.ViewData["TempGraph"] = tempGraph;
-            string humiGraph = "<graph caption='Humedad' xAxisName='Fecha' yAxisName='Perc' showNames='1' decimalPrecision='0' formatNumberScale='0'>"
-                              + "<set name='Jan' value='462' color='AFD8F8' />"
-                              + "<set name='Feb' value='857' color='F6BD0F' />"
-                              + "<set name='Mar' value='671' color='8BBA00' />"
-                              + "<set name='Apr' value='494' color='FF8E46' />"
-                              + "<set name='May' value='761' color='008E8E' />"
-                              + "<set name='Jun' value='960' color='D64646' />"
-                              + "<set name='Jul' value='629' color='8E468E' />"
-                              + "<set name='Aug' value='622' color='588526' />"
-                              + "<set name='Sep' value='376' color='B3AA00' />"
-                              + "<set name='Oct' value='494' color='008ED6' />"
-                            + "</graph>";
-            this.ViewData["HumiGraph"] = humiGraph;
-            string lumiGraph = "<graph caption='Luminosidad' xAxisName='Fecha' yAxisName='Lux' showNames='1' decimalPrecision='0' formatNumberScale='0'>"
-                              + "<set name='Jan' value='462' color='AFD8F8' />"
-                              + "<set name='Feb' value='857' color='AFD8F8' />"
-                              + "<set name='Mar' value='671' color='AFD8F8' />"
-                              + "<set name='Apr' value='494' color='AFD8F8' />"
-                              + "<set name='May' value='761' color='AFD8F8' />"
-                              + "<set name='Jun' value='960' color='AFD8F8' />"
-                              + "<set name='Jul' value='629' color='AFD8F8' />"
-                              + "<set name='Aug' value='622' color='AFD8F8' />"
-                              + "<set name='Sep' value='376' color='AFD8F8' />"
-                              + "<set name='Oct' value='494' color='AFD8F8' />"
-                            + "</graph>";
-            this.ViewData["LumiGraph"] = lumiGraph;
-                /*if (!this.repository.DeleteEnvironment(new Guid(environmentId)))
-                {
-                    this.TempData["ActionSucess"] = false;
-                    this.TempData["EnvironmentStatMessage"] = string.Format(
-                        CultureInfo.CurrentCulture, "No es posible mostrar las estadísticas para este ambiente", environmentId);
-                }*/
+            try
+            {
+                this.TempData["EnvironmentStatMessage"] = null;
+                var environment = this.repository.GetEnvironment(new Guid(environmentId));
 
+                if (environment == null)
+                {
+                    this.TempData["EnvironmentStatMessage"] = string.Format(
+                        CultureInfo.CurrentCulture, "No se encontró ningún ambiente cuyo Id sea {0}.", environmentId);
+                }
+                else
+                {
+                    this.ViewData["GraphTitle"] = environment.Name;
+                    string tempGraph = "";
+                    string humiGraph = "";
+                    string lumiGraph = "";
+                    
+                    var ems = environment.EnvironmentMeasure.OrderByDescending(em => em.MeasurementDate).Take(10).ToList();
+
+                    foreach (var em in ems)
+                    {
+                        tempGraph = "<set name='" + String.Format("{0:dd-MM}", em.MeasurementDate) + "' value='" + em.Temperature.ToString().Replace(',', '.') + "' color='F6BD0F' />" + tempGraph;
+                        humiGraph = "<set name='" + String.Format("{0:dd-MM}", em.MeasurementDate) + "' value='" + em.Humidity.ToString().Replace(',', '.') + "' color='8BBA00' />" + humiGraph;
+                        lumiGraph = "<set name='" + String.Format("{0:dd-MM}", em.MeasurementDate) + "' value='" + em.Luminosity.ToString().Replace(',', '.') + "' color='AFD8F8' />" + lumiGraph;
+                    }
+
+                    tempGraph = "<graph caption='Temperatura' xAxisName='Fecha' yAxisName='*C' showNames='1' decimalPrecision='1' formatNumberScale='0'>" + tempGraph;
+                    humiGraph = "<graph caption='Humedad' xAxisName='Fecha' yAxisName='Percentage' showNames='1' decimalPrecision='1' formatNumberScale='0'>" + humiGraph;
+                    lumiGraph = "<graph caption='Luminosidad' xAxisName='Fecha' yAxisName='Lux' showNames='1' decimalPrecision='1' formatNumberScale='0'>" + lumiGraph;
+
+                    tempGraph += "</graph>";
+                    this.ViewData["TempGraph"] = tempGraph;
+
+                    humiGraph += "</graph>";
+                    this.ViewData["HumiGraph"] = humiGraph;
+
+                    lumiGraph += "</graph>";
+                    this.ViewData["LumiGraph"] = lumiGraph;
+                }
+            }
+            catch (FormatException)
+            {
+                this.TempData["EnvironmentStatMessage"] = string.Format(
+                    CultureInfo.CurrentCulture, "El formato del Id '{0}' es inválido.", environmentId);
+            }
+            catch (OverflowException)
+            {
+                this.TempData["EnvironmentStatMessage"] = string.Format(
+                    CultureInfo.CurrentCulture, "El formato del Id '{0}' es inválido.", environmentId);
+            }
+ 
             return this.Environments(); 
         }
 

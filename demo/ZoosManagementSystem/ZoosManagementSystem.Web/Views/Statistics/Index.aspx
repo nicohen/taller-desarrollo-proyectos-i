@@ -7,7 +7,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="mainblock">
         <h2>Estad&iacute;sticas</h2>
-        <p><strong>TODO</strong></p>
+        <p>Desde aqu&iacute; podr&aacute; consultar estad&iacute;sticas gr&aacute;ficas de los ambientes y animales presentes en el sistema</p>
         
         <ul>
             <li><%= Html.ActionLink("Ambientes", "Environments", "Statistics")%></li>
