@@ -122,7 +122,7 @@ namespace ZoosManagementSystem.Core.Storage
                         select e;
 
             return query.ToList();
-        }    
+        }
 
         #endregion
 
@@ -138,7 +138,7 @@ namespace ZoosManagementSystem.Core.Storage
                         where e.Id == responsibleId
                         select e;
 
-            return query.First() ;
+            return query.First();
         }
 
         #endregion
