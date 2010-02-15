@@ -254,6 +254,34 @@
             }
         }
 
+        public void UpdateAnimal(AnimalViewData animalViewData)
+        {
+            using (var entities = this.EntityContext)
+            {
+                var id = new Guid(animalViewData.AnimalId);
+                var animalEntity = entities.Animal
+                    .Include("Environment")
+                    .Include("FeedingTime")
+                    .Include("Responsible")
+                    .Include("HealthMeasure")
+                    .Where(e => e.Id == id)
+                    .FirstOrDefault();
+
+                if (animalEntity == null)
+                {
+                    throw new ArgumentException(
+                        string.Format(
+                            CultureInfo.CurrentCulture,
+                            "No existe ningún animal con el Id {0} para actualizar.",
+                            animalViewData.EnvironmentId));
+                }
+
+                this.SaveOrUpdateAnimal(animalViewData, animalEntity, entities);
+
+                entities.SaveChanges();
+            }
+        }
+
         public Guid CreateEnvironment(EnvironmentViewData environmentViewData)
         {
             using (var entities = this.EntityContext)
@@ -438,6 +466,78 @@
                     timeSlotEntity.HumidityMax = timeSlot.HumidityMax;
                     timeSlotEntity.LuminosityMin = timeSlot.LuminosityMin;
                     timeSlotEntity.LuminosityMax = timeSlot.LuminosityMax;
+                }
+            }
+        }
+
+        private void SaveOrUpdateAnimal(AnimalViewData animalViewData, Animal animalEntity, ZoosManagementSystemEntities entities)
+        {
+            animalEntity.Name = animalViewData.Name;
+            animalEntity.Species = animalViewData.Species;
+            animalEntity.Sex = (animalViewData.Sex.ToLowerInvariant() == "macho") ? "M" : "F";
+            animalEntity.Cost = animalViewData.Cost;
+            animalEntity.BornInCaptivity = animalViewData.BornInCaptivity;
+            animalEntity.BirthDate = DateTime.Parse(animalViewData.BirthDate);
+            animalEntity.NextHealthMeasure = DateTime.Parse(animalViewData.NextHealthMeasure);
+
+            var responsibleId = new Guid(animalViewData.ResponsibleId);
+            if (animalEntity.Responsible.Id != responsibleId)
+            {
+                animalEntity.Responsible = entities.Responsible.FirstOrDefault(r => r.Id == responsibleId);
+            }
+            
+            if (!string.IsNullOrEmpty(animalViewData.EnvironmentId))
+            {
+                var environmentId = new Guid(animalViewData.EnvironmentId);
+                animalEntity.Environment = entities.Environment.FirstOrDefault(r => r.Id == environmentId);
+            }
+            else
+            {
+                animalEntity.Environment = null;
+            }
+
+            foreach (var feedingTime in animalViewData.FeedingTimes.Where(ft => !ft.FeedingTimeStatus.Equals("None", StringComparison.InvariantCultureIgnoreCase)))
+            {
+                FeedingTime feedingTimeEntity = null;
+                if (feedingTime.FeedingTimeStatus.Equals("New", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    feedingTimeEntity = new FeedingTime
+                        {
+                            Id = Guid.NewGuid(),
+                            Animal = animalEntity
+                        }; 
+
+                    entities.AddToFeedingTime(feedingTimeEntity);
+                }
+                else
+                {
+                    var feedingTimeId = new Guid(feedingTime.FeedingTimeId);
+                    feedingTimeEntity = entities.FeedingTime
+                        .Include("Feeding")
+                        .Where(ft => ft.Id == feedingTimeId)
+                        .FirstOrDefault();
+
+                    if (feedingTimeEntity == null)
+                    {
+                        throw new ArgumentException(
+                            string.Format(
+                                CultureInfo.CurrentCulture,
+                                "No existe ningún horario de alimentación con el Id {0} para actualizar.",
+                                feedingTime.FeedingTimeId));
+                    }
+                }
+
+                if (feedingTime.FeedingTimeStatus.Equals("Remove", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    entities.DeleteObject(feedingTimeEntity);
+                }
+                else
+                {
+                    var feedingId = new Guid(feedingTime.FeedingId);
+
+                    feedingTimeEntity.Amount = feedingTime.Amount;
+                    feedingTimeEntity.Time = TimeSpan.Parse(feedingTime.Time);
+                    feedingTimeEntity.Feeding = entities.Feeding.FirstOrDefault(f => f.Id == feedingId);
                 }
             }
         }

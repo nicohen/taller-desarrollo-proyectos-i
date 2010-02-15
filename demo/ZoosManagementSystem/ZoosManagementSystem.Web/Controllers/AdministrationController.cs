@@ -183,7 +183,7 @@ namespace ZoosManagementSystem.Web.Controllers
                 environmentViewData.EnvironmentId = environmentId;
                 this.repository.UpdateEnvironment(environmentViewData);
                 this.TempData["ActionSucess"] = true;
-                this.TempData["EnvironmentMessage"] = "Se editó correctamente el ambiente";
+                this.TempData["EnvironmentMessage"] = "Se editaron correctamente los datos del ambiente";
             }
             catch (Exception exception)
             {
@@ -285,5 +285,44 @@ namespace ZoosManagementSystem.Web.Controllers
 
             return this.View(environmentViewData);
         }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        [ActionName("EditAnimal")]
+        public ActionResult UpdateAnimal(string animalId)
+        {
+            var animalViewData = new AnimalViewData();
+            var updateModelResult = this.TryUpdateModel<AnimalViewData>(animalViewData, null, null, new[] { "AnimalId", "freeanimals" });
+
+            if (!updateModelResult)
+            {
+                animalViewData.AnimalId = animalId;
+                animalViewData.FeedingsAvailable = this.repository.GetFeedings()
+                    .Select(f => f.ToViewData())
+                    .ToList();
+                animalViewData.ResponsiblesAvailable= this.repository.GetResponsibles()
+                    .Select(r => r.ToViewData())
+                    .ToList();
+                animalViewData.EnvironmentsAvailable = this.repository.GetEnvironments()
+                    .Select(r => r.ToViewData(this.repository))
+                    .ToList();
+                return View(animalViewData);
+            }
+
+            try
+            {
+                animalViewData.AnimalId = animalId;
+                this.repository.UpdateAnimal(animalViewData);
+                this.TempData["ActionSucess"] = true;
+                this.TempData["EnvironmentMessage"] = "Se editaron correctamente los datos del animal";
+            }
+            catch (Exception exception)
+            {
+                this.TempData["ActionSucess"] = false;
+                this.TempData["EnvironmentMessage"] = exception.Message;
+            }
+
+            return this.RedirectToRoute("SearchAnimals", new { searchCriteria = animalViewData.AnimalId });
+        }
+
     }
 }

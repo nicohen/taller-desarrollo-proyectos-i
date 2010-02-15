@@ -27,6 +27,8 @@ namespace ZoosManagementSystem.Web.Models
         
         void UpdateEnvironment(EnvironmentViewData environmentViewData);
 
+        void UpdateAnimal(AnimalViewData animalViewData);
+
         Guid CreateEnvironment(EnvironmentViewData environmentViewData);
 
         bool DeleteEnvironment(Guid environmentId);

@@ -180,7 +180,6 @@ function searchAnimalKeyPressed(control, e) {
     }
 }
 
-
 function searchEnvironmentKeyPressed(control, e) {
     key = (document.all) ? e.keyCode : e.which;
 
