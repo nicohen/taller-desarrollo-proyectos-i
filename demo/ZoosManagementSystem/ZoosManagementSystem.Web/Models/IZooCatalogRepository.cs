@@ -7,14 +7,16 @@ namespace ZoosManagementSystem.Web.Models
 
     public interface IZooCatalogRepository
     {
+        IList<Animal> GetFreeAnimals();
+
         IList<Environment> GetEnvironments();
 
         Environment GetEnvironment(Guid guid);
 
         IList<Environment> SearchEnvironments(string searchCriteria);
 
-        bool DeleteEnvironment(Guid environmentId);
+        void UpdateEnvironment(EnvironmentViewData data);
 
-        IList<Animal> GetFreeAnimals();
+        bool DeleteEnvironment(Guid environmentId);
     }
 }

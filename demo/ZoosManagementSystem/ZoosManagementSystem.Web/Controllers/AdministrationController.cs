@@ -127,7 +127,7 @@ namespace ZoosManagementSystem.Web.Controllers
 
         [AcceptVerbs(HttpVerbs.Post)]
         [ActionName("EditEnvironment")]
-        public ActionResult SaveEnvironment(string environmentId)
+        public ActionResult UpdateEnvironment(string environmentId)
         {
             var environmentViewData = new EnvironmentViewData();
             var updateModelResult = this.TryUpdateModel<EnvironmentViewData>(environmentViewData, null, null, new [] { "EnvironmentId", "freeanimals" });
@@ -140,10 +140,18 @@ namespace ZoosManagementSystem.Web.Controllers
                 return View(environmentViewData);
             }
 
-            environmentViewData.EnvironmentId = environmentId;
-            this.SaveOrUpdateEnvironment(environmentViewData);
-            this.TempData["ActionSucess"] = true;
-            this.TempData["EnvironmentMessage"] = "Se editó correctamente el ambiente";
+            try
+            {
+                environmentViewData.EnvironmentId = environmentId;
+                this.repository.UpdateEnvironment(environmentViewData);
+                this.TempData["ActionSucess"] = true;
+                this.TempData["EnvironmentMessage"] = "Se editó correctamente el ambiente";
+            }
+            catch (Exception exception)
+            {
+                this.TempData["ActionSucess"] = false;
+                this.TempData["EnvironmentMessage"] = exception.Message;
+            }
 
             return this.RedirectToRoute("SearchEnvironment", new { searchCriteria = environmentViewData.EnvironmentId });
         }
@@ -151,11 +159,6 @@ namespace ZoosManagementSystem.Web.Controllers
         public ActionResult Animals()
         {
             return this.View();
-        }
-
-        private void SaveOrUpdateEnvironment(EnvironmentViewData data)
-        {
-            //TODO
         }
     }
 }
