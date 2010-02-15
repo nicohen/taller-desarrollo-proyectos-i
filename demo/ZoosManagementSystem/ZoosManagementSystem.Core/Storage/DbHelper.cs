@@ -46,6 +46,15 @@ namespace ZoosManagementSystem.Core.Storage
 
         #region Feeding
 
+        public Feeding GetFeeding(Guid feedingId)
+        {
+            var query = from e in this.entities.Feeding
+                        where e.Id == feedingId
+                        select e;
+
+            return query.First();
+        }
+
         #endregion
 
         #region FeedingTime
@@ -57,6 +66,15 @@ namespace ZoosManagementSystem.Core.Storage
                         select e;
 
             return query.ToList();
+        }
+
+        public FeedingTime GetFeedingTime(Guid feedingTimeId)
+        {
+            var query = from e in this.entities.FeedingTime.Include("Feeding")
+                        where e.Id == feedingTimeId
+                        select e;
+
+            return query.First();
         }
 
         #endregion

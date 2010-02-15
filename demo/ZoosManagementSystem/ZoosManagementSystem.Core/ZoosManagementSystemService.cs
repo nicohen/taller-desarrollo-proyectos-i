@@ -30,6 +30,16 @@ namespace ZoosManagementSystem.Core
 
         protected override void OnStart(string[] args)
         {
+#if DEBUG
+            while (!Debugger.IsAttached)      // Waiting until debugger is attached
+            {
+                RequestAdditionalTime(8000);  // Prevents the service from timeout
+                Thread.Sleep(7000);           // Gives you time to attach the debugger   
+            }
+            RequestAdditionalTime(20000);     // for Debugging the OnStart method,
+            // increase as needed to prevent timeouts
+#endif
+
             this.LoadDataFromStorage();
             this.StartSensorManagers();
 

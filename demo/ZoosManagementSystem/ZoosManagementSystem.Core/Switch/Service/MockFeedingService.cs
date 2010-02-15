@@ -34,6 +34,7 @@ namespace ZoosManagementSystem.Core.Switch.Service
             this.dbHelper = new DbHelper();
             this.environmentActionsServiceClient = new EnvironmentActionsServiceClient();
             this.feedingTimers = new List<Timer>();
+            this.environmentFeedingTimes = new Dictionary<Guid, List<FeedingTime>>();
         }
 
         public override void Initialize()
@@ -44,7 +45,7 @@ namespace ZoosManagementSystem.Core.Switch.Service
 
         protected override void OnStart()
         {
-            this.dbUpdateTimer = new Timer(new TimerCallback(this.DbUpdateTimerCallback), null, 0, 10000);
+            this.dbUpdateTimer = new Timer(new TimerCallback(this.DbUpdateTimerCallback), null, 0, 60000);
 
             while (this.running)
             {
@@ -108,13 +109,16 @@ namespace ZoosManagementSystem.Core.Switch.Service
             }
             catch (Exception)
             {
+
             }
         }
 
         private void FeedAnimal(FeedingTime feedingTime)
         {
             //TODO: guarda aca, no creo que EF mapée feedingTime.Animal.Environment.Id
-            this.environmentActionsServiceClient.FeedAnimal(feedingTime.Animal.Environment.Id, feedingTime.Animal.Id, feedingTime.Feeding.Id, feedingTime.Amount);
+            FeedingTime mappedFeedingTime = this.dbHelper.GetFeedingTime(feedingTime.Id);
+
+            this.environmentActionsServiceClient.FeedAnimal(feedingTime.Animal.Environment.Id, feedingTime.Animal.Id, mappedFeedingTime.Feeding.Id, feedingTime.Amount);
         }
 
         #endregion
