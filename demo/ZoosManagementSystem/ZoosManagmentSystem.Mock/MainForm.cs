@@ -41,6 +41,9 @@ namespace ZoosManagmentSystem.Mock
             this.temperatureGaugeBar.Maximum = 1000;
             this.humidityGaugeBar.Maximum = 1000;
             this.luminosityGaugeBar.Maximum = 2000;
+            this.pictureBox1.ImageLocation = "water.jpg";
+            this.pictureBox2.ImageLocation = "light.png";
+            this.pictureBox3.ImageLocation = "none.jpg";
         }
 
         private void LoadDataFromStorage()

@@ -54,7 +54,7 @@ namespace ZoosManagmentSystem.Mock
             this.temperatureGaugeBar = new VerticalProgressBar.VerticalProgressBar();
             this.label7 = new System.Windows.Forms.Label();
             this.environmentNameTextBox = new System.Windows.Forms.TextBox();
-MainForm.statusConsoleTextbox = new System.Windows.Forms.TextBox();
+            MainForm.statusConsoleTextbox = new System.Windows.Forms.TextBox();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -223,25 +223,25 @@ MainForm.statusConsoleTextbox = new System.Windows.Forms.TextBox();
             // luminosityGaugeValueTextbox
             // 
             this.luminosityGaugeValueTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.luminosityGaugeValueTextbox.Location = new System.Drawing.Point(332, 394);
+            this.luminosityGaugeValueTextbox.Location = new System.Drawing.Point(322, 394);
             this.luminosityGaugeValueTextbox.Name = "luminosityGaugeValueTextbox";
-            this.luminosityGaugeValueTextbox.Size = new System.Drawing.Size(49, 31);
+            this.luminosityGaugeValueTextbox.Size = new System.Drawing.Size(70, 31);
             this.luminosityGaugeValueTextbox.TabIndex = 8;
             // 
             // humidityGaugeValueTextbox
             // 
             this.humidityGaugeValueTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.humidityGaugeValueTextbox.Location = new System.Drawing.Point(194, 395);
+            this.humidityGaugeValueTextbox.Location = new System.Drawing.Point(185, 395);
             this.humidityGaugeValueTextbox.Name = "humidityGaugeValueTextbox";
-            this.humidityGaugeValueTextbox.Size = new System.Drawing.Size(53, 31);
+            this.humidityGaugeValueTextbox.Size = new System.Drawing.Size(70, 31);
             this.humidityGaugeValueTextbox.TabIndex = 7;
             // 
             // temperatureGaugeValueTextbox
             // 
             this.temperatureGaugeValueTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.temperatureGaugeValueTextbox.Location = new System.Drawing.Point(49, 395);
+            this.temperatureGaugeValueTextbox.Location = new System.Drawing.Point(39, 395);
             this.temperatureGaugeValueTextbox.Name = "temperatureGaugeValueTextbox";
-            this.temperatureGaugeValueTextbox.Size = new System.Drawing.Size(54, 31);
+            this.temperatureGaugeValueTextbox.Size = new System.Drawing.Size(70, 31);
             this.temperatureGaugeValueTextbox.TabIndex = 6;
             // 
             // label6
@@ -334,7 +334,7 @@ MainForm.statusConsoleTextbox = new System.Windows.Forms.TextBox();
             this.environmentNameTextBox.Size = new System.Drawing.Size(198, 31);
             this.environmentNameTextBox.TabIndex = 6;
             // 
-MainForm.statusConsoleTextbox.Location = new System.Drawing.Point(6, 19);
+            MainForm.statusConsoleTextbox.Location = new System.Drawing.Point(6, 19);
             MainForm.statusConsoleTextbox.Multiline = true;
             new System.Drawing.Font("Microsoft Sans Serif", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             MainForm.statusConsoleTextbox.Name = "statusConsoleTextbox";
