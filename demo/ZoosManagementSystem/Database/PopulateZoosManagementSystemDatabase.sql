@@ -35,5 +35,5 @@ INSERT INTO [dbo].[FeedingTime] ([FeedingId], [AnimalId], [Amount], [Time]) VALU
 INSERT INTO [dbo].[FeedingTime] ([FeedingId], [AnimalId], [Amount], [Time]) VALUES (@feedingID, @animalID, 3500, '20:30:00.0')
 
 INSERT INTO [dbo].[TimeSlot] ([EnvironmentId], [InitialTime], [FinalTime], [TemperatureMin], [TemperatureMax], [HumidityMin], [HumidityMax], [LuminosityMin], [LuminosityMax]) VALUES (@environmentID, '20:00:00.0', '07:00:00.0', 20.0, 30.0, 53.0, 68.0, 0.0, 3.0)
-INSERT INTO [dbo].[TimeSlot] ([EnvironmentId], [InitialTime], [FinalTime], [TemperatureMin], [TemperatureMax], [HumidityMin], [HumidityMax], [LuminosityMin], [LuminosityMax]) VALUES (@environmentID, '07:00:00.0', '12:30:00.0', 24.0, 33.0, 55.0, 78.0, 5000.0, 30000.0)
-INSERT INTO [dbo].[TimeSlot] ([EnvironmentId], [InitialTime], [FinalTime], [TemperatureMin], [TemperatureMax], [HumidityMin], [HumidityMax], [LuminosityMin], [LuminosityMax]) VALUES (@environmentID, '12:30:00.0', '20:00:00.0', 25.0, 35.0, 60.0, 80.0, 30000.0, 100000.0)
+INSERT INTO [dbo].[TimeSlot] ([EnvironmentId], [InitialTime], [FinalTime], [TemperatureMin], [TemperatureMax], [HumidityMin], [HumidityMax], [LuminosityMin], [LuminosityMax]) VALUES (@environmentID, '07:00:00.0', '12:30:00.0', 24.0, 33.0, 55.0, 78.0, 500.0, 1000.0)
+INSERT INTO [dbo].[TimeSlot] ([EnvironmentId], [InitialTime], [FinalTime], [TemperatureMin], [TemperatureMax], [HumidityMin], [HumidityMax], [LuminosityMin], [LuminosityMax]) VALUES (@environmentID, '12:30:00.0', '20:00:00.0', 25.0, 35.0, 60.0, 80.0, 300.0, 700.0)
