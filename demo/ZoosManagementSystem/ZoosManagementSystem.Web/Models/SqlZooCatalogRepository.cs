@@ -135,6 +135,49 @@
             }
         }
 
+        public IList<Animal> SearchAnimals(string searchCriteria)
+        {
+            using (var entities = this.EntityContext)
+            {
+                var filteredAnimals = entities.Animal
+                    .Include("Environment")
+                    .Include("FeedingTime")
+                    .Include("Responsible")
+                    .Include("HealthMeasure")
+                    .ToList();
+
+                foreach (var animal in filteredAnimals)
+                {
+                    foreach (var feedingTime in animal.FeedingTime)
+                    {
+                        if (!feedingTime.FeedingReference.IsLoaded)
+                        {
+                            feedingTime.FeedingReference.Load();
+                        }
+                    }
+                }
+
+                foreach (var criteria in searchCriteria.ToLowerInvariant().Split())
+                {
+                    filteredAnimals = filteredAnimals
+                            .Where(a => a.Id.ToString().ToLowerInvariant() == criteria
+                                          || a.Name.ToLowerInvariant().Contains(criteria)
+                                          || a.Species.ToLowerInvariant().Contains(criteria)
+                                          || a.BirthDate.ToString("yyyy/MM/dd").Contains(criteria)
+                                          || a.Responsible.Name.ToLowerInvariant().Contains(criteria)
+                                          || a.Responsible.LastName.ToLowerInvariant().Contains(criteria)
+                                          || a.Responsible.Email.ToLowerInvariant().Contains(criteria)
+                                          || a.NextHealthMeasure.ToString("yyyy/MM/dd").Contains(criteria))
+                            .ToList();
+                }
+
+                return filteredAnimals
+                    .OrderBy(a => a.Species)
+                    .ThenBy(a => a.Name)
+                    .ToList();
+            }
+        }
+
         public void UpdateEnvironment(EnvironmentViewData environmentViewData)
         {
             using (var entities = this.EntityContext)

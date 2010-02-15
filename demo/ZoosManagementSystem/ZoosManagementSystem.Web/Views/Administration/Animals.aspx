@@ -71,15 +71,17 @@
                         <% } %>
                     </fieldset>
                     <fieldset class="last">
+                        <legend style="float: left;">Ex&aacute;menes M&eacute;dicos</legend>
+                        <%= Html.ActionLink("Nuevo Examen Médico", "NewHealthMeasure", "Administration", null, new { Class = "newlink", style = "float: right;" })%>
                         
-                        <legend>Ex&aacute;menes M&eacute;dicos</legend>
+                        <div class="clear"></div>
                         <ul>                             
                         <%
                            var measures = 0;
                            foreach (var healthMeasure in animal.HealthMeasure.OrderBy(hm => hm.MeasurementDate))
                            {
                                measures++; %>
-                               <li>Examen <%= measures %>: <%= Html.ActionLink(healthMeasure.MeasurementDate.ToString("yyyy/MM/dd"), "EditHealthMeasure", "Administration", new { healthMeasureId = healthMeasure.Id }, null) %></li>
+                               <li>Examen <%= measures %>: <%= Html.ActionLink(healthMeasure.MeasurementDate.ToString("yyyy/MM/dd"), "EditHealthMeasure", "Administration", new { healthMeasureId = healthMeasure.Id }, null)%></li>
                         <% } %>
                         </ul>
                         

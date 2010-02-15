@@ -209,5 +209,19 @@ namespace ZoosManagementSystem.Web.Controllers
 
             return this.View("Animals", animals);
         }
+
+        public ActionResult SearchAnimals(string searchCriteria)
+        {
+            this.TempData["NoItemsMessage"] = "No se encontraron animales.";
+            this.TempData["SearchCriteria"] = searchCriteria;
+            IList<Models.Animal> animals = null;
+
+            if (!string.IsNullOrEmpty(searchCriteria))
+            {
+                animals = this.repository.SearchAnimals(searchCriteria);
+            }
+
+            return this.View("Animals", animals);
+        }
     }
 }

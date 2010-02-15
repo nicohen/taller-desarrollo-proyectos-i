@@ -13,6 +13,7 @@ namespace ZoosManagementSystem.Web
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            // Environments
             routes.MapRoute(
                 "SearchEnvironment",                                                   // Route name
                 "Administration/Environments/Search/{searchCriteria}",                 // URL with parameters
@@ -33,10 +34,11 @@ namespace ZoosManagementSystem.Web
                 "Administration/Environments/New",                                    // URL with parameters
                 new { controller = "Administration", action = "NewEnvironment" });    // Parameter defaults
 
+            // Animals
             routes.MapRoute(
-                "SearchAnimal",                                                        // Route name
+                "SearchAnimals",                                                        // Route name
                 "Administration/Animals/Search/{searchCriteria}",                      // URL with parameters
-                new { controller = "Administration", action = "SearchAnimal" });       // Parameter defaults
+                new { controller = "Administration", action = "SearchAnimals" });       // Parameter defaults
 
             routes.MapRoute(
                 "DeleteAnimal",                                                        // Route name
@@ -52,6 +54,18 @@ namespace ZoosManagementSystem.Web
                 "NewAnimal",                                                           // Route name
                 "Administration/Animals/New",                                          // URL with parameters
                 new { controller = "Administration", action = "NewAnimal" });          // Parameter defaults
+
+            // HealthMeasures
+            routes.MapRoute(
+                "EditHealthMeasure",                                                   // Route name
+                "Administration/Animals/HealthMeasures/Edit/{healthMeasureId}",               // URL with parameters
+                new { controller = "Administration", action = "EditHealthMeasure" });  // Parameter defaults
+
+            routes.MapRoute(
+                "NewHealthMeasure",                                                    // Route name
+                "Administration/Animals/HealthMeasures/New",                           // URL with parameters
+                new { controller = "Administration", action = "NewHealthMeasure" });   // Parameter defaults
+
 
             routes.MapRoute(
                 "Default",                                                             // Route name

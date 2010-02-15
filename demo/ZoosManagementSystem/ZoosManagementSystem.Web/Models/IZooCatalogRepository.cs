@@ -17,6 +17,8 @@ namespace ZoosManagementSystem.Web.Models
 
         IList<Environment> SearchEnvironments(string searchCriteria);
 
+        IList<Animal> SearchAnimals(string searchCriteria);
+        
         void UpdateEnvironment(EnvironmentViewData environmentViewData);
 
         Guid CreateEnvironment(EnvironmentViewData environmentViewData);

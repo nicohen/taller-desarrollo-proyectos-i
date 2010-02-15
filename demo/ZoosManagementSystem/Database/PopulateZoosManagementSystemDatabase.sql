@@ -26,6 +26,10 @@ DECLARE @sensorID UNIQUEIDENTIFIER
 INSERT INTO [dbo].[Sensor] ([EnvironmentId], [Name], [Type], [Manufacturer], [SerialNumber]) VALUES (@environmentID, 'SensorLuz-Ph1127-1', 'Luz', 'Phidgets Inc.', 'AB285-DE855-EDDR5-ADRR1-15DDR')
 SET @sensorID = (SELECT TOP 1 [Id] FROM [dbo].[Sensor])
 
+INSERT INTO [ZoosManagementSystem].[dbo].[HealthMeasure] ([AnimalId], [MeasurementDate], [Weight], [Height], [Width] ,[Notes]) VALUES (@animalID, '2007-05-10', 2, 14, 5, 'Todo normal')
+INSERT INTO [ZoosManagementSystem].[dbo].[HealthMeasure] ([AnimalId], [MeasurementDate], [Weight], [Height], [Width] ,[Notes]) VALUES (@animalID, '2008-05-15', 7, 20, 9, 'Todo normal')
+INSERT INTO [ZoosManagementSystem].[dbo].[HealthMeasure] ([AnimalId], [MeasurementDate], [Weight], [Height], [Width] ,[Notes]) VALUES (@animalID, '2009-12-20', 10, 24, 11, 'Todo normal')
+
 INSERT INTO [dbo].[FeedingTime] ([FeedingId], [AnimalId], [Amount], [Time]) VALUES (@feedingID, @animalID, 3500, '12:00:00.0')
 INSERT INTO [dbo].[FeedingTime] ([FeedingId], [AnimalId], [Amount], [Time]) VALUES (@feedingID, @animalID, 3500, '20:30:00.0')
 
