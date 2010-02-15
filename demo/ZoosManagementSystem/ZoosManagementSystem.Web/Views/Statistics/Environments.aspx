@@ -3,7 +3,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Administraci&oacute;n Inteligente de Zool&oacute;gicos - Estad&iacute;sticas/Ambientes
-	
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">

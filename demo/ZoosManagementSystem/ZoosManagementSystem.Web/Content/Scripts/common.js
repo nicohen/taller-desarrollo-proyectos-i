@@ -207,3 +207,11 @@ function redirectViewEnvironmentStats(comboId) {
         window.location = "/ZoosManagementSystem" + "/Statistics/Environments/ViewEnvironmentStats/" + valueSelected
     }
 }
+
+function redirectViewAnimalStats(comboId) {
+    var index = $("#" + comboId)[0].selectedIndex;
+    var valueSelected = $("#" + comboId).children()[index].value;
+    if (valueSelected != null && valueSelected != "") {
+        window.location = "/ZoosManagementSystem" + "/Statistics/Animals/ViewAnimalStats/" + valueSelected
+    }
+}
